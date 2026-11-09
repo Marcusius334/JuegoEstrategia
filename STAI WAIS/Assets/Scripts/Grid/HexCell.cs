@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que aparece en el tablero
 {
-    public HexCoordinates Coordinates { get; private set; } //Guarda las coordenadas de la casilla
+    [SerializeField] private int coordinatesQ;
+    [SerializeField]private int coordinatesR;
+    [SerializeField] private HexTerrainType terrainType;
+    public HexCoordinates Coordinates => new HexCoordinates(coordinatesQ, coordinatesR); //Guarda las coordenadas de la casilla
+    public HexTerrainType TerrainType => terrainType;//guarda que terreno tiene la propia casilla
     public Terrain Terrain { get; private set; }
 
     private HexGridManager grid;//Administrador del tablero
@@ -19,7 +23,9 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     public void Initialize(HexGridManager gridManager, HexCoordinates coordinates)
     {
         grid = gridManager;
-        Coordinates = coordinates;
+        coordinatesQ = coordinates.Q;
+        coordinatesR = coordinates.R;
+
         name = $"Hex_{coordinates.Q}_{coordinates.R}"; //Nombre del objeto de Unity
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,6 +69,22 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     public void SetTerrain(Terrain terrain) 
     {
         Terrain = terrain;
+        terrainType = terrain.Type;
+
+        // Obtener el SpriteRenderer si todavía no está asignado
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponent<SpriteRenderer>();
+        // Aplicar directamente el color del terreno
+        spriteRenderer.color = terrain.TerrainColor;
+
+#if UNITY_EDITOR
+        UnityEditor.EditorUtility.SetDirty(this);
+        UnityEditor.EditorUtility.SetDirty(spriteRenderer);
+#endif
+    }
+    public void LoadTerrain(HexGridManager grid) 
+    {
+        Terrain = grid.CreateTerrain(terrainType);
         UpdateVisual();
     }
 }

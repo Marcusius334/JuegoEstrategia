@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+
 public class HexGridManager : MonoBehaviour //Administra todo el tablero
 {
     [Header("Configuracion del tablero")]
@@ -13,7 +14,22 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
     private void Start()
     {
-        GenerateGrid();
+        RegistrarGrid();
+        foreach (HexCell cell in cells.Values) 
+        {
+            cell.Initialize(this,cell.Coordinates);
+            cell.LoadTerrain(this);
+        }
+    }
+    private void RegistrarGrid() 
+    {
+        cells.Clear();
+        HexCell[] existingCells = GetComponentsInChildren<HexCell>();
+        foreach (HexCell cell in existingCells) 
+        {
+            if(!cells.ContainsKey(cell.Coordinates))
+                cells.Add(cell.Coordinates, cell);
+        }
     }
     //Generar el tablero
     public void GenerateGrid() 
@@ -70,22 +86,25 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
     }
 
-    private Terrain CreateTerrain(HexTerrainType type) 
+    //////////////////////////////////////////////////////////////
+    /////////////////CREACION DE TERRENOS/////////////////////////
+    //////////////////////////////////////////////////////////////
+    public Terrain CreateTerrain(HexTerrainType type) //
     {
-        switch (type) 
+        switch (type) //se crean los terrenos con los valores: Typo de terreno, Coste de movimiento, Bono de Defensa, Color del terreno 
         {
             case HexTerrainType.TerrenoEspacio:
-                return new Terrain(type, 1, 0, new Color(0.15f, 0.15f, 0.25f)); //Azul oscuro
+                return new Terrain(type, 1, 0, new Color(0.79f, 0.92f, 0.92f)); //Azul oscuro
             case HexTerrainType.TerrenoOrbitaPlanetaria:
                 return new Terrain(type, 2, 0,new Color(0.2f, 0.45f, 0.85f)); //Azul claro
             case HexTerrainType.TerrenoAsteroides:
-                return new Terrain(type, 3, 1,new Color(0.45f, 0.45f, 0.45f)); //Gris
+                return new Terrain(type, 3, 1,new Color(0.70f, 0.58f, 0.43f)); //Marrón
             case HexTerrainType.TerrenoEscombros:
-                return new Terrain(type, 5, 3,new Color(0.65f, 0.35f, 0.15f)); //Naranja Marrón
+                return new Terrain(type, 5, 3,new Color(0.45f, 0.45f, 0.45f)); //Gris
             case HexTerrainType.TerrenoNebulosa:
-                return new Terrain(type, 3, -1,new Color(0.65f, 0.2f, 0.8f)); //Fucsia
+                return new Terrain(type, 3, -1,new Color(0.50f, 0.38f, 0.85f)); //Morado
             case HexTerrainType.TerrenoAgujeroDeGusano:
-                return new Terrain(type, 0, 0,new Color(0.1f, 0.9f, 0.75f)); //Azul cyan
+                return new Terrain(type, 0, 0,new Color(0.0f, 0.0f, 0.0f)); //NEGRO
             default:
                 return null;
         }
@@ -108,4 +127,22 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
 
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Generar tablero en escena")]
+    private void GenerateGridInEdtor() 
+    {
+        //Eliminar tablero anterior
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+        cells.Clear();
+        selectedCell = null;
+
+        //Generar el nuevo Tablero
+        GenerateGrid();
+    }
+
+#endif
 }

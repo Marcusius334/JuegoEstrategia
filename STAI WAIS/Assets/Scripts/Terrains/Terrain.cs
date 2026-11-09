@@ -14,6 +14,6 @@ public class Terrain
         Type = type;
         MovementCost = movementCost;
         DefenseBonus = defenseBonus;
-        TerrainColor = terrainColor;
+        TerrainColor = terrainColor; //más adelante el color deberá ser un sprite
     }
 }
