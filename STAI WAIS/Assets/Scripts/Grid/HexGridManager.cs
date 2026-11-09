@@ -39,6 +39,9 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
                 cell.Initialize(this, coordinates);
 
+                Terrain terrain = GenerateTerrain();
+                cell.SetTerrain(terrain);
+
                 cells.Add(coordinates, cell); //A�adimos al diccionario
             }
         }
@@ -65,5 +68,44 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         //activar visualmente la nueva seleccion 
         selectedCell.SetSelected(true);
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
+    }
+
+    private Terrain CreateTerrain(HexTerrainType type) 
+    {
+        switch (type) 
+        {
+            case HexTerrainType.TerrenoEspacio:
+                return new Terrain(type, 1, 0, new Color(0.15f, 0.15f, 0.25f)); //Azul oscuro
+            case HexTerrainType.TerrenoOrbitaPlanetaria:
+                return new Terrain(type, 2, 0,new Color(0.2f, 0.45f, 0.85f)); //Azul claro
+            case HexTerrainType.TerrenoAsteroides:
+                return new Terrain(type, 3, 1,new Color(0.45f, 0.45f, 0.45f)); //Gris
+            case HexTerrainType.TerrenoEscombros:
+                return new Terrain(type, 5, 3,new Color(0.65f, 0.35f, 0.15f)); //Naranja Marrón
+            case HexTerrainType.TerrenoNebulosa:
+                return new Terrain(type, 3, -1,new Color(0.65f, 0.2f, 0.8f)); //Fucsia
+            case HexTerrainType.TerrenoAgujeroDeGusano:
+                return new Terrain(type, 0, 0,new Color(0.1f, 0.9f, 0.75f)); //Azul cyan
+            default:
+                return null;
+        }
+    }
+    private Terrain GenerateTerrain() //Generador aleatorio de terrenos. Por ahora los terrenos se generan aleatoriamente. Con (más o menos), la misma probabilidad de que se generen. Cuando el mapa esté diseñado lo cambiaré.
+    {
+        float random = Random.Range(0f, 100f);
+        if (random < 16f)
+            return CreateTerrain(HexTerrainType.TerrenoEspacio);
+        if (random < 32f)
+            return CreateTerrain(HexTerrainType.TerrenoOrbitaPlanetaria);
+        if (random < 48f)
+            return CreateTerrain(HexTerrainType.TerrenoAsteroides);
+        if (random < 64f)
+            return CreateTerrain(HexTerrainType.TerrenoEscombros);
+        if (random < 80)
+            return CreateTerrain(HexTerrainType.TerrenoNebulosa);
+        return CreateTerrain(HexTerrainType.TerrenoAgujeroDeGusano);
+
+
+
     }
 }
