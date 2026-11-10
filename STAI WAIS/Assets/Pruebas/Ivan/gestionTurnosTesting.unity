@@ -30806,6 +30806,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23cc6503c9e759f4faebbef6b67950c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  dragSpeed: 1
+  zoomSpeed: 2
+  minZoom: 3
+  maxZoom: 15
+  useBounds: 1
+  minX: -10
+  maxX: 10
+  minY: -8
+  maxY: 8
+  focusSpeed: 10
+  centerKey: 32
 --- !u!1 &1254328251
 GameObject:
   m_ObjectHideFlags: 0
@@ -32792,7 +32803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -55805,13 +55816,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2323023455212276052, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485365018905756092, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376073957881043647, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503765596604006285, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6027097300297909684, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1249808705}
+    - target: {fileID: 6027097300297909684, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6697101443516281284, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7588236526768889369, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Name
       value: UI_canva
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678430171127059708, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8319916963670456811, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Pivot.x
