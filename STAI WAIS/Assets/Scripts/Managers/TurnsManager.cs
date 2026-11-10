@@ -31,6 +31,12 @@ public class TurnsManager : MonoBehaviour
     private bool estaEnTransicion = false; // Bloqueo de seguridad
     public static bool EstaEnTransicion { get; private set; }
 
+    [Header("Referencia IA")]
+    [SerializeField] private AIPlayer jugadorEnemigo;
+
+    // Propiedad publica para que el GameController sepa de quien es el turno
+    public bool EsTurnoJugador => enTurno;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -115,16 +121,24 @@ public class TurnsManager : MonoBehaviour
         {
             case Fase.Construccion:
                 faseActual = Fase.Movimiento;
-                //ActButton();
                 break;
             case Fase.Movimiento:
                 faseActual = Fase.Ataque;
-                //ActButton();
                 break;
             case Fase.Ataque:
                 faseActual = Fase.Construccion;
-                enTurno = !enTurno;
-                //ActButton();
+                enTurno = !enTurno; // Aqui cambia de turno
+                
+                // --- LOGICA DE LA IA TEMPORAL PA QUE SE MUEVA ---
+                if (!enTurno && jugadorEnemigo != null)
+                {
+                    // Ejecuta los movimientos aleatorios de la IA
+                    jugadorEnemigo.PerformRandomMoves();
+                    
+                    //Para que el turno vuelva al jugador automáticamente 
+                    // después de que la IA juegue, descomentamos la siguiente línea:
+                     StartCoroutine(DevolverTurnoAlJugador());
+                }
                 break;        
             default:
                 textoDelBoton.text = "ERROR";
@@ -193,5 +207,12 @@ public class TurnsManager : MonoBehaviour
     {
         if (enTurno) textoDeTurno.text = "Tu turno";
         else textoDeTurno.text = "Turno del enemigo";
+    }
+
+    private IEnumerator DevolverTurnoAlJugador()
+    {
+        // Espera un poco para que se vea qué ha hecho la IA
+        yield return new WaitForSeconds(1.5f); 
+        PressButton(); // Simula que la IA pulsa el botón para devolverte el turno
     }
 }

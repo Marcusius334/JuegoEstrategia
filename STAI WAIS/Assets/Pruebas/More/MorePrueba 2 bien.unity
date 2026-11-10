@@ -2765,6 +2765,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!225 &153141415 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2898931582881159729, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &163328409
 GameObject:
   m_ObjectHideFlags: 0
@@ -10702,6 +10707,28 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &433832816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6063340722924690434, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &445146437 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3283340885009570599, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &456945618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
@@ -22250,6 +22277,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &890555977 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5788703394380625638, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &894672231
 GameObject:
   m_ObjectHideFlags: 0
@@ -24393,6 +24431,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &977142851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9070777229245435716, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &978951849
 GameObject:
   m_ObjectHideFlags: 0
@@ -26361,6 +26410,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1047780519 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3361535623692350039, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1061768812
 GameObject:
   m_ObjectHideFlags: 0
@@ -32815,6 +32875,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 1369160973}
+    - target: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
+      propertyPath: currentCell
+      value: 
+      objectReference: {fileID: 370601741}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34165,7 +34233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanPlayer
   team: 1
-  otherPlayer: {fileID: 0}
+  otherPlayer: {fileID: 1369160973}
   chatarra: 400
   creditos: 200
   tritio: 20
@@ -34952,15 +35020,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIPlayer
   team: 0
-  otherPlayer: {fileID: 0}
+  otherPlayer: {fileID: 1349632268}
   chatarra: 400
   creditos: 200
   tritio: 20
   kyber: 0
   gameManager: {fileID: 281005017}
-  myTroops:
-  - {fileID: 0}
+  troopPrefab: {fileID: 0}
   gridManager: {fileID: 456945619}
+  myTroops:
+  - {fileID: 203886854}
 --- !u!4 &1369160974
 Transform:
   m_ObjectHideFlags: 0
@@ -46063,7 +46132,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
   troopPrefab: {fileID: 203886854}
-  currentPlayer: {fileID: 0}
+  currentPlayer: {fileID: 1349632268}
+  turnsManager: {fileID: 2063252835}
 --- !u!4 &1778314819
 Transform:
   m_ObjectHideFlags: 0
@@ -53623,6 +53693,58 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &2063252834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063252836}
+  - component: {fileID: 2063252835}
+  m_Layer: 0
+  m_Name: TurnsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2063252835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063252834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4739eb3144ae4459aaf53084a4ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnsManager
+  botonCambioTurno: {fileID: 445146437}
+  textoDelBoton: {fileID: 433832816}
+  textoDeFase: {fileID: 890555977}
+  textoDeTurno: {fileID: 977142851}
+  panelTransicion: {fileID: 153141415}
+  textoTransicion: {fileID: 1047780519}
+  duracionAnimacion: 0.8
+  jugadorEnemigo: {fileID: 1369160973}
+--- !u!4 &2063252836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063252834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.39824, y: -0.25419, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2063914142
 GameObject:
   m_ObjectHideFlags: 0
@@ -56363,3 +56485,4 @@ SceneRoots:
   - {fileID: 1349632269}
   - {fileID: 1369160974}
   - {fileID: 1778314819}
+  - {fileID: 2063252836}

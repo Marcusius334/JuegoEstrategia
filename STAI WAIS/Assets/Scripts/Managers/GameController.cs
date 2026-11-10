@@ -3,14 +3,22 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [Header("Referencias")]
-    public Troop troopPrefab; // Arrastra tu prefab del inspector aquí
-    public Player currentPlayer; // Arrastra el jugador actual (si tienes un objeto Player)
+    public Troop troopPrefab; 
+    public Player currentPlayer; 
+    public TurnsManager turnsManager; // Asegúrate de que arrastraste el TurnsManager aquí en el Inspector
 
-    private Troop activeTroop; // La tropa que estamos controlando en pantalla
+    private Troop activeTroop; 
 
     void Update()
     {
-        // Detectar clic izquierdo
+        // --- BLOQUEO ESTRICTO ---
+        // Si no hay turnsManager asignado, o estamos en transición, o NO es nuestro turno -> salimos del Update
+        if (turnsManager == null || TurnsManager.EstaEnTransicion || !turnsManager.EsTurnoJugador)
+        {
+            return; // Esto "corta" el código y evita que lea los clics del ratón
+        }
+
+        // Detectar clic izquierdo (Solo llega hasta aquí si es el turno del jugador)
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -22,13 +30,11 @@ public class GameController : MonoBehaviour
                 
                 if (clickedCell != null)
                 {
-                    // Si aún no hemos creado la tropa, la instanciamos en la casilla clicada
                     if (activeTroop == null)
                     {
                         activeTroop = Instantiate(troopPrefab);
                         activeTroop.Initialize(clickedCell, currentPlayer);
                     }
-                    // Si ya existe, le ordenamos moverse
                     else
                     {
                         activeTroop.MoveToCell(clickedCell);
