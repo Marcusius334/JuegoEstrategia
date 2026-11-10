@@ -86,6 +86,11 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
     }
 
+    public void DesSelectCell()
+    {
+        selectedCell.SetSelected(false);
+        selectedCell = null;
+    }
     //////////////////////////////////////////////////////////////
     /////////////////CREACION DE TERRENOS/////////////////////////
     //////////////////////////////////////////////////////////////
