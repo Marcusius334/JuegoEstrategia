@@ -30,14 +30,37 @@ public class TurnsManager : MonoBehaviour
 
     public bool EsTurnoJugador => enTurno;
 
+    private void BuscarAIPlayer()
+{
+    // Si ya tenemos una referencia, no hacemos nada
+    if (jugadorEnemigo != null)
+        return;
+
+    // Buscar los AIPlayer existentes en la escena
+    AIPlayer[] jugadoresIA = FindObjectsByType<AIPlayer>(
+        FindObjectsSortMode.None
+    );
+
+    if (jugadoresIA.Length > 0)
+    {
+        jugadorEnemigo = jugadoresIA[0];
+
+        Debug.Log(
+            "TurnManager: AIPlayer encontrado automáticamente: "
+            + jugadorEnemigo.gameObject.name
+        );
+    }
+    else
+    {
+        Debug.LogError(
+            "TurnManager: NO EXISTE ningún AIPlayer activo en la escena."
+        );
+    }
+}
+
     void Start()
 {
-    Debug.Log(
-        "[DIAGNOSTICO] TurnsManager activo: " + gameObject.name +
-        " | ID: " + GetInstanceID() +
-        " | AIPlayer: " +
-        (jugadorEnemigo != null ? jugadorEnemigo.name : "NULL")
-    );
+    BuscarAIPlayer();
 
     enTurno = true;
     faseActual = Fase.Construccion;
@@ -111,17 +134,19 @@ public class TurnsManager : MonoBehaviour
         yield return StartCoroutine(AnimarTransicionFase());
 
 
-        // 2. La IA piensa y se mueve
-        Debug.Log("TurnManager: Comienza el turno enemigo.");
+        // 2. Buscar la IA e intentar ejecutar su turno
+BuscarAIPlayer();
 
-         if (jugadorEnemigo != null)
-        {
-            jugadorEnemigo.PerformRandomMoves();
-        }
-        else
-        {
-            Debug.LogError("TurnManager: No hay ningún AIPlayer asignado.");
-        }
+if (jugadorEnemigo != null)
+{
+    Debug.Log("TurnManager: Ejecutando turno de la IA.");
+
+    jugadorEnemigo.PerformRandomMoves();
+}
+else
+{
+    Debug.LogError("TurnManager: No se puede ejecutar la IA.");
+}
 
         // 3. Pequeña pausa para que veas qué ha hecho
         yield return new WaitForSeconds(1.5f);
