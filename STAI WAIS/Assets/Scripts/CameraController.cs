@@ -28,8 +28,10 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     private Vector3 dragOrigin;
     private Vector3 defaultPosition = new Vector3(0f, 0f, -10f);
-    private Vector3 targetFocusPosition;
     private bool isFocusing = false;
+
+    //Variable para compartir la posición de la celda y poder centrar la camara:
+    public static Vector3 targetFocusPosition;
 
     private void Awake()
     {
@@ -40,6 +42,8 @@ public class CameraController : MonoBehaviour
         {
             cam.orthographic = true;
         }
+
+        targetFocusPosition = defaultPosition;
     }
 
     // Update is called once per frame
@@ -81,7 +85,7 @@ public class CameraController : MonoBehaviour
         // Al pulsar la tecla configurada (por defecto Espacio), inicia el centrado
         if (Input.GetKeyDown(centerKey))
         {
-            FocusOnPosition(defaultPosition);
+            FocusOnPosition(targetFocusPosition);
         }
 
         // Movimiento suave hacia el objetivo
@@ -92,6 +96,7 @@ public class CameraController : MonoBehaviour
             {
                 transform.position = targetFocusPosition;
                 isFocusing = false;
+                Debug.Log("Se ha centrado");
             }
         }
     }

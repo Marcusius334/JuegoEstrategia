@@ -23,6 +23,8 @@ public class TurnsManager : MonoBehaviour
     private bool enTurno;
     private Fase faseActual;
     private bool estaEnTransicion = false;
+    
+    //Variable general para deshabilitar las casillas:
     public static bool EstaEnTransicion { get; private set; }
 
     [Header("Referencia IA")]
