@@ -30811,10 +30811,10 @@ MonoBehaviour:
   minZoom: 3
   maxZoom: 15
   useBounds: 1
-  minX: -20
-  maxX: 20
-  minY: -15
-  maxY: 15
+  minX: -10
+  maxX: 10
+  minY: -8
+  maxY: 8
   focusSpeed: 10
   centerKey: 32
 --- !u!1 &1254328251
