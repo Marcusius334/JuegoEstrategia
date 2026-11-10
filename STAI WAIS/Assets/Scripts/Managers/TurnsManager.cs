@@ -128,36 +128,69 @@ public class TurnsManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SecuenciaTurnoEnemigo()
+    
+private IEnumerator SecuenciaTurnoEnemigo()
+{
+    // Buscar la IA por si no estaba asignada inicialmente
+    BuscarAIPlayer();
+
+    // =========================================
+    // FASE 1: CONSTRUCCION
+    // =========================================
+
+    faseActual = Fase.Construccion;
+
+    yield return StartCoroutine(AnimarTransicionFase());
+
+    if (jugadorEnemigo != null)
     {
-        // 1. Mostrar cartel "Turno del Enemigo"
-        yield return StartCoroutine(AnimarTransicionFase());
-
-
-        // 2. Buscar la IA e intentar ejecutar su turno
-BuscarAIPlayer();
-
-if (jugadorEnemigo != null)
-{
-    Debug.Log("TurnManager: Ejecutando turno de la IA.");
-
-    jugadorEnemigo.PerformRandomMoves();
-}
-else
-{
-    Debug.LogError("TurnManager: No se puede ejecutar la IA.");
-}
-
-        // 3. Pequeña pausa para que veas qué ha hecho
-        yield return new WaitForSeconds(1.5f);
-
-        // 4. Restaurar el turno del jugador de verdad
-        enTurno = true;
-        faseActual = Fase.Construccion;
-
-        // 5. Mostrar cartel "Tu Turno"
-        yield return StartCoroutine(AnimarTransicionFase());
+        jugadorEnemigo.PerformConstructionPhase();
     }
+
+    yield return new WaitForSeconds(1f);
+
+    // =========================================
+    // FASE 2: MOVIMIENTO
+    // =========================================
+
+    faseActual = Fase.Movimiento;
+
+    yield return StartCoroutine(AnimarTransicionFase());
+
+    if (jugadorEnemigo != null)
+    {
+        jugadorEnemigo.PerformMovementPhase();
+    }
+
+    yield return new WaitForSeconds(1f);
+
+    // =========================================
+    // FASE 3: ATAQUE
+    // =========================================
+
+    faseActual = Fase.Ataque;
+
+    yield return StartCoroutine(AnimarTransicionFase());
+
+    if (jugadorEnemigo != null)
+    {
+        jugadorEnemigo.PerformAttackPhase();
+    }
+
+    yield return new WaitForSeconds(1f);
+
+    // =========================================
+    // DEVOLVER EL TURNO AL JUGADOR
+    // =========================================
+
+    enTurno = true;
+    faseActual = Fase.Construccion;
+
+    yield return StartCoroutine(AnimarTransicionFase());
+
+    Debug.Log("TurnManager: Vuelve el turno del jugador.");
+}
+
 
     private IEnumerator AnimarTransicionFase()
     {
