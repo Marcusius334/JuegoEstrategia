@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public int chatarra = 400;
     public int creditos = 200;
     public int tritio = 20;
-    public int kyber = 0;
+    public int cristal = 0;
 
     [Header("Managers")]
     public GameManager gameManager;

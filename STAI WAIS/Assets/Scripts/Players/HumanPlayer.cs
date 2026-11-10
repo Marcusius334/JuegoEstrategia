@@ -4,6 +4,13 @@ public class HumanPlayer : Player
 {
     private Troop selectedTroop;
     [SerializeField] private HexGridManager gridManager;
+
+    void Start(){
+        chatarra = gameManager.j_chatarra;
+        creditos = gameManager.j_creditos;
+        tritio = gameManager.j_tritio;
+        cristal = gameManager.j_cristal;
+    }
     
     // --- NUEVO: Necesitamos leer el turno ---
     public TurnsManager turnsManager;

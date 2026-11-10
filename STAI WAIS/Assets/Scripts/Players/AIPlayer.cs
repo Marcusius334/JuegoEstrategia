@@ -12,6 +12,13 @@ public class AIPlayer : Player
     [Header("Tropas Activas")]
     public List<Troop> myTroops = new List<Troop>();
 
+    void Start(){
+        chatarra = gameManager.ia_chatarra;
+        creditos = gameManager.ia_creditos;
+        tritio = gameManager.ia_tritio;
+        cristal = gameManager.ia_cristal;
+    }
+
     // =========================================
     // FASE 1: CONSTRUCCION
     // =========================================
