@@ -1,16 +1,19 @@
 using UnityEngine;
+[System.Serializable]
 
-public class Terrain : MonoBehaviour
+public class Terrain
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public HexTerrainType Type;
+    public int MovementCost;
+    public int DefenseBonus;
+    public Color TerrainColor; //Más adelante habría que cambiarlo por el sprite correspondiente a cada terreno
 
-    // Update is called once per frame
-    void Update()
+    //Constructor
+    public Terrain(HexTerrainType type, int movementCost, int defenseBonus, Color terrainColor) 
     {
-        
+        Type = type;
+        MovementCost = movementCost;
+        DefenseBonus = defenseBonus;
+        TerrainColor = terrainColor; //más adelante el color deberá ser un sprite
     }
 }

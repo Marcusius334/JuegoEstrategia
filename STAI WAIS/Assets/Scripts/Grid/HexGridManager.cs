@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+
 public class HexGridManager : MonoBehaviour //Administra todo el tablero
 {
     [Header("Configuracion del tablero")]
@@ -13,7 +14,22 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
     private void Start()
     {
-        GenerateGrid();
+        RegistrarGrid();
+        foreach (HexCell cell in cells.Values) 
+        {
+            cell.Initialize(this,cell.Coordinates);
+            cell.LoadTerrain(this);
+        }
+    }
+    private void RegistrarGrid() 
+    {
+        cells.Clear();
+        HexCell[] existingCells = GetComponentsInChildren<HexCell>();
+        foreach (HexCell cell in existingCells) 
+        {
+            if(!cells.ContainsKey(cell.Coordinates))
+                cells.Add(cell.Coordinates, cell);
+        }
     }
     //Generar el tablero
     public void GenerateGrid() 
@@ -38,6 +54,9 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
                 HexCell cell = hexObject.GetComponent<HexCell>();
 
                 cell.Initialize(this, coordinates);
+
+                Terrain terrain = GenerateTerrain();
+                cell.SetTerrain(terrain);
 
                 cells.Add(coordinates, cell); //A�adimos al diccionario
             }
@@ -66,4 +85,64 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         selectedCell.SetSelected(true);
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
     }
+
+    //////////////////////////////////////////////////////////////
+    /////////////////CREACION DE TERRENOS/////////////////////////
+    //////////////////////////////////////////////////////////////
+    public Terrain CreateTerrain(HexTerrainType type) //
+    {
+        switch (type) //se crean los terrenos con los valores: Typo de terreno, Coste de movimiento, Bono de Defensa, Color del terreno 
+        {
+            case HexTerrainType.TerrenoEspacio:
+                return new Terrain(type, 1, 0, new Color(0.79f, 0.92f, 0.92f)); //Azul oscuro
+            case HexTerrainType.TerrenoOrbitaPlanetaria:
+                return new Terrain(type, 2, 0,new Color(0.2f, 0.45f, 0.85f)); //Azul claro
+            case HexTerrainType.TerrenoAsteroides:
+                return new Terrain(type, 3, 1,new Color(0.70f, 0.58f, 0.43f)); //Marrón
+            case HexTerrainType.TerrenoEscombros:
+                return new Terrain(type, 5, 3,new Color(0.45f, 0.45f, 0.45f)); //Gris
+            case HexTerrainType.TerrenoNebulosa:
+                return new Terrain(type, 3, -1,new Color(0.50f, 0.38f, 0.85f)); //Morado
+            case HexTerrainType.TerrenoAgujeroDeGusano:
+                return new Terrain(type, 0, 0,new Color(0.0f, 0.0f, 0.0f)); //NEGRO
+            default:
+                return null;
+        }
+    }
+    private Terrain GenerateTerrain() //Generador aleatorio de terrenos. Por ahora los terrenos se generan aleatoriamente. Con (más o menos), la misma probabilidad de que se generen. Cuando el mapa esté diseñado lo cambiaré.
+    {
+        float random = Random.Range(0f, 100f);
+        if (random < 16f)
+            return CreateTerrain(HexTerrainType.TerrenoEspacio);
+        if (random < 32f)
+            return CreateTerrain(HexTerrainType.TerrenoOrbitaPlanetaria);
+        if (random < 48f)
+            return CreateTerrain(HexTerrainType.TerrenoAsteroides);
+        if (random < 64f)
+            return CreateTerrain(HexTerrainType.TerrenoEscombros);
+        if (random < 80)
+            return CreateTerrain(HexTerrainType.TerrenoNebulosa);
+        return CreateTerrain(HexTerrainType.TerrenoAgujeroDeGusano);
+
+
+
+    }
+
+#if UNITY_EDITOR
+    [ContextMenu("Generar tablero en escena")]
+    private void GenerateGridInEdtor() 
+    {
+        //Eliminar tablero anterior
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+        cells.Clear();
+        selectedCell = null;
+
+        //Generar el nuevo Tablero
+        GenerateGrid();
+    }
+
+#endif
 }
