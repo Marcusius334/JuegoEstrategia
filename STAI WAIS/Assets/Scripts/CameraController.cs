@@ -12,8 +12,24 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float minZoom = 3.0f;
     [SerializeField] private float maxZoom = 15.0f;
 
+    [Header("Límites del Mapa (Bounds)")]
+    [Tooltip("Activa o desactiva la restricción de movimiento")]
+    [SerializeField] private bool useBounds = true;
+    [SerializeField] private float minX = -20.0f;
+    [SerializeField] private float maxX = 20.0f;
+    [SerializeField] private float minY = -15.0f;
+    [SerializeField] private float maxY = 15.0f;
+
+    [Header("Centrado de Cámara")]
+    [Tooltip("Velocidad de interpolación para el centrado suave")]
+    [SerializeField] private float focusSpeed = 10.0f;
+    [SerializeField] private KeyCode centerKey = KeyCode.Space;
+
     private Camera cam;
     private Vector3 dragOrigin;
+    private Vector3 defaultPosition = new Vector3(0f, 0f, -10f);
+    private Vector3 targetFocusPosition;
+    private bool isFocusing = false;
 
     private void Awake()
     {
@@ -31,6 +47,8 @@ public class CameraController : MonoBehaviour
     {
         HandlePan();
         HandleZoom();
+        HandleCenter();
+        ApplyBounds();
     }
 
     private void HandlePan()
@@ -56,5 +74,43 @@ public class CameraController : MonoBehaviour
             float targetZoom = cam.orthographicSize - (scroll * zoomSpeed);
             cam.orthographicSize = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
+    }
+
+    private void HandleCenter()
+    {
+        // Al pulsar la tecla configurada (por defecto Espacio), inicia el centrado
+        if (Input.GetKeyDown(centerKey))
+        {
+            FocusOnPosition(defaultPosition);
+        }
+
+        // Movimiento suave hacia el objetivo
+        if (isFocusing)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetFocusPosition, Time.deltaTime * focusSpeed);
+            if (Vector3.Distance(transform.position, targetFocusPosition) < 0.05f)
+            {
+                transform.position = targetFocusPosition;
+                isFocusing = false;
+            }
+        }
+    }
+
+    private void ApplyBounds()
+    {
+        if (!useBounds) return;
+
+        // Mantener el valor Z original de la cámara (habitualmente -10 en 2D)
+        float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
+        float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
+
+        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+    }
+
+    //Centra a un punto, se puede usar en otros scripts para centrar al seleccionar un objeto
+    public void FocusOnPosition(Vector3 targetWorldPos)
+    {
+        targetFocusPosition = new Vector3(targetWorldPos.x, targetWorldPos.y, transform.position.z);
+        isFocusing = true;
     }
 }
