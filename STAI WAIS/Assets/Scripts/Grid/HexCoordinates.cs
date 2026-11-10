@@ -22,11 +22,11 @@ public struct HexCoordinates //Representa la posicion de cada hexagono dentro de
         new HexCoordinates(-1, 1), //Izquierda + abajo
         new HexCoordinates(0, -1),}; //Izquierda + arriba
 
-    public HexCoordinates GetNeighbor(int direction) //Obtiene las coordenadas de un vecino en una dirección concreta
+    public HexCoordinates GetNeighbor(int direction) //Obtiene las coordenadas de un vecino en una direcciï¿½n concreta
     {
         return new HexCoordinates(Q + Directions[direction].Q, R + Directions[direction].R); //Obtiene las coordenadas x e y + la direccion en x e y de su vecino
     }
-    public int DistanceTo(HexCoordinates other) //Calcula la distancia entre dos hexágonos con la formula: 
+    public int DistanceTo(HexCoordinates other) //Calcula la distancia entre dos hexï¿½gonos con la formula: 
         // d = ( |Q1-Q2| + |R1-R2| + |(Q1-Q2) +(R1-R2)| ) / 2
     {
         int Qdistance = Q - other.Q;

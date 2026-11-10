@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class HumanPlayer : Player
 {
-private Troop selectedTroop;
+    private Troop selectedTroop;
     [SerializeField] private HexGridManager gridManager;
+    
+    // --- NUEVO: Necesitamos leer el turno ---
+    public TurnsManager turnsManager;
 
     void Update()
     {
-        // Solo actuar si es el turno del jugador y estamos en la fase de Movimiento
-        // (Hacer pública la variable faseActual en TurnsManager o crear un método Get)
+        // --- BLOQUEO ESTRICTO DE TURNO ---
+        if (turnsManager == null || TurnsManager.EstaEnTransicion || !turnsManager.EsTurnoJugador) return;
+
         if (!Input.GetMouseButtonDown(0)) return;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -19,20 +23,19 @@ private Troop selectedTroop;
             Troop clickedTroop = hit.collider.GetComponent<Troop>();
             HexCell clickedCell = hit.collider.GetComponent<HexCell>();
 
-            // 1. Si hace clic en una de sus tropas, la selecciona
             if (clickedTroop != null && clickedTroop.owner == this)
             {
                 selectedTroop = clickedTroop;
                 Debug.Log("Tropa seleccionada.");
             }
-            // 2. Si tiene una tropa seleccionada y hace clic en una casilla, intenta moverla
             else if (selectedTroop != null && clickedCell != null)
             {
                 selectedTroop.MoveToCell(clickedCell);
-                selectedTroop = null; // Deseleccionar después de mover
+                selectedTroop = null; 
             }
         }
     }
+}
     //Funcion 1 (probablemente sea un OnMouseDown o similar)
         //Tiene que poder tocar a las tropas
         //Comprobar si es suyaa
@@ -48,4 +51,4 @@ private Troop selectedTroop;
         //Se pulsa las tropas a comprar
         //Cada vez que se compre una tropa se activa la funcion comprar tropas de la estacion
     //=====================================
-}
+

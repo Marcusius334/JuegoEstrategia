@@ -2992,7 +2992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_Name
-      value: HexGrid (1)
+      value: HexGrid
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3117730054915724361, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
@@ -3991,87 +3991,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 862026721}
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
---- !u!1001 &170933453
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: hexSize
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: mapRadius
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_Name
-      value: HexGrid
-      objectReference: {fileID: 0}
-    - target: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
 --- !u!1 &176499299
@@ -34240,6 +34159,7 @@ MonoBehaviour:
   kyber: 0
   gameManager: {fileID: 281005017}
   gridManager: {fileID: 466328284}
+  turnsManager: {fileID: 2063252835}
 --- !u!4 &1349632269
 Transform:
   m_ObjectHideFlags: 0
@@ -35026,7 +34946,7 @@ MonoBehaviour:
   tritio: 20
   kyber: 0
   gameManager: {fileID: 281005017}
-  troopPrefab: {fileID: 0}
+  troopPrefab: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
   gridManager: {fileID: 456945619}
   myTroops:
   - {fileID: 203886854}
@@ -46131,7 +46051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f20ace0a9845674eb9476b80bbfc7d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
-  troopPrefab: {fileID: 203886854}
+  troopPrefab: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
   currentPlayer: {fileID: 1349632268}
   turnsManager: {fileID: 2063252835}
 --- !u!4 &1778314819
@@ -56478,7 +56398,6 @@ SceneRoots:
   - {fileID: 7783576420730082388}
   - {fileID: 1364913682}
   - {fileID: 1604337277}
-  - {fileID: 170933453}
   - {fileID: 166857338}
   - {fileID: 1298177474}
   - {fileID: 466328285}
