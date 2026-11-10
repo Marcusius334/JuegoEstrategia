@@ -45,6 +45,7 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     
     private bool isSelected = false;
     private bool isHovered = false;
+    private Transform tr;
 
     public void Initialize(HexGridManager gridManager, HexCoordinates coordinates)
     {
@@ -55,6 +56,8 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         name = $"Hex_{coordinates.Q}_{coordinates.R}"; //Nombre del objeto de Unity
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        tr = GetComponent<Transform>();
 
         UpdateVisual();
     }
@@ -77,6 +80,8 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         if (grid != null)
         {
             grid.SelectCell(this);
+            Debug.Log("Se ha seleccionado");
+            CameraController.targetFocusPosition = tr.position;
         }
     }
     public void SetSelected(bool selected) 
