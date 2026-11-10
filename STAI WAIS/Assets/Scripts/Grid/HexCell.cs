@@ -9,6 +9,32 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     public HexTerrainType TerrainType => terrainType;//guarda que terreno tiene la propia casilla
     public Terrain Terrain { get; private set; }
 
+    // Tropa que ocupa actualmente esta casilla
+    private Troop occupyingTroop;
+
+    // Comprobar si la casilla está ocupada
+    public bool IsOccupied => occupyingTroop != null;
+
+    // Intentar colocar una tropa en esta casilla
+    public bool TrySetOccupant(Troop troop)
+    {
+        if (troop == null) return false;
+
+        // Si otra tropa ya ocupa la casilla, no permitimos colocarla
+        if (occupyingTroop != null && occupyingTroop != troop)
+            return false;
+
+        occupyingTroop = troop;
+        return true;
+    }
+
+    // Liberar la casilla cuando una tropa se marcha
+    public void ClearOccupant(Troop troop)
+    {
+        if (occupyingTroop == troop)
+        occupyingTroop = null;
+    }
+
     private HexGridManager grid;//Administrador del tablero
     private SpriteRenderer spriteRenderer;
 

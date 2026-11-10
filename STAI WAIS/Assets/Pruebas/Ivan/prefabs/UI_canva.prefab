@@ -693,6 +693,7 @@ MonoBehaviour:
   panelTransicion: {fileID: 2898931582881159729}
   textoTransicion: {fileID: 3361535623692350039}
   duracionAnimacion: 2
+  jugadorEnemigo: {fileID: 0}
 --- !u!1 &7217409697270925201
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +881,7 @@ Canvas:
   m_GameObject: {fileID: 7588236526768889369}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
