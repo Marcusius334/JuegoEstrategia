@@ -21,6 +21,13 @@ public class Troop : MonoBehaviour
     public string name;
     public string descripcion;
 
+    //Mapa de influencia propio de esta tropa 
+    public InfluenceMap influenceMap;
+
+    private void Awake()
+    {
+        influenceMap = new InfluenceMap();
+    }
     public void Initialize(HexCell startingCell, Player troopOwner)
     {
         if (startingCell == null)
@@ -45,6 +52,7 @@ public class Troop : MonoBehaviour
 
         currentCell = startingCell;
         owner = troopOwner;
+        influenceMap = new InfluenceMap();
 
         transform.position = currentCell.transform.position;
 
@@ -102,6 +110,14 @@ public class Troop : MonoBehaviour
         // Liberar la casilla si la tropa es destruida
         if (currentCell != null)
             currentCell.ClearOccupant(this);
+    }
+
+    public void UpdateInfluenceMap(HexGridManager gridManager)
+    {
+        if (influenceMap == null)
+            influenceMap = new InfluenceMap();
+
+        influenceMap.CalculateTerrainInfluence(gridManager);
     }
 }
 

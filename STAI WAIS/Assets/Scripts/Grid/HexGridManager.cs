@@ -15,11 +15,21 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     private void Start()
     {
         RegistrarGrid();
-        foreach (HexCell cell in cells.Values) 
+
+        foreach (HexCell cell in cells.Values)
         {
-            cell.Initialize(this,cell.Coordinates);
+            cell.Initialize(this, cell.Coordinates);
             cell.LoadTerrain(this);
+
+            if (cell.Terrain == null)
+            {
+                Debug.LogError(
+                    "No se pudo cargar el terreno de: " + cell.Coordinates
+                );
+            }
         }
+
+        Debug.Log("Casillas registradas: " + cells.Count);
     }
     private void RegistrarGrid() 
     {
@@ -34,6 +44,7 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     //Generar el tablero
     public void GenerateGrid() 
     {
+        Debug.Log("Generando tablero...");
         for (int q = -mapRadius; q <= mapRadius; q++) //recorrer coordenada Q. Reccore desde -mapRadius hasta +mapRadius -> Ej: -5,-4,-3...3,4,5
         {
             //Calcular los l�mites de R para crear tablero hexagonal en lugar de cuadrado

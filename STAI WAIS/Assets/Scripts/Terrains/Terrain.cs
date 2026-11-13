@@ -1,7 +1,7 @@
 using UnityEngine;
 [System.Serializable]
 
-public class Terrain: MonoBehaviour
+public class Terrain //terrain NO puede ser MONOBEHAVIOR
 {
     public HexTerrainType Type;
     public int MovementCost;
