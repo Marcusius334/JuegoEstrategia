@@ -76,7 +76,22 @@ public class AIPlayer : Player
     // =========================================
     // FASE 2: MOVIMIENTO
     // =========================================
-
+    private HexCell ChoosBestCell(Troop troop, List<HexCell> neighbors) //supongo que esta funcion habrá que cambiarla o moverla cuando tengamos el A*
+    {
+        HexCell bestCell = null;
+        //Empezamos con la influencia más baja posible
+        float highestInfluence = float.MinValue;
+        foreach (HexCell cell in neighbors) 
+        {
+            float influence = troop.influenceMap.GetInfluence(cell.Coordinates);
+            if (influence > highestInfluence) 
+            {
+                highestInfluence = influence;
+                bestCell = cell;
+            }
+        }
+        return bestCell;
+    }
     public void PerformMovementPhase()
     {
         Debug.Log("IA: FASE DE MOVIMIENTO");
@@ -110,6 +125,8 @@ public class AIPlayer : Player
             if (troop == null || troop.currentCell == null)
                 continue;
 
+            troop.UpdateInfluenceMap(gridManager);
+
             List<HexCell> validNeighbors = new List<HexCell>();
 
             // Comprobar las seis direcciones
@@ -134,13 +151,19 @@ public class AIPlayer : Player
             }
 
             // Elegir un movimiento aleatorio
-            if (validNeighbors.Count > 0)
+            /*if (validNeighbors.Count > 0)
             {
                 HexCell destination = validNeighbors[
                     Random.Range(0, validNeighbors.Count)
                 ];
 
                 troop.MoveToCell(destination);
+            }*/
+            //Elegir un movimiento en funcion del coste del terreno
+            if (validNeighbors.Count > 0) 
+            {
+                HexCell destination = ChoosBestCell(troop, validNeighbors);
+                if (destination != null) { troop.MoveToCell(destination); }
             }
             else
             {
@@ -162,4 +185,7 @@ public class AIPlayer : Player
         // Aqui añadiremos la logica de ataque
         // cuando implementemos el sistema de combate.
     }
+
+
+    
 }
