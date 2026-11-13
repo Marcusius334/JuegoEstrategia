@@ -82,13 +82,14 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
             if (isSelected)
             {
                 grid.DesSelectCell();
-                UpdateVisual();
+                //UpdateVisual();
                 CameraController.targetFocusPosition = Vector3.zero;
             }
             else
             {
                 grid.SelectCell(this);
                 Debug.Log("Se ha seleccionado");
+                //UpdateVisual();
                 CameraController.targetFocusPosition = tr.position;
             }
         }

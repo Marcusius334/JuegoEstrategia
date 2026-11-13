@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
         // Detectar clic izquierdo (Solo llega hasta aquí si es el turno del jugador)
         if (Input.GetMouseButtonDown(0))
         {
+            if (troopPrefab == null) return;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Collider2D hitCollider = Physics2D.OverlapPoint(mousePos);
 

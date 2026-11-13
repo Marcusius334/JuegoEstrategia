@@ -21,7 +21,7 @@ public class TurnsManager : MonoBehaviour
 
     public enum Fase { Construccion, Movimiento, Ataque }
     private bool enTurno;
-    private Fase faseActual;
+    public Fase faseActual;
     private bool estaEnTransicion = false;
     
     //Variable general para deshabilitar las casillas:

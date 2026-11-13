@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
   m_Layer: 0
-  m_Name: Troop
+  m_Name: tier5_Cabeza_Martillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
+  attack: 100
+  hp: 1600
+  velocity: 2
+  creditos: 500
+  chatarra: 1800
+  tritio: 60
+  cristales: 0
+  name: Cabeza de martillo
+  descripcion: "La primera l\xEDnea de la batalla, resulta el tanque del escuadr\xF3n,
+    con una inmensa vida pero muy lento y poco ataque. Ideal para frenar naves ligeras
+    que resultan poco efectivas contra \xE9l"
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -96,7 +107,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 630366323356875342, guid: e2b6a73b4489bcd4d88036f3dfb19ab5, type: 3}
+  m_Sprite: {fileID: 2853448231941074415, guid: 85e020db9525d954b88d1c5b934b6052, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
