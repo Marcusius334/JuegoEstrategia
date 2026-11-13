@@ -6,6 +6,21 @@ public class Troop : MonoBehaviour
     public HexCell currentCell;
     public Player owner;
 
+    [Header("Estadísticas")]
+    public int attack;
+    public int hp;
+    public int velocity;
+
+    [Header("Costes de construcción")]
+    public int creditos;
+    public int chatarra;
+    public int tritio;
+    public int cristales;
+
+    [Header("Detalles de las tropas")]
+    public string name;
+    public string descripcion;
+
     //Mapa de influencia propio de esta tropa 
     public InfluenceMap influenceMap;
 

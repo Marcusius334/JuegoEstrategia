@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HumanPlayer : Player
 {
-    private Troop selectedTroop;
+    public Troop selectedTroop;
     [SerializeField] private HexGridManager gridManager;
 
     void Start(){
@@ -25,20 +25,40 @@ public class HumanPlayer : Player
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-        if (hit.collider != null)
+        if (turnsManager.faseActual == TurnsManager.Fase.Construccion)
         {
-            Troop clickedTroop = hit.collider.GetComponent<Troop>();
-            HexCell clickedCell = hit.collider.GetComponent<HexCell>();
+            if (selectedTroop == null) return;
+            Debug.Log("Hay tropa seleccionada: " + selectedTroop.name);
+            if (hit.collider != null)
+            {
+                HexCell clickedCell = hit.collider.GetComponent<HexCell>();
+                
+                if (clickedCell != null)
+                {
+                    Debug.Log("Hay casilla sleccionada");
 
-            if (clickedTroop != null && clickedTroop.owner == this)
-            {
-                selectedTroop = clickedTroop;
-                Debug.Log("Tropa seleccionada.");
+                    Troop nuevaTropa = Instantiate(selectedTroop);
+                    nuevaTropa.Initialize(clickedCell, this);
+                }
             }
-            else if (selectedTroop != null && clickedCell != null)
+        }
+        else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
+        {
+            if (hit.collider != null)
             {
-                selectedTroop.MoveToCell(clickedCell);
-                selectedTroop = null; 
+                Troop clickedTroop = hit.collider.GetComponent<Troop>();
+                HexCell clickedCell = hit.collider.GetComponent<HexCell>();
+
+                if (clickedTroop != null && clickedTroop.owner == this)
+                {
+                    selectedTroop = clickedTroop;
+                    Debug.Log("Tropa seleccionada.");
+                }
+                else if (selectedTroop != null && clickedCell != null)
+                {
+                    selectedTroop.MoveToCell(clickedCell);
+                    selectedTroop = null; 
+                }
             }
         }
     }

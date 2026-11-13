@@ -137,6 +137,58 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &2256185599033451739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2257932086403704245}
+  - component: {fileID: 9061628604092513515}
+  m_Layer: 0
+  m_Name: TurnsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2257932086403704245
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256185599033451739}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -143.63586, y: -7.0164795, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8319916963670456811}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9061628604092513515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2256185599033451739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e4739eb3144ae4459aaf53084a4ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TurnsManager
+  botonCambioTurno: {fileID: 3283340885009570599}
+  textoDelBoton: {fileID: 6063340722924690434}
+  textoDeFase: {fileID: 5788703394380625638}
+  textoDeTurno: {fileID: 9070777229245435716}
+  panelTransicion: {fileID: 2898931582881159729}
+  textoTransicion: {fileID: 3361535623692350039}
+  duracionAnimacion: 0.8
+  jugadorEnemigo: {fileID: 0}
 --- !u!1 &3825023836545616534
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1055,7 @@ RectTransform:
   - {fileID: 7678430171127059708}
   - {fileID: 2484102414803248061}
   - {fileID: 6697101443516281284}
+  - {fileID: 2257932086403704245}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
