@@ -166,6 +166,4 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
 #endif
 
-Stashed changes
-
 }

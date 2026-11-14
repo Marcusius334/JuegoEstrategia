@@ -129,8 +129,4 @@ public class AIPlayer : Player
         // cuando implementemos el sistema de combate.
     }
 
-
-    
-Stashed changes
-
 }
