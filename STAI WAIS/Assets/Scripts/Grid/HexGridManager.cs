@@ -138,10 +138,8 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
             return CreateTerrain(HexTerrainType.TerrenoEscombros);
         if (random < 80)
             return CreateTerrain(HexTerrainType.TerrenoNebulosa);
-        return CreateTerrain(HexTerrainType.TerrenoAgujeroDeGusano);
-
-
-
+        return CreateTerrain(HexTerrainType.TerrenoEspacio);
+        //TerrenoEspacio lo he cambiado por espacio de momento para probar
     }
 
 #if UNITY_EDITOR

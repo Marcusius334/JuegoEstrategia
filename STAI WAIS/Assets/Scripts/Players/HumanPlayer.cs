@@ -27,7 +27,22 @@ public class HumanPlayer : Player
 
         if (turnsManager.faseActual == TurnsManager.Fase.Construccion)
         {
-            if (selectedTroop == null) return;
+            Construir(hit);
+        }
+        else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
+        {
+            Movimiento(hit);
+        }
+    }
+
+    // =========================================
+    //
+    // FASE 1: CONSTRUCCION
+    //
+    // =========================================
+    private void Construir(RaycastHit2D hit)
+    {
+        if (selectedTroop == null) return;
             Debug.Log("Hay tropa seleccionada: " + selectedTroop.name);
             if (hit.collider != null)
             {
@@ -41,10 +56,16 @@ public class HumanPlayer : Player
                     nuevaTropa.Initialize(clickedCell, this);
                 }
             }
-        }
-        else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
-        {
-            if (hit.collider != null)
+    }
+
+    // =========================================
+    //
+    // FASE 2: MOVIMIENTO
+    //
+    // =========================================
+    private void Movimiento(RaycastHit2D hit)
+    {
+        if (hit.collider != null)
             {
                 Troop clickedTroop = hit.collider.GetComponent<Troop>();
                 HexCell clickedCell = hit.collider.GetComponent<HexCell>();
@@ -60,22 +81,6 @@ public class HumanPlayer : Player
                     selectedTroop = null; 
                 }
             }
-        }
     }
 }
-    //Funcion 1 (probablemente sea un OnMouseDown o similar)
-        //Tiene que poder tocar a las tropas
-        //Comprobar si es suyaa
-        //Y entonces se marca como seleccionada la tropa
-        //Se pulsa que otra casilla a la que quiere mover la tropa
-        //Se activa la funcion de la tropa de moverse a esa casilla
-    //=====================================
-
-    //Funcion 2 (probablemente sea un OnMouseDown o similar)
-        //Tiene que poder tocar las estaciones
-        //Comprobar si es suya
-        //Y entonces se entra al menu de comprar tropas
-        //Se pulsa las tropas a comprar
-        //Cada vez que se compre una tropa se activa la funcion comprar tropas de la estacion
-    //=====================================
 

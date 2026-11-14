@@ -40,6 +40,7 @@ public class AIPlayer : Player
         List<HexCell> availableCells = new List<HexCell>();
 
         // Buscar casillas libres y transitables
+        // TODO Alrededor de la estación y terreno válido
         foreach (HexCell cell in allCells)
         {
             if (cell != null &&
@@ -81,6 +82,7 @@ public class AIPlayer : Player
         HexCell bestCell = null;
         //Empezamos con la influencia más baja posible
         float highestInfluence = float.MinValue;
+        //TODO in Dijstra no neightbours
         foreach (HexCell cell in neighbors) 
         {
             float influence = troop.influenceMap.GetInfluence(cell.Coordinates);

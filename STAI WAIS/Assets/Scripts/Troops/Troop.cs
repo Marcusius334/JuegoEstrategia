@@ -1,6 +1,23 @@
 
 using UnityEngine;
 
+// ================================
+//Cosas de los terrenos especiales
+// ================================
+[System.Serializable]
+public struct BonusMovementTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+[System.Serializable]
+public struct BonusDefenseTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+// ================================
+
 public class Troop : MonoBehaviour
 {
     public HexCell currentCell;
@@ -10,6 +27,11 @@ public class Troop : MonoBehaviour
     public int attack;
     public int hp;
     public int velocity;
+
+    [Header("Terrenos especiales")]
+    public BonusMovementTerrain[] movementBonuses;
+    public BonusDefenseTerrain[] defenseBonuses;
+    public HexTerrainType[] impassableTerrains;
 
     [Header("Costes de construcción")]
     public int creditos;
@@ -37,6 +59,9 @@ public class Troop : MonoBehaviour
             return;
         }
 
+        //TODO si es adjacente a estación
+        //TODO si es válido el terreno
+
         // Liberar una posible casilla anterior
         if (currentCell != null)
             currentCell.ClearOccupant(this);
@@ -61,12 +86,14 @@ public class Troop : MonoBehaviour
 
     public void MoveToCell(HexCell targetCell)
     {
+        //TODO
         if (currentCell == null || targetCell == null)
         {
             Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
             return;
         }
 
+        //TODO dijsktra
         // Comprobar que sea una casilla vecina
         if (currentCell.Coordinates.DistanceTo(targetCell.Coordinates) != 1)
         {
@@ -74,7 +101,8 @@ public class Troop : MonoBehaviour
             return;
         }
 
-        // Comprobar el terreno
+        //TODO si es válido el terreno
+        // Comprobar el terreno 
         if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
         {
             Debug.Log("Movimiento inválido: no se puede atravesar un agujero de gusano.");
@@ -90,6 +118,8 @@ public class Troop : MonoBehaviour
 
         // Guardar la casilla anterior
         HexCell previousCell = currentCell;
+
+        //TODO no casilla anterior
 
         // Ocupar la nueva casilla
         if (!targetCell.TrySetOccupant(this))
