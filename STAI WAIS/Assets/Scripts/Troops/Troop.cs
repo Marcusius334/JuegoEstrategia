@@ -1,24 +1,145 @@
-<<<<<<< Updated upstream
-=======
 
 using System.Collections.Generic;
->>>>>>> Stashed changes
+
 using UnityEngine;
+
+// ================================
+//Cosas de los terrenos especiales
+// ================================
+[System.Serializable]
+public struct BonusMovementTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+[System.Serializable]
+public struct BonusDefenseTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+// ================================
 
 public class Troop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public HexCell currentCell;
+    public Player owner;
+
+    [Header("Estadísticas")]
+    public int attack;
+    public int hp;
+    public int velocity;
+
+    [Header("Terrenos especiales")]
+    public BonusMovementTerrain[] movementBonuses;
+    public BonusDefenseTerrain[] defenseBonuses;
+    public HexTerrainType[] impassableTerrains;
+
+    [Header("Costes de construcción")]
+    public int creditos;
+    public int chatarra;
+    public int tritio;
+    public int cristales;
+
+    [Header("Detalles de las tropas")]
+    public string name;
+    public string descripcion;
+
+    //Mapa de influencia propio de esta tropa 
+    public InfluenceMap influenceMap;
+
+    private void Awake()
     {
-<<<<<<< Updated upstream
         
+        influenceMap = new InfluenceMap();
+    }
+    public void Initialize(HexCell startingCell, Player troopOwner)
+    {
+        if (startingCell == null)
+        {
+            Debug.LogError("No se puede crear la tropa: la casilla inicial es nula.");
+            Destroy(gameObject);
+            return;
+        }
+
+        //TODO si es adjacente a estación
+        //TODO si es válido el terreno
+
+        // Liberar una posible casilla anterior
+        if (currentCell != null)
+            currentCell.ClearOccupant(this);
+
+        // Comprobar si la nueva casilla está libre
+        if (!startingCell.TrySetOccupant(this))
+        {
+            Debug.LogWarning("No se puede crear una tropa: la casilla está ocupada.");
+            currentCell = null;
+            Destroy(gameObject);
+            return;
+        }
+
+        currentCell = startingCell;
+        owner = troopOwner;
+        influenceMap = new InfluenceMap();
+
+        transform.position = currentCell.transform.position;
+
+        Debug.Log("Tropa creada en " + currentCell.Coordinates);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void MoveToCell(HexCell targetCell)
     {
-        
-=======
+        //TODO
+        if (currentCell == null || targetCell == null)
+        {
+            Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
+            return;
+        }
+
+        //TODO dijsktra
+        // Comprobar que sea una casilla vecina
+        if (currentCell.Coordinates.DistanceTo(targetCell.Coordinates) != 1)
+        {
+            Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
+            return;
+        }
+
+        //TODO si es válido el terreno
+        // Comprobar el terreno 
+        if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
+        {
+            Debug.Log("Movimiento inválido: no se puede atravesar un agujero de gusano.");
+            return;
+        }
+
+        // Comprobar si está ocupada
+        if (targetCell.IsOccupied)
+        {
+            Debug.Log("Movimiento inválido: la casilla está ocupada.");
+            return;
+        }
+
+        // Guardar la casilla anterior
+        HexCell previousCell = currentCell;
+
+        //TODO no casilla anterior
+
+        // Ocupar la nueva casilla
+        if (!targetCell.TrySetOccupant(this))
+            return;
+
+        // Liberar la anterior
+        previousCell.ClearOccupant(this);
+
+        // Actualizar posición
+        currentCell = targetCell;
+        transform.position = targetCell.transform.position;
+
+        Debug.Log("Tropa movida a " + targetCell.Coordinates);
+    }
+
+    private void OnDestroy()
+    {
         influenceMap = new InfluenceMap();
     }
     public void Initialize(HexCell startingCell, Player troopOwner)
@@ -108,6 +229,8 @@ public class Troop : MonoBehaviour
             influenceMap = new InfluenceMap();
 
         influenceMap.CalculateTerrainInfluence(gridManager);
->>>>>>> Stashed changes
+
+
     }
 }
+

@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5557732022237233421
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_Name
+      value: tier6_Ala-U
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: hp
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: name
+      value: Ala-U
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: attack
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: tritio
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: chatarra
+      value: 1800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: creditos
+      value: 650
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: velocity
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: cristales
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: descripcion
+      value: Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo.
+        Ideal para abrirse paso y detruir todo tipo de estructuras o naves pesadas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: movementBonuses.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: movementBonuses.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: movementBonuses.Array.data[1].value
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: movementBonuses.Array.data[0].terrain
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: movementBonuses.Array.data[1].terrain
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}

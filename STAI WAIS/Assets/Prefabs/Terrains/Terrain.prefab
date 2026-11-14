@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e8567833b4d524eb3363ccd97e6e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Terrain
+  Type: 0
+  MovementCost: 0
+  DefenseBonus: 0
+  TerrainColor: {r: 0, g: 0, b: 0, a: 0}

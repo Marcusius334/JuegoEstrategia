@@ -1,26 +1,53 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+
 public class HexGridManager : MonoBehaviour //Administra todo el tablero
 {
     [Header("Configuracion del tablero")]
     public GameObject hexPrefab; //prefab del hexagono
     public int mapRadius = 6; //Radio del tablero N = 1 + 3R(R+1) donde N = numero de casillas y R el radio
-    public float hexSize = 1f; //tamaño del hexagono y separacion entre los centros
+    public float hexSize = 1f; //tamaï¿½o del hexagono y separacion entre los centros
     
     private Dictionary<HexCoordinates, HexCell> cells = new Dictionary<HexCoordinates, HexCell>(); //almacena las casillas del tablero
     private HexCell selectedCell;
 
     private void Start()
     {
-        GenerateGrid();
+        RegistrarGrid();
+
+        foreach (HexCell cell in cells.Values)
+        {
+            cell.Initialize(this, cell.Coordinates);
+            cell.LoadTerrain(this);
+
+            if (cell.Terrain == null)
+            {
+                Debug.LogError(
+                    "No se pudo cargar el terreno de: " + cell.Coordinates
+                );
+            }
+        }
+
+        Debug.Log("Casillas registradas: " + cells.Count);
+    }
+    private void RegistrarGrid() 
+    {
+        cells.Clear();
+        HexCell[] existingCells = GetComponentsInChildren<HexCell>();
+        foreach (HexCell cell in existingCells) 
+        {
+            if(!cells.ContainsKey(cell.Coordinates))
+                cells.Add(cell.Coordinates, cell);
+        }
     }
     //Generar el tablero
     public void GenerateGrid() 
     {
+        Debug.Log("Generando tablero...");
         for (int q = -mapRadius; q <= mapRadius; q++) //recorrer coordenada Q. Reccore desde -mapRadius hasta +mapRadius -> Ej: -5,-4,-3...3,4,5
         {
-            //Calcular los límites de R para crear tablero hexagonal en lugar de cuadrado
+            //Calcular los lï¿½mites de R para crear tablero hexagonal en lugar de cuadrado
             int MinRadius = Mathf.Max(-mapRadius, -q - mapRadius);
             int MaxRadius = Mathf.Min(mapRadius, -q + mapRadius);
 
@@ -34,12 +61,15 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
                 GameObject hexObject = Instantiate(hexPrefab, position, Quaternion.identity, transform);
 
                 //Busca el componente HexCell dentro del objeto que acabamos de crear.
-                //Así podemos acceder a sus métodos y variables.
+                //Asï¿½ podemos acceder a sus mï¿½todos y variables.
                 HexCell cell = hexObject.GetComponent<HexCell>();
 
                 cell.Initialize(this, coordinates);
 
-                cells.Add(coordinates, cell); //Añadimos al diccionario
+                Terrain terrain = GenerateTerrain();
+                cell.SetTerrain(terrain);
+
+                cells.Add(coordinates, cell); //Aï¿½adimos al diccionario
             }
         }
     }
@@ -66,8 +96,6 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         selectedCell.SetSelected(true);
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
     }
-<<<<<<< Updated upstream
-=======
 
     public void DesSelectCell()
     {
@@ -137,5 +165,7 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     }
 
 #endif
->>>>>>> Stashed changes
+
+Stashed changes
+
 }

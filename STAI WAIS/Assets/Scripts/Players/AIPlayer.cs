@@ -1,63 +1,31 @@
+
+
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AIPlayer : Player
 {
-    // Update is called once per frame
-    void Update()
-    {
-<<<<<<< Updated upstream
-        
+    [Header("Configuracion")]
+    public Troop troopPrefab;
+    [SerializeField] private HexGridManager gridManager;
+
+    [Header("Tropas Activas")]
+    public List<Troop> myTroops = new List<Troop>();
+
+    void Start(){
+        chatarra = gameManager.ia_chatarra;
+        creditos = gameManager.ia_creditos;
+        tritio = gameManager.ia_tritio;
+        cristal = gameManager.ia_cristal;
     }
-=======
-        Debug.Log("IA: FASE DE CONSTRUCCION");
 
-        if (troopPrefab == null || gridManager == null)
-        {
-            Debug.LogError("IA: Faltan referencias en el Inspector.");
-            return;
-        }
+    // =========================================
+    // FASE 1: CONSTRUCCION
+    // =========================================
 
-        HexCell[] allCells = FindObjectsByType<HexCell>(
-            FindObjectsSortMode.None
-        );
-
-        List<HexCell> availableCells = new List<HexCell>();
-
-        // Buscar casillas libres y transitables
-        //HAY QUE COMPROBAR SI LA TROPA SE PUEDE PONER EN ESE TERRENO DE LA CASILLA ELEJIDA
-        //TAMBIÉN HAY QUE COMPROBAR QUE LA TROPA SE PUEDA PONER EN UNA TROPA ADJACENTE A LA ESTACIÓN DE COMPRA
-        //BÁSICAMENTE PARA QUE NO SE PUEDA PONER EN CUALQUIER PARTE DEL MAPA POR LA CARA
-        foreach (HexCell cell in allCells)
-        {
-            if (cell != null &&
-                !cell.IsOccupied &&
-                cell.TerrainType != HexTerrainType.TerrenoAgujeroDeGusano)
-            {
-                availableCells.Add(cell);
-            }
-        }
-
-        if (availableCells.Count == 0)
-        {
-            Debug.LogWarning("IA: No hay casillas disponibles para crear tropas.");
-            return;
-        }
-
-        // Elegir una casilla aleatoria
-        HexCell spawnCell = availableCells[
-            Random.Range(0, availableCells.Count)
-        ];
-
-        // Crear la tropa
-        Troop newTroop = Instantiate(troopPrefab);
-
-        newTroop.Initialize(spawnCell, this);
-
-        if (newTroop.currentCell == spawnCell)
-        {
-            myTroops.Add(newTroop);
-            Debug.Log("IA: Tropa creada en " + spawnCell.Coordinates);
-        }
+    public void PerformConstructionPhase()
+    {
+        
     }
 
     // =========================================
@@ -163,5 +131,6 @@ public class AIPlayer : Player
 
 
     
->>>>>>> Stashed changes
+Stashed changes
+
 }

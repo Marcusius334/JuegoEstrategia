@@ -10,7 +10,6 @@ public class HumanPlayer : Player
         //Se activa la funcion de la tropa de moverse a esa casilla
     //=====================================
 
-<<<<<<< Updated upstream
     //Funcion 2 (probablemente sea un OnMouseDown o similar)
         //Tiene que poder tocar las estaciones
         //Comprobar si es suya
@@ -18,7 +17,9 @@ public class HumanPlayer : Player
         //Se pulsa las tropas a comprar
         //Cada vez que se compre una tropa se activa la funcion comprar tropas de la estacion
     //=====================================
-=======
+    public Troop selectedTroop;
+    [SerializeField] private HexGridManager gridManager;
+
     void Start(){
         chatarra = gameManager.j_chatarra;
         creditos = gameManager.j_creditos;
@@ -96,5 +97,7 @@ public class HumanPlayer : Player
                 }
             }
     }
->>>>>>> Stashed changes
+Stashed changes
+
 }
+
