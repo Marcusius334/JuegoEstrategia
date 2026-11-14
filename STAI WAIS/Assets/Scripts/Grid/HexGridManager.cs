@@ -66,4 +66,76 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         selectedCell.SetSelected(true);
         Debug.Log("Casilla seleccionada: " + cell.Coordinates);
     }
+<<<<<<< Updated upstream
+=======
+
+    public void DesSelectCell()
+    {
+        selectedCell.SetSelected(false);
+        selectedCell = null;
+    }
+    //////////////////////////////////////////////////////////////
+    /////////////////CREACION DE TERRENOS/////////////////////////
+    //////////////////////////////////////////////////////////////
+    public Terrain CreateTerrain(HexTerrainType type) //
+    {
+        switch (type) //se crean los terrenos con los valores: Typo de terreno, Coste de movimiento, Bono de Defensa, Color del terreno 
+        {
+            case HexTerrainType.TerrenoEspacio:
+                return new Terrain(type, 1, 0, new Color(0.79f, 0.92f, 0.92f)); //Azul oscuro
+            case HexTerrainType.TerrenoOrbitaPlanetaria:
+                return new Terrain(type, 2, 0,new Color(0.2f, 0.45f, 0.85f)); //Azul claro
+            case HexTerrainType.TerrenoAsteroides:
+                return new Terrain(type, 3, 1,new Color(0.70f, 0.58f, 0.43f)); //Marrón
+            case HexTerrainType.TerrenoEscombros:
+                return new Terrain(type, 5, 3,new Color(0.45f, 0.45f, 0.45f)); //Gris
+            case HexTerrainType.TerrenoNebulosa:
+                return new Terrain(type, 3, -1,new Color(0.50f, 0.38f, 0.85f)); //Morado
+            case HexTerrainType.TerrenoAgujeroDeGusano:
+                return new Terrain(type, 0, 0,new Color(0.0f, 0.0f, 0.0f)); //NEGRO
+            default:
+                return null;
+        }
+    }
+    private Terrain GenerateTerrain() //Generador aleatorio de terrenos. Por ahora los terrenos se generan aleatoriamente. Con (más o menos), la misma probabilidad de que se generen. Cuando el mapa esté diseñado lo cambiaré.
+    {
+        float random = Random.Range(0f, 100f);
+        if (random < 16f)
+            return CreateTerrain(HexTerrainType.TerrenoEspacio);
+        if (random < 32f)
+            return CreateTerrain(HexTerrainType.TerrenoOrbitaPlanetaria);
+        if (random < 48f)
+            return CreateTerrain(HexTerrainType.TerrenoAsteroides);
+        if (random < 64f)
+            return CreateTerrain(HexTerrainType.TerrenoEscombros);
+        if (random < 80)
+            return CreateTerrain(HexTerrainType.TerrenoNebulosa);
+        return CreateTerrain(HexTerrainType.TerrenoEspacio);
+        //TerrenoEspacio lo he cambiado por espacio de momento para probar
+    }
+    //Forma de obtener el tipo de terreno
+    public Terrain GetTerrain(HexCoordinates coordinates)
+    {
+        HexCell hex = GetCell(coordinates);
+        return hex.Terrain;
+    }
+
+#if UNITY_EDITOR
+    [ContextMenu("Generar tablero en escena")]
+    private void GenerateGridInEdtor() 
+    {
+        //Eliminar tablero anterior
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            DestroyImmediate(transform.GetChild(i).gameObject);
+        }
+        cells.Clear();
+        selectedCell = null;
+
+        //Generar el nuevo Tablero
+        GenerateGrid();
+    }
+
+#endif
+>>>>>>> Stashed changes
 }
