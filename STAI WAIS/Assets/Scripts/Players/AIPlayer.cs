@@ -25,74 +25,15 @@ public class AIPlayer : Player
 
     public void PerformConstructionPhase()
     {
-        Debug.Log("IA: FASE DE CONSTRUCCION");
-
-        if (troopPrefab == null || gridManager == null)
-        {
-            Debug.LogError("IA: Faltan referencias en el Inspector.");
-            return;
-        }
-
-        HexCell[] allCells = FindObjectsByType<HexCell>(
-            FindObjectsSortMode.None
-        );
-
-        List<HexCell> availableCells = new List<HexCell>();
-
-        // Buscar casillas libres y transitables
-        // TODO Alrededor de la estación y terreno válido
-        foreach (HexCell cell in allCells)
-        {
-            if (cell != null &&
-                !cell.IsOccupied &&
-                cell.TerrainType != HexTerrainType.TerrenoAgujeroDeGusano)
-            {
-                availableCells.Add(cell);
-            }
-        }
-
-        if (availableCells.Count == 0)
-        {
-            Debug.LogWarning("IA: No hay casillas disponibles para crear tropas.");
-            return;
-        }
-
-        // Elegir una casilla aleatoria
-        HexCell spawnCell = availableCells[
-            Random.Range(0, availableCells.Count)
-        ];
-
-        // Crear la tropa
-        Troop newTroop = Instantiate(troopPrefab);
-
-        newTroop.Initialize(spawnCell, this);
-
-        if (newTroop.currentCell == spawnCell)
-        {
-            myTroops.Add(newTroop);
-            Debug.Log("IA: Tropa creada en " + spawnCell.Coordinates);
-        }
+        
     }
 
     // =========================================
     // FASE 2: MOVIMIENTO
     // =========================================
-    private HexCell ChoosBestCell(Troop troop, List<HexCell> neighbors) //supongo que esta funcion habrá que cambiarla o moverla cuando tengamos el A*
+    private HexCell ChoosBestCell(Troop troop)
     {
-        HexCell bestCell = null;
-        //Empezamos con la influencia más baja posible
-        float highestInfluence = float.MinValue;
-        //TODO in Dijstra no neightbours
-        foreach (HexCell cell in neighbors) 
-        {
-            float influence = troop.influenceMap.GetInfluence(cell.Coordinates);
-            if (influence > highestInfluence) 
-            {
-                highestInfluence = influence;
-                bestCell = cell;
-            }
-        }
-        return bestCell;
+        return gridManager.GetCell(PathfindingDijkstra.GetBestPosition(gridManager, troop));
     }
     public void PerformMovementPhase()
     {
@@ -164,8 +105,8 @@ public class AIPlayer : Player
             //Elegir un movimiento en funcion del coste del terreno
             if (validNeighbors.Count > 0) 
             {
-                HexCell destination = ChoosBestCell(troop, validNeighbors);
-                if (destination != null) { troop.MoveToCell(destination); }
+                HexCell destination = ChoosBestCell(troop);
+                if (destination != null) { troop.MoveToCell(destination, gridManager); }
             }
             else
             {
@@ -190,4 +131,6 @@ public class AIPlayer : Player
 
 
     
+Stashed changes
+
 }
