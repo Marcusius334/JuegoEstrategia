@@ -19,6 +19,9 @@ public class TurnsManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textoTransicion;
     [SerializeField] private float duracionAnimacion = 0.8f;
 
+    [Header("Botón de la tienda")]
+    [SerializeField] private GameObject boton;
+
     public enum Fase { Construccion, Movimiento, Ataque }
     private bool enTurno;
     public Fase faseActual;
@@ -33,43 +36,43 @@ public class TurnsManager : MonoBehaviour
     public bool EsTurnoJugador => enTurno;
 
     private void BuscarAIPlayer()
-{
-    // Si ya tenemos una referencia, no hacemos nada
-    if (jugadorEnemigo != null)
-        return;
-
-    // Buscar los AIPlayer existentes en la escena
-    AIPlayer[] jugadoresIA = FindObjectsByType<AIPlayer>(
-        FindObjectsSortMode.None
-    );
-
-    if (jugadoresIA.Length > 0)
     {
-        jugadorEnemigo = jugadoresIA[0];
+        // Si ya tenemos una referencia, no hacemos nada
+        if (jugadorEnemigo != null)
+            return;
 
-        Debug.Log(
-            "TurnManager: AIPlayer encontrado automáticamente: "
-            + jugadorEnemigo.gameObject.name
+        // Buscar los AIPlayer existentes en la escena
+        AIPlayer[] jugadoresIA = FindObjectsByType<AIPlayer>(
+            FindObjectsSortMode.None
         );
+
+        if (jugadoresIA.Length > 0)
+        {
+            jugadorEnemigo = jugadoresIA[0];
+
+            Debug.Log(
+                "TurnManager: AIPlayer encontrado automáticamente: "
+                + jugadorEnemigo.gameObject.name
+            );
+        }
+        else
+        {
+            Debug.LogError(
+                "TurnManager: NO EXISTE ningún AIPlayer activo en la escena."
+            );
+        }
     }
-    else
-    {
-        Debug.LogError(
-            "TurnManager: NO EXISTE ningún AIPlayer activo en la escena."
-        );
-    }
-}
 
     void Start()
-{
-    BuscarAIPlayer();
+    {
+        BuscarAIPlayer();
 
-    enTurno = true;
-    faseActual = Fase.Construccion;
+        enTurno = true;
+        faseActual = Fase.Construccion;
+        boton.SetActive(true);
 
-    // El resto de vuestro código continúa igual...
-
-        
+        // El resto de vuestro código continúa igual...
+            
         enTurno = true;
         faseActual = Fase.Construccion;
 
@@ -116,6 +119,7 @@ public class TurnsManager : MonoBehaviour
         switch (faseActual)
         {
             case Fase.Construccion:
+                boton.SetActive(false); //Desactivamoms la tienda
                 faseActual = Fase.Movimiento;
                 StartCoroutine(AnimarTransicionFase());
                 break;
@@ -131,67 +135,68 @@ public class TurnsManager : MonoBehaviour
     }
 
     
-private IEnumerator SecuenciaTurnoEnemigo()
-{
-    // Buscar la IA por si no estaba asignada inicialmente
-    BuscarAIPlayer();
-
-    // =========================================
-    // FASE 1: CONSTRUCCION
-    // =========================================
-
-    faseActual = Fase.Construccion;
-
-    yield return StartCoroutine(AnimarTransicionFase());
-
-    if (jugadorEnemigo != null)
+    private IEnumerator SecuenciaTurnoEnemigo()
     {
-        jugadorEnemigo.PerformConstructionPhase();
+        // Buscar la IA por si no estaba asignada inicialmente
+        BuscarAIPlayer();
+
+        // =========================================
+        // FASE 1: CONSTRUCCION
+        // =========================================
+
+        faseActual = Fase.Construccion;
+
+        yield return StartCoroutine(AnimarTransicionFase());
+
+        if (jugadorEnemigo != null)
+        {
+            jugadorEnemigo.PerformConstructionPhase();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        // =========================================
+        // FASE 2: MOVIMIENTO
+        // =========================================
+
+        faseActual = Fase.Movimiento;
+
+        yield return StartCoroutine(AnimarTransicionFase());
+
+        if (jugadorEnemigo != null)
+        {
+            jugadorEnemigo.PerformMovementPhase();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        // =========================================
+        // FASE 3: ATAQUE
+        // =========================================
+
+        faseActual = Fase.Ataque;
+
+        yield return StartCoroutine(AnimarTransicionFase());
+
+        if (jugadorEnemigo != null)
+        {
+            jugadorEnemigo.PerformAttackPhase();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        // =========================================
+        // DEVOLVER EL TURNO AL JUGADOR
+        // =========================================
+
+        enTurno = true;
+        boton.SetActive(true); //Activamos la tienda
+        faseActual = Fase.Construccion;
+
+        yield return StartCoroutine(AnimarTransicionFase());
+
+        Debug.Log("TurnManager: Vuelve el turno del jugador.");
     }
-
-    yield return new WaitForSeconds(1f);
-
-    // =========================================
-    // FASE 2: MOVIMIENTO
-    // =========================================
-
-    faseActual = Fase.Movimiento;
-
-    yield return StartCoroutine(AnimarTransicionFase());
-
-    if (jugadorEnemigo != null)
-    {
-        jugadorEnemigo.PerformMovementPhase();
-    }
-
-    yield return new WaitForSeconds(1f);
-
-    // =========================================
-    // FASE 3: ATAQUE
-    // =========================================
-
-    faseActual = Fase.Ataque;
-
-    yield return StartCoroutine(AnimarTransicionFase());
-
-    if (jugadorEnemigo != null)
-    {
-        jugadorEnemigo.PerformAttackPhase();
-    }
-
-    yield return new WaitForSeconds(1f);
-
-    // =========================================
-    // DEVOLVER EL TURNO AL JUGADOR
-    // =========================================
-
-    enTurno = true;
-    faseActual = Fase.Construccion;
-
-    yield return StartCoroutine(AnimarTransicionFase());
-
-    Debug.Log("TurnManager: Vuelve el turno del jugador.");
-}
 
 
     private IEnumerator AnimarTransicionFase()

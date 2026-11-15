@@ -4042,6 +4042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Botones_tienda
   ventana: {fileID: 8768101104262438019}
   boton: {fileID: 3671429475584410607}
+  gameManager: {fileID: 0}
   player: {fileID: 0}
   troops:
   - {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
@@ -4052,39 +4053,13 @@ MonoBehaviour:
   - {fileID: 2705571814516224481, guid: c641ccb5d5cc1a347b25e5d001f55102, type: 3}
   - {fileID: 2705571814516224481, guid: 7fb47fb4a0791dd4e93aef037b41d1e3, type: 3}
   textoDescripcion: {fileID: 8859595423345854895}
-  descripciones:
-  - "Nave de combate b\xE1sica, adaptada para todos las situaciones de manera eficiente
-    pero con ninguna especializaci\xF3n. La m\xE1s barata pero m\xE1s simple"
-  - "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera muy eficiente.
-    Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o pero d\xE9bil
-    contra otros ataques."
-  - "Nave bombardera, ideal para estructuras como bases enemigas o naves de grandes
-    dimensiones. Lenta y con corto alcanze pero gran vida y enorme da\xF1o a objetivos
-    adecuados. "
-  - "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango. Especializada
-    en la destrucci\xF3n de otras naves."
-  - "La primera l\xEDnea de la batalla, resulta el tanque del escuadr\xF3n, con una
-    inmensa vida pero muy lento y poco ataque. Ideal para frenar naves ligeras que
-    resultan poco efectivas contra \xE9l"
-  - Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo. Ideal
-    para abrirse paso y detruir todo tipo de estructuras o naves pesadas
-  - Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva, de velocidad y
-    alcance. Resulta en un equilibrio sensacional con una gran fuerza ofensiva contra
-    otras naves
   textoCreditos: {fileID: 2735471027726920085}
-  costesCreditos: 00000000000000009600000000000000f40100008a02000020030000
   textoChatarra: {fileID: 4915990705028819389}
-  costesChatarra: c80000002c010000bc020000b00400000807000008070000d0070000
   textoTritio: {fileID: 2202671203326075751}
-  costesTritio: 000000000000000000000000460000003c0000003200000050000000
   textoCristal: {fileID: 864208872350277606}
-  costesCristal: 00000000000000000000000000000000000000000100000002000000
   textoAttack: {fileID: 1051882732931355164}
-  attack: 96000000c8000000fa000000fa000000640000002c01000090010000
   textoHp: {fileID: 195089804710516476}
-  hp: 58020000c201000020030000b004000040060000dc050000b0040000
   textoVelocity: {fileID: 5467143626382052735}
-  velocity: 0400000008000000040000000600000002000000060000000a000000
   marcosBotones:
   - {fileID: 2646728457988928299}
   - {fileID: 5832527468837949185}

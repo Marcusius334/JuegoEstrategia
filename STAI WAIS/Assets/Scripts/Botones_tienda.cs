@@ -8,6 +8,8 @@ public class Botones_tienda : MonoBehaviour
     [SerializeField] private GameObject ventana;
     [SerializeField] private GameObject boton;
 
+    public GameManager gameManager;
+
     [Header("Jugador y naves")]
     [SerializeField] private HumanPlayer player;
     public Troop[] troops;
@@ -50,6 +52,11 @@ public class Botones_tienda : MonoBehaviour
 
     public void OpenWindow()
     {
+        //Confirmamos que no se queda una navea seleccionada:
+        player.selectedTroop = null;
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+        //Abrimos la tienda y ocultamos el botón:
         ventana.SetActive(true);
         boton.SetActive(false);
     }
@@ -62,6 +69,18 @@ public class Botones_tienda : MonoBehaviour
 
     public void Buy()
     {
+        //Primero se comprueba si se puede comprar:
+        if (gameManager.j_creditos - troops[tier].creditos < 0 ||
+            gameManager.j_chatarra - troops[tier].chatarra < 0 ||
+            gameManager.j_tritio - troops[tier].tritio < 0 ||
+            gameManager.j_cristal - troops[tier].cristales < 0) return;
+
+        //Consumimos los materiales:    
+        gameManager.j_creditos -= troops[tier].creditos;
+        gameManager.j_chatarra -= troops[tier].chatarra; 
+        gameManager.j_tritio -= troops[tier].tritio; 
+        gameManager.j_cristal -= troops[tier].cristales; 
+
         //Actualizamos la nave seleccionada del jugador:
         player.selectedTroop = troops[tier];
 

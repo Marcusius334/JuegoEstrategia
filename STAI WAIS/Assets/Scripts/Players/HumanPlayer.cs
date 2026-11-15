@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HumanPlayer : Player
 {
@@ -6,10 +7,7 @@ public class HumanPlayer : Player
     [SerializeField] private HexGridManager gridManager;
 
     void Start(){
-        chatarra = gameManager.j_chatarra;
-        creditos = gameManager.j_creditos;
-        tritio = gameManager.j_tritio;
-        cristal = gameManager.j_cristal;
+        ActualizarRecursos();
     }
     
     // --- NUEVO: Necesitamos leer el turno ---
@@ -27,6 +25,11 @@ public class HumanPlayer : Player
 
         if (turnsManager.faseActual == TurnsManager.Fase.Construccion)
         {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+
             if (selectedTroop == null) return;
             Debug.Log("Hay tropa seleccionada: " + selectedTroop.name);
             if (hit.collider != null)
@@ -37,8 +40,13 @@ public class HumanPlayer : Player
                 {
                     Debug.Log("Hay casilla sleccionada");
 
+                    //Creamos la nave:
                     Troop nuevaTropa = Instantiate(selectedTroop);
                     nuevaTropa.Initialize(clickedCell, this);
+
+                    //Reseteamos valores:
+                    selectedTroop = null;
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 }
             }
         }
@@ -46,21 +54,36 @@ public class HumanPlayer : Player
         {
             if (hit.collider != null)
             {
+                Debug.Log("Testing mover tropas: se ha clickado algo");
+
                 Troop clickedTroop = hit.collider.GetComponent<Troop>();
+
+                if (clickedTroop == null) Debug.Log("Testing mover tropas: No se ha encontrado tropa");
+                else Debug.Log("Testing mover tropas: Se ha encontrado tropa: ");
+
                 HexCell clickedCell = hit.collider.GetComponent<HexCell>();
 
                 if (clickedTroop != null && clickedTroop.owner == this)
                 {
                     selectedTroop = clickedTroop;
-                    Debug.Log("Tropa seleccionada.");
+                    Debug.Log("Testing mover tropas: Tropa seleccionada: " + selectedTroop.name);
                 }
                 else if (selectedTroop != null && clickedCell != null)
                 {
+                    Debug.Log("Testing mover tropas: Casilla seleccionada");
                     selectedTroop.MoveToCell(clickedCell);
                     selectedTroop = null; 
                 }
             }
         }
+    }
+
+    private void ActualizarRecursos()
+    {
+        chatarra = gameManager.j_chatarra;
+        creditos = gameManager.j_creditos;
+        tritio = gameManager.j_tritio;
+        cristal = gameManager.j_cristal;
     }
 }
     //Funcion 1 (probablemente sea un OnMouseDown o similar)

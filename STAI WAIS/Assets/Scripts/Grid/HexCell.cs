@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que aparece en el tablero
 {
@@ -76,6 +77,12 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     }
     private void OnMouseDown()//Detectar los clics del rat�n sobre las celdas
     {
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            // Hay algún botón que está encima de la casilla
+            return;
+        }
+
         if (TurnsManager.EstaEnTransicion) return;
         if (grid != null)
         {
