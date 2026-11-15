@@ -19,19 +19,6 @@ public class PathfindingManager
     protected static List<HexNode> visiting = new List<HexNode>();
 
     // ================================
-    // Sacar la casilla más prioritaria de visiting
-    // ================================
-    protected static HexNode PopVisiting()
-    {
-        HexNode hex = visiting[0];
-        visiting.RemoveAt(0);
-        visiting.Sort((a, b) => a.priority.CompareTo(b.priority));
-        closed.Add(hex);
-        return hex;
-    }
-    // ================================
-
-    // ================================
     // Poner casilla en visitando
     // ================================
     protected static void AddToVisiting(HexNode hex)
@@ -63,6 +50,19 @@ public class PathfindingManager
     // ================================
 
     // ================================
+    // Sacar la casilla más prioritaria de visiting
+    // ================================
+    protected static HexNode PopVisiting()
+    {
+        HexNode hex = visiting[0];
+        visiting.RemoveAt(0);
+        visiting.Sort((a, b) => a.priority.CompareTo(b.priority));
+        closed.Add(hex);
+        return hex;
+    }
+    // ================================
+
+    // ================================
     // Obtener las coordenadas de los vecinos de un hexágono dado
     // ================================
     protected static HexCoordinates[] GetNeighborsCoordinates(HexNode hex)
@@ -84,15 +84,6 @@ public class PathfindingManager
         }
 
         return neighbors;
-    }
-    // ================================
-
-    // ================================
-    // Calcula la distancia entre dos hexágonos usando coordenadas axiales
-    // ================================
-    protected static int AxialDistance(HexCoordinates start, HexCoordinates end)
-    {
-        return start.DistanceTo(end);
     }
     // ================================
 

@@ -129,4 +129,13 @@ public class PathfindingAStar : PathfindingManager
     }
     // ================================
 
+    // ================================
+    // Calcula la distancia entre dos hexágonos usando coordenadas axiales
+    // ================================
+    protected static int AxialDistance(HexCoordinates start, HexCoordinates end)
+    {
+        return start.DistanceTo(end);
+    }
+    // ================================
+
 }
