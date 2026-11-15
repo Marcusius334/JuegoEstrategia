@@ -68,7 +68,7 @@ public class AIPlayer : Player
             if (troop == null || troop.currentCell == null)
                 continue;
 
-            troop.UpdateInfluenceMap(gridManager);
+            
 
             List<HexCell> validNeighbors = new List<HexCell>();
 
