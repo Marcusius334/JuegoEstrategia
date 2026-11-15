@@ -156,7 +156,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(targetCell.Coordinates, hexGridManager, this);
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this);
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");

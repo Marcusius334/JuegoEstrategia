@@ -33,12 +33,11 @@ public class PathfindingAStar : PathfindingManager
             closed.RemoveAt(0);
         }
 
-        //Pillar la mejor casilla de closed que se pueda alcanzar con Dijkstra
-        List<HexCoordinates> valid = PathfindingDijkstra.GetValidPositions(gridManager, troop);
+        //Pillar la mejor casilla que tenga movimiento válido
         while(closed.Count > 0){
             closed.Sort((a, b) => a.priority.CompareTo(b.priority));
             end = closed[0];
-            if (valid.Contains(end.coordinates))
+            if (end.currentMovementPoints >= 0)
             {
                 break;
             }
@@ -104,16 +103,17 @@ public class PathfindingAStar : PathfindingManager
     // ================================
 
     // ================================
-    // Calcular Dijkstra
+    // Calcular A*
     // ================================
     public static void CalculateAStar(HexCoordinates start, HexCoordinates end)
     {
         //Mientras hayan cosas en visiting
         while(visiting.Count > 0){
-            //Sacar el nodo más prioritario de visiting y comprobar si le queda movimiento
+            //Sacar el nodo más prioritario de visiting (no comprobamos el movimiento, eso se mira más tarde)
             HexNode hex = PopVisiting();
 
-            if(hex.currentMovementPoints > 0){
+            //Si estamos en end paramos
+            if(!hex.SameCoordinates(end)){
                 //Obtener sus vecinos y meter los vecinos en visiting
                 HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(hex);
                 foreach(HexCoordinates newCoordinate in neighborsCoordinates)
@@ -124,6 +124,30 @@ public class PathfindingAStar : PathfindingManager
                     HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
                     AddToVisiting(newHex);
                 }
+            }
+            else
+            {
+                //Al llegar al final obtenemos el camino idóneo y bufamos esas casillas y las de alrededor
+                while (!hex.SameCoordinates(start))
+                {
+                    HexNode newHex = hex.parent;
+                    newHex.priority += 1;
+
+                    //Obtener sus vecinos, bufarlos y meterlos en closed
+                    HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(newHex);
+                    foreach(HexCoordinates newCoordinate in neighborsCoordinates)
+                    {
+                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                        int newPriority = CalculatePriority(newTerrain, start, end);
+                        newPriority += 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
+                        int currentMovement = CalculateMovement(hex, newTerrain);
+                        HexNode neighborHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
+                        AddToClosed(neighborHex);
+                    }
+
+                    hex = newHex;
+                }
+                break;
             }
         }
     }

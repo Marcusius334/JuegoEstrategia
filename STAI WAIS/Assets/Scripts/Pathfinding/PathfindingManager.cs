@@ -50,6 +50,28 @@ public class PathfindingManager
     // ================================
 
     // ================================
+    // Poner casilla en closed
+    // ================================
+    protected static void AddToClosed(HexNode hex)
+    {
+        if (closed.Contains(hex) && hex.priority < int.MaxValue)
+        {
+            int index = closed.FindIndex(x => x.Equals(hex));
+            if(hex.priority < closed[index].priority)
+            {
+                closed.RemoveAt(index);
+                closed.Add(hex);
+                closed.Sort((a, b) => a.priority.CompareTo(b.priority));
+            }
+            
+        }else if (!closed.Contains(hex))
+        {
+            closed.Add(hex);
+        }
+    }
+    // ================================
+
+    // ================================
     // Sacar la casilla más prioritaria de visiting
     // ================================
     protected static HexNode PopVisiting()
@@ -57,7 +79,7 @@ public class PathfindingManager
         HexNode hex = visiting[0];
         visiting.RemoveAt(0);
         visiting.Sort((a, b) => a.priority.CompareTo(b.priority));
-        closed.Add(hex);
+        AddToClosed(hex);
         return hex;
     }
     // ================================

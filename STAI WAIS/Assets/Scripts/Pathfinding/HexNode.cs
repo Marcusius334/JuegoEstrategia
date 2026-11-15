@@ -14,4 +14,13 @@ public class HexNode
         this.currentMovementPoints = currentMovementPoints;
         this.parent = parent;
     }
+
+    public bool SameCoordinates(object obj)
+    {
+        if (obj is not HexCoordinates other)
+            return false;
+
+        return coordinates.Q == other.Q && coordinates.R == other.R;
+    }
+
 }
