@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
     public Troop troopPrefab; 
     public Player currentPlayer; 
     public TurnsManager turnsManager; // Asegúrate de que arrastraste el TurnsManager aquí en el Inspector
+    public HexGridManager gridManager;
 
     private Troop activeTroop; 
 
@@ -38,7 +39,7 @@ public class GameController : MonoBehaviour
                     }
                     else
                     {
-                        activeTroop.MoveToCell(clickedCell);
+                        activeTroop.MoveToCell(clickedCell, gridManager);
                     }
                 }
             }

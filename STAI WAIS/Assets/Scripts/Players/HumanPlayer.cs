@@ -3,6 +3,21 @@ using UnityEngine.EventSystems;
 
 public class HumanPlayer : Player
 {
+    //Funcion 1 (probablemente sea un OnMouseDown o similar)
+        //Tiene que poder tocar a las tropas
+        //Comprobar si es suyaa
+        //Y entonces se marca como seleccionada la tropa
+        //Se pulsa que otra casilla a la que quiere mover la tropa
+        //Se activa la funcion de la tropa de moverse a esa casilla
+    //=====================================
+
+    //Funcion 2 (probablemente sea un OnMouseDown o similar)
+        //Tiene que poder tocar las estaciones
+        //Comprobar si es suya
+        //Y entonces se entra al menu de comprar tropas
+        //Se pulsa las tropas a comprar
+        //Cada vez que se compre una tropa se activa la funcion comprar tropas de la estacion
+    //=====================================
     public Troop selectedTroop;
     [SerializeField] private HexGridManager gridManager;
 
@@ -31,6 +46,22 @@ public class HumanPlayer : Player
             }
 
             if (selectedTroop == null) return;
+            Construir(hit);
+        }
+        else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
+        {
+            Movimiento(hit);
+        }
+    }
+
+    // =========================================
+    //
+    // FASE 1: CONSTRUCCION
+    //
+    // =========================================
+    private void Construir(RaycastHit2D hit)
+    {
+        if (selectedTroop == null) return;
             Debug.Log("Hay tropa seleccionada: " + selectedTroop.name);
             if (hit.collider != null)
             {
@@ -49,10 +80,16 @@ public class HumanPlayer : Player
                     Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                 }
             }
-        }
-        else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
-        {
-            if (hit.collider != null)
+    }
+
+    // =========================================
+    //
+    // FASE 2: MOVIMIENTO
+    //
+    // =========================================
+    private void Movimiento(RaycastHit2D hit)
+    {
+        if (hit.collider != null)
             {
                 Debug.Log("Testing mover tropas: se ha clickado algo");
 
@@ -71,11 +108,11 @@ public class HumanPlayer : Player
                 else if (selectedTroop != null && clickedCell != null)
                 {
                     Debug.Log("Testing mover tropas: Casilla seleccionada");
-                    selectedTroop.MoveToCell(clickedCell);
+                   
+                    selectedTroop.MoveToCell(clickedCell, gridManager);
                     selectedTroop = null; 
                 }
             }
-        }
     }
 
     private void ActualizarRecursos()
@@ -94,11 +131,5 @@ public class HumanPlayer : Player
         //Se activa la funcion de la tropa de moverse a esa casilla
     //=====================================
 
-    //Funcion 2 (probablemente sea un OnMouseDown o similar)
-        //Tiene que poder tocar las estaciones
-        //Comprobar si es suya
-        //Y entonces se entra al menu de comprar tropas
-        //Se pulsa las tropas a comprar
-        //Cada vez que se compre una tropa se activa la funcion comprar tropas de la estacion
-    //=====================================
+}
 

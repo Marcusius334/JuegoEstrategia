@@ -1,5 +1,24 @@
 
+using System.Collections.Generic;
+
 using UnityEngine;
+
+// ================================
+//Cosas de los terrenos especiales
+// ================================
+[System.Serializable]
+public struct BonusMovementTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+[System.Serializable]
+public struct BonusDefenseTerrain
+{
+    public HexTerrainType terrain;
+    public int value;
+}
+// ================================
 
 public class Troop : MonoBehaviour
 {
@@ -10,6 +29,11 @@ public class Troop : MonoBehaviour
     public int attack;
     public int hp;
     public int velocity;
+
+    [Header("Terrenos especiales")]
+    public BonusMovementTerrain[] movementBonuses;
+    public BonusDefenseTerrain[] defenseBonuses;
+    public HexTerrainType[] impassableTerrains;
 
     [Header("Costes de construcción")]
     public int creditos;
@@ -26,6 +50,66 @@ public class Troop : MonoBehaviour
 
     private void Awake()
     {
+        
+        influenceMap = new InfluenceMap();
+    }
+
+    public void MoveToCell(HexCell targetCell)
+    {
+        //TODO
+        if (currentCell == null || targetCell == null)
+        {
+            Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
+            return;
+        }
+
+        //TODO dijsktra
+        // Comprobar que sea una casilla vecina
+        if (currentCell.Coordinates.DistanceTo(targetCell.Coordinates) != 1)
+        {
+            Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
+            return;
+        }
+
+        //TODO si es válido el terreno
+        // Comprobar el terreno 
+        if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
+        {
+            Debug.Log("Movimiento inválido: no se puede atravesar un agujero de gusano.");
+            return;
+        }
+
+        // Comprobar si está ocupada
+        if (targetCell.IsOccupied)
+        {
+            Debug.Log("Movimiento inválido: la casilla está ocupada.");
+            return;
+        }
+
+        // Guardar la casilla anterior
+        HexCell previousCell = currentCell;
+
+        //TODO no casilla anterior
+
+        // Ocupar la nueva casilla
+        if (!targetCell.TrySetOccupant(this))
+            return;
+
+        // Liberar la anterior
+        previousCell.ClearOccupant(this);
+
+        // Actualizar posición
+        currentCell = targetCell;
+        transform.position = targetCell.transform.position;
+
+        Debug.Log("Tropa movida a " + targetCell.Coordinates);
+    }
+
+    private void OnDestroy()
+    {
+        // Liberar la casilla si la tropa es destruida
+        if (currentCell != null)
+            currentCell.ClearOccupant(this);
         influenceMap = new InfluenceMap();
     }
     public void Initialize(HexCell startingCell, Player troopOwner)
@@ -36,6 +120,10 @@ public class Troop : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        //HAY QUE COMPROBAR SI LA TROPA SE PUEDE PONER EN ESE TERRENO DE LA CASILLA ELEJIDA
+        //TAMBIÉN HAY QUE COMPROBAR QUE LA TROPA SE PUEDA PONER EN UNA TROPA ADJACENTE A LA ESTACIÓN DE COMPRA
+        //BÁSICAMENTE PARA QUE NO SE PUEDA PONER EN CUALQUIER PARTE DEL MAPA POR LA CARA
 
         // Liberar una posible casilla anterior
         if (currentCell != null)
@@ -59,7 +147,7 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa creada en " + currentCell.Coordinates);
     }
 
-    public void MoveToCell(HexCell targetCell)
+    public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
     {
         if (currentCell == null || targetCell == null)
         {
@@ -67,29 +155,22 @@ public class Troop : MonoBehaviour
             return;
         }
 
-        // Comprobar que sea una casilla vecina
-        if (currentCell.Coordinates.DistanceTo(targetCell.Coordinates) != 1)
+        //Comprobar que la casilla sea válida
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this);
+        if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
             return;
         }
 
-        // Comprobar el terreno
-        if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
-        {
-            Debug.Log("Movimiento inválido: no se puede atravesar un agujero de gusano.");
-            return;
-        }
-
-        // Comprobar si está ocupada
-        if (targetCell.IsOccupied)
-        {
-            Debug.Log("Movimiento inválido: la casilla está ocupada.");
-            return;
-        }
-
         // Guardar la casilla anterior
         HexCell previousCell = currentCell;
+
+        //No casilla anterior
+        if(targetCell == previousCell)
+        {
+            return;
+        }
 
         // Ocupar la nueva casilla
         if (!targetCell.TrySetOccupant(this))
@@ -108,19 +189,14 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    private void OnDestroy()
-    {
-        // Liberar la casilla si la tropa es destruida
-        if (currentCell != null)
-            currentCell.ClearOccupant(this);
-    }
-
     public void UpdateInfluenceMap(HexGridManager gridManager)
     {
         if (influenceMap == null)
             influenceMap = new InfluenceMap();
 
         influenceMap.CalculateTerrainInfluence(gridManager);
+
+
     }
 }
 
