@@ -174,7 +174,10 @@ public class Troop : MonoBehaviour
 
         // Ocupar la nueva casilla
         if (!targetCell.TrySetOccupant(this))
+        {
+            Debug.Log("Movimiento inválido: no se porqué.");
             return;
+        }
 
         // Liberar la anterior
         previousCell.ClearOccupant(this);
