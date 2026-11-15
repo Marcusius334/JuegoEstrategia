@@ -131,5 +131,3 @@ public class HumanPlayer : Player
         //Se activa la funcion de la tropa de moverse a esa casilla
     //=====================================
 
-}
-
