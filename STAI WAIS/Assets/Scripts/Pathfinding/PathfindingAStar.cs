@@ -131,7 +131,7 @@ public class PathfindingAStar : PathfindingManager
                 while (!hex.SameCoordinates(start))
                 {
                     HexNode newHex = hex.parent;
-                    newHex.priority += 1;
+                    newHex.priority -= 1;
 
                     //Obtener sus vecinos, bufarlos y meterlos en closed
                     HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(newHex);
