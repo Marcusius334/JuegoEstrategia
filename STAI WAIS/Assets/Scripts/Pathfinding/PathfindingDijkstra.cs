@@ -7,7 +7,7 @@ using UnityEngine;
 public class PathfindingDijkstra : PathfindingManager
 {
     // ================================
-    // realizar Dijkstra
+    // Realizar Dijkstra
     // ================================
     public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop)
     {
@@ -46,15 +46,16 @@ public class PathfindingDijkstra : PathfindingManager
     // ================================
 
     // ================================
-    // Obtener posiciones validas con Dik¡jkstra
+    // Obtener posiciones validas con Dijkstra
     // ================================
-    public static List<HexCoordinates> GetValidPositions(HexCoordinates coordinates, HexGridManager newGridManager, Troop newTroop)
+    public static List<HexCoordinates> GetValidPositions(HexGridManager newGridManager, Troop newTroop)
     {
         //Iniciar el gridManager y tropa
         gridManager = newGridManager;
         troop = newTroop;
 
         //Iniciar el primer nodo
+        HexCoordinates coordinates = troop.currentCell.Coordinates;
         Terrain terrain = gridManager.GetTerrain(coordinates);
         int priority = CalculatePriority(terrain);
         HexNode start = new HexNode(coordinates, priority, troop.velocity, null);
@@ -91,11 +92,14 @@ public class PathfindingDijkstra : PathfindingManager
             }
         }
 
-        //Calcular terreno
+        //SE PODRÍA PONER UN MAPA DE INFLUENCIAS DE VALOR ESTRATÉTICO ENEMIGO EN FUNCIÓN DE LAS TROPAS DEL ENEMIGO
+        //A LO QUE HICIMOS EN CLASE DE LAS TROPAS BLANCAS Y NEGRAS
+
+        //Calcular terreno - PUEDE SUSTITUIRSE POR MAPA DE INFLUENCIAS DE TERRENO
         priority += terrain.MovementCost; //Mayor número = peor
         priority -= terrain.DefenseBonus; //Mayor número = mejor
 
-        //Calcular especificaciones de tropa
+        //Calcular especificaciones de tropa - TENDRÍA QUE HACERSE UN MAPA DE INFLUENCIAS POR TROPA (NO PARECE FACTIBLE)
         foreach(BonusMovementTerrain bonus in troop.movementBonuses)
         {
             if(terrain.Type == bonus.terrain)
@@ -112,9 +116,6 @@ public class PathfindingDijkstra : PathfindingManager
                 break;
             }
         }
-
-        //Calcular bonos mapas influencia
-        //Cuando estén más acabados será sumar y restar priority en la casilla correspondiente
 
         return priority;
     }
