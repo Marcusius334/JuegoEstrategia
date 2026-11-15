@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+
+
 // ================================
 //Cosas de los terrenos especiales
 // ================================
@@ -24,6 +26,11 @@ public class Troop : MonoBehaviour
 {
     public HexCell currentCell;
     public Player owner;
+
+    [Header("Mapas de influencia")]
+    public TerrainInfluenceMap terrainInfluenceMap;
+    public MilitaryInfluenceMap militaryInfluenceMap;
+    public SecurityInfluenceMap securityInfluenceMap;
 
     [Header("Estadísticas")]
     public int attack;
@@ -186,14 +193,17 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(HexGridManager gridManager)
+    public void SetInfluenceMaps(TacticalInfluenceManager manager)
     {
-        if (influenceMap == null)
-            influenceMap = new InfluenceMap();
+        if (manager == null)
+        {
+            Debug.LogWarning("No se ha encontrado TacticalInfluenceManager.");
+            return;
+        }
 
-        influenceMap.CalculateTerrainInfluence(gridManager);
-
-
+        terrainInfluenceMap = manager.TerrainMap;
+        militaryInfluenceMap = manager.MilitaryMap;
+        securityInfluenceMap = manager.SecurityMap;
     }
 }
 
