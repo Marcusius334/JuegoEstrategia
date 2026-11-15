@@ -131,7 +131,7 @@ public class PathfindingAStar : PathfindingManager
                 while (!hex.SameCoordinates(start))
                 {
                     HexNode newHex = hex.parent;
-                    newHex.priority -= 1;
+                    newHex.priority -= 2;
 
                     //Obtener sus vecinos, bufarlos y meterlos en closed
                     HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(newHex);
@@ -139,7 +139,7 @@ public class PathfindingAStar : PathfindingManager
                     {
                         Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
                         int newPriority = CalculatePriority(newTerrain, start, end);
-                        newPriority += 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
+                        newPriority -= 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
                         int currentMovement = CalculateMovement(hex, newTerrain);
                         HexNode neighborHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
                         AddToClosed(neighborHex);
