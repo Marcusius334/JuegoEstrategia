@@ -73,11 +73,12 @@ public class HumanPlayer : Player
 
                     //Creamos la nave:
                     Troop nuevaTropa = Instantiate(selectedTroop);
-                    nuevaTropa.Initialize(clickedCell, this);
-
-                    //Reseteamos valores:
-                    selectedTroop = null;
-                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    if (nuevaTropa.Initialize(clickedCell, this))
+                    {
+                        //Reseteamos valores:
+                        selectedTroop = null;
+                        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    }
                 }
             }
     }
