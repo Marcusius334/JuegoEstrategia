@@ -25,7 +25,7 @@ public class TerrainInfluenceMap : InfluenceMap
             }
             if (impassable) 
             {
-                SetInfluence(cell.Coordinates, 10000000f);
+                SetInfluence(cell.Coordinates, Mathf.Infinity);
                 continue;
             }
             //Caracteristicas generales del terreno

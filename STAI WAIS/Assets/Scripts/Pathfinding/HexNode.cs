@@ -3,11 +3,11 @@ using UnityEngine;
 public class HexNode
 {
     public HexCoordinates coordinates;
-    public int priority;
+    public float priority;
     public int currentMovementPoints;
     public HexNode parent;
 
-    public HexNode(HexCoordinates coordinates, int priority, int currentMovementPoints, HexNode parent)
+    public HexNode(HexCoordinates coordinates, float priority, int currentMovementPoints, HexNode parent)
     {
         this.coordinates = coordinates;
         this.priority = priority;

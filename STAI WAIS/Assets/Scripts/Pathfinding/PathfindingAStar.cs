@@ -15,7 +15,7 @@ public class PathfindingAStar : PathfindingManager
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
         Terrain terrain = gridManager.GetTerrain(coordinates);
-        int priority = CalculatePriority(terrain, coordinates, endCoordinates);
+        float priority = CalculatePriority(coordinates, coordinates, endCoordinates);
         HexNode start = new HexNode(coordinates, priority, troop.velocity, null);
         AddToVisiting(start);
 
@@ -56,43 +56,16 @@ public class PathfindingAStar : PathfindingManager
     // ================================
     // Obtener la prioidad de una casilla
     // ================================
-    public static int CalculatePriority(Terrain terrain, HexCoordinates start, HexCoordinates end)
+    public static float CalculatePriority(HexCoordinates coordinates, HexCoordinates start, HexCoordinates end)
     {
-        int priority = 0;
+        float priority = 0;
 
-        //Ver si puede moverse a ese terreno
-        foreach(HexTerrainType impTerrain in troop.impassableTerrains)
+        InfluenceMap influenceMap = new InfluenceMap();
+        priority -= influenceMap.GetInfluence(coordinates);
+
+        if(priority == -Mathf.Infinity)
         {
-            if(terrain.Type == impTerrain)
-            {
-                priority = int.MaxValue;
-                return priority;
-            }
-        }
-
-        //SE PODRÍA PONER UN MAPA DE INFLUENCIAS DE VALOR ESTRATÉTICO ENEMIGO EN FUNCIÓN DE LAS TROPAS DEL ENEMIGO
-        //A LO QUE HICIMOS EN CLASE DE LAS TROPAS BLANCAS Y NEGRAS
-
-        //Calcular terreno - PUEDE SUSTITUIRSE POR MAPA DE INFLUENCIAS DE TERRENO
-        priority += terrain.MovementCost; //Mayor número = peor
-        priority -= terrain.DefenseBonus; //Mayor número = mejor
-
-        //Calcular especificaciones de tropa - TENDRÍA QUE HACERSE UN MAPA DE INFLUENCIAS POR TROPA (NO PARECE FACTIBLE)
-        foreach(BonusMovementTerrain bonus in troop.movementBonuses)
-        {
-            if(terrain.Type == bonus.terrain)
-            {
-                priority += bonus.value; //Mayor número = peor
-                break;
-            }
-        }
-        foreach(BonusDefenseTerrain bonus in troop.defenseBonuses)
-        {
-            if(terrain.Type == bonus.terrain)
-            {
-                priority += bonus.value; //Mayor número = mejor
-                break;
-            }
+            priority = Mathf.Infinity;
         }
 
         //Calcular distancia - DIRÍA QUE NO SE PUEDE HACER MAPA DE INFLUENCIAS DE DISTANCIAS A LO A*
@@ -119,7 +92,7 @@ public class PathfindingAStar : PathfindingManager
                 foreach(HexCoordinates newCoordinate in neighborsCoordinates)
                 {
                     Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
-                    int newPriority = CalculatePriority(newTerrain, start, end);
+                    float newPriority = CalculatePriority(newCoordinate, start, end);
                     int currentMovement = CalculateMovement(hex, newTerrain);
                     HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
                     AddToVisiting(newHex);
@@ -138,7 +111,7 @@ public class PathfindingAStar : PathfindingManager
                     foreach(HexCoordinates newCoordinate in neighborsCoordinates)
                     {
                         Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
-                        int newPriority = CalculatePriority(newTerrain, start, end);
+                        float newPriority = CalculatePriority(newCoordinate, start, end);
                         newPriority -= 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
                         int currentMovement = CalculateMovement(hex, newTerrain);
                         HexNode neighborHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);

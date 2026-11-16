@@ -14815,7 +14815,7 @@ PrefabInstance:
     - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
       propertyPath: turnsManager
       value: 
-      objectReference: {fileID: 2136563972}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19672,71 +19672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1001 &1537675939
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1328840278872256343, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1405330748055127824, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: m_Name
-      value: tier1_Ala-X
-      objectReference: {fileID: 0}
-    - target: {fileID: 3438669684334178259, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: owner
-      value: 
-      objectReference: {fileID: 1850856890}
-    - target: {fileID: 3438669684334178259, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
-      propertyPath: currentCell
-      value: 
-      objectReference: {fileID: 1024901866}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4f1ef6e5066988349b0cff91e9d36ca6, type: 3}
 --- !u!1 &1537867783
 GameObject:
   m_ObjectHideFlags: 0
@@ -29180,17 +29115,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2136563972 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9061628604092513515, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
-  m_PrefabInstance: {fileID: 1591676526}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4739eb3144ae4459aaf53084a4ce6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnsManager
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -29200,6 +29124,5 @@ SceneRoots:
   - {fileID: 1294351078}
   - {fileID: 1806493059}
   - {fileID: 1122279853}
-  - {fileID: 1537675939}
   - {fileID: 1591676526}
   - {fileID: 1906987179}
