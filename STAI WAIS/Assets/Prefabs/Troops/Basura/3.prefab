@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
-  - component: {fileID: 3584463984188425533}
-  m_Layer: 0
-  m_Name: 2
+  - component: {fileID: 1368316088989565805}
+  m_Layer: 3
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1852167187606427938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.235383, y: -1.8000001, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,22 +48,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
-  attack: 200
-  hp: 450
-  velocity: 8
-  movementBonuses:
-  - terrain: 2
-    value: -1
-  defenseBonuses: []
-  impassableTerrains: 05000000
-  creditos: 0
-  chatarra: 300
+  attack: 250
+  hp: 800
+  velocity: 4
+  movementBonuses: []
+  defenseBonuses:
+  - terrain: 3
+    value: 1
+  impassableTerrains: 04000000
+  creditos: 150
+  chatarra: 700
   tritio: 0
   cristales: 0
-  name: Ala-A
-  descripcion: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera
-    muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o
-    pero d\xE9bil contra otros ataques."
+  name: Ala-Y
+  descripcion: "Nave bombardera, ideal para estructuras como bases enemigas o naves
+    de grandes dimensiones. Lenta y con corto alcanze pero gran vida y enorme da\xF1o
+    a objetivos adecuados. "
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -113,7 +113,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1343423376722548337, guid: 6aa68c5a767edee449e18875d444fbe4, type: 3}
+  m_Sprite: {fileID: -6418445256563099894, guid: aec2d276c6215be47a64d5b9d2a048c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &3584463984188425533
+--- !u!61 &1368316088989565805
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,11 +161,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.36, y: 1.78}
+    oldSize: {x: 0.95, y: 1.88}
     newSize: {x: 1.15, y: 1.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.36, y: 1.78}
+  m_Size: {x: 0.95, y: 1.88}
   m_EdgeRadius: 0

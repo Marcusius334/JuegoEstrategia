@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
-  - component: {fileID: 5888003162299839201}
-  m_Layer: 0
-  m_Name: 6
+  - component: {fileID: 7714808133532058631}
+  m_Layer: 3
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1852167187606427938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.313844, y: 3.6000001, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48,19 +48,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
-  attack: 300
-  hp: 1500
+  attack: 250
+  hp: 1200
   velocity: 6
   movementBonuses: []
   defenseBonuses: []
   impassableTerrains: 
-  creditos: 650
-  chatarra: 1800
-  tritio: 50
-  cristales: 1
-  name: Ala-U
-  descripcion: Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo.
-    Ideal para abrirse paso y detruir todo tipo de estructuras o naves pesadas
+  creditos: 0
+  chatarra: 1200
+  tritio: 70
+  cristales: 0
+  name: Ala-B
+  descripcion: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango.
+    Especializada en la destrucci\xF3n de otras naves."
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2404922712277083011, guid: 148fba22f5ef9ed4a86b6ace73c25754, type: 3}
+  m_Sprite: {fileID: 4848252416118211582, guid: a8c4fbc789dd9704a95390af0d2f61ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +120,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &5888003162299839201
+--- !u!61 &7714808133532058631
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,11 +158,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.67, y: 1.8}
+    oldSize: {x: 2.72, y: 1.36}
     newSize: {x: 1.15, y: 1.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.67, y: 1.8}
+  m_Size: {x: 2.72, y: 1.36}
   m_EdgeRadius: 0

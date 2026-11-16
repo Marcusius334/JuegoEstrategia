@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
-  - component: {fileID: 1085761696643703088}
-  m_Layer: 0
-  m_Name: 7
+  - component: {fileID: 1418160419332682458}
+  m_Layer: 3
+  m_Name: 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,20 +48,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
-  attack: 400
-  hp: 1200
-  velocity: 10
+  attack: 100
+  hp: 1600
+  velocity: 2
   movementBonuses: []
   defenseBonuses: []
   impassableTerrains: 
-  creditos: 800
-  chatarra: 2000
-  tritio: 80
-  cristales: 2
-  name: Ala-E
-  descripcion: Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva, de
-    velocidad y alcance. Resulta en un equilibrio sensacional con una gran fuerza
-    ofensiva contra otras naves
+  creditos: 500
+  chatarra: 1800
+  tritio: 60
+  cristales: 0
+  name: Cabeza de martillo
+  descripcion: "La primera l\xEDnea de la batalla, resulta el tanque del escuadr\xF3n,
+    con una inmensa vida pero muy lento y poco ataque. Ideal para frenar naves ligeras
+    que resultan poco efectivas contra \xE9l"
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -6098828764623027175, guid: acdda0bfdb78ba347bc3fe8ef5896ed8, type: 3}
+  m_Sprite: {fileID: 2853448231941074415, guid: 85e020db9525d954b88d1c5b934b6052, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &1085761696643703088
+--- !u!61 &1418160419332682458
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,11 +159,11 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.87, y: 0.81}
+    oldSize: {x: 1.26, y: 1.88}
     newSize: {x: 1.15, y: 1.29}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.87, y: 0.81}
+  m_Size: {x: 1.26, y: 1.88}
   m_EdgeRadius: 0
