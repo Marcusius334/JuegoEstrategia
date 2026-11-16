@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -6,6 +5,32 @@ using UnityEngine;
 // ================================
 //Cosas de los terrenos especiales
 // ================================
+
+//distincion de tropa
+public enum TroopType
+{
+    AoInterceptor,
+    BoAvanzado,
+    YoBombardero,
+    XoCaza,
+    MartilloODefensor,
+    UoPhantom,
+    EoStrike
+}
+
+//distincion de categoria 
+public enum UnitCategory
+{
+    Nave,
+    Edificio
+}
+
+//faccion
+public enum Faction{
+    Rebeldes,
+    Imperio
+}
+
 [System.Serializable]
 public struct BonusMovementTerrain
 {
@@ -18,6 +43,22 @@ public struct BonusDefenseTerrain
     public HexTerrainType terrain;
     public int value;
 }
+[System.Serializable]
+public struct BonusDamageTroop
+{
+    public bool allShips;
+    public bool allBuildings;
+    public TroopType targetType;
+    public int extraDamage;
+}
+[System.Serializable]
+public struct SkinFaction
+{
+    public Faction faction;
+    public string factionTroopName; 
+    [TextArea] public string factionDescription; 
+    public Sprite sprite;
+}
 // ================================
 
 public class Troop : MonoBehaviour
@@ -25,10 +66,18 @@ public class Troop : MonoBehaviour
     public HexCell currentCell;
     public Player owner;
 
+    [Header("Tipo y Ventajas")]
+    public UnitCategory category = UnitCategory.Nave;
+    public TroopType troopType;
+    public BonusDamageTroop[] damageBonuses;
+
     [Header("Estadísticas")]
     public int attack;
+    public int maxhp;
     public int hp;
     public int velocity;
+    public int extradmg;
+    public int range;
 
     [Header("Terrenos especiales")]
     public BonusMovementTerrain[] movementBonuses;
@@ -42,7 +91,7 @@ public class Troop : MonoBehaviour
     public int cristales;
 
     [Header("Detalles de las tropas")]
-    public string name;
+    public new string name;
     public string descripcion;
 
     //Mapa de influencia propio de esta tropa 
@@ -52,6 +101,110 @@ public class Troop : MonoBehaviour
     {
         
         influenceMap = new InfluenceMap();
+    }
+
+    [Header("Apariencia por Bando")]
+    public SpriteRenderer spriteRenderer;
+    public SkinFaction[] factionSkins;
+
+    public virtual void ApplyFactionSkin(Faction playerFaction)
+    {
+        if (spriteRenderer == null)
+            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (factionSkins == null) return;
+
+        foreach (var skin in factionSkins)
+        {
+            if (skin.faction == playerFaction)
+            {
+                // Cambiar sprite
+                if (spriteRenderer != null && skin.sprite != null)
+                    spriteRenderer.sprite = skin.sprite;
+
+                // Cambiar nombre si se ha definido uno para esta facción
+                if (!string.IsNullOrEmpty(skin.factionTroopName))
+                    name = skin.factionTroopName;
+
+                // Cambiar descripción si se ha definido una para esta facción
+                if (!string.IsNullOrEmpty(skin.factionDescription))
+                    descripcion = skin.factionDescription;
+
+                break;
+            }
+        }
+    }
+
+    // ==========================================
+    // SISTEMA DE COMBATE Y DAÑO POR TIPO
+    // ==========================================
+
+    public virtual int CalculateDamageAgainst(Troop target)
+    {
+        int totalDamage = attack;
+
+        if (damageBonuses != null)
+        {
+            foreach (var bonus in damageBonuses)
+            {
+                //naves
+                if (bonus.allShips && target.category == UnitCategory.Nave)
+                {
+                    totalDamage += bonus.extraDamage;
+                }//edific
+                else if (bonus.allBuildings && target.category == UnitCategory.Edificio)
+                {
+                    totalDamage += bonus.extraDamage;
+                }//nave concreta
+                else if (!bonus.allShips && !bonus.allBuildings && bonus.targetType == target.troopType)
+                {
+                    totalDamage += bonus.extraDamage;
+                }
+            }
+        }
+
+        int terrainDefense = target.GetCurrentTerrainDefense();
+        totalDamage = Mathf.Max(1, totalDamage - terrainDefense);
+
+        return totalDamage;
+    }
+
+    public virtual void Attack(Troop target)
+    {
+        if (target == null || target.owner == this.owner) return;
+
+        int finalDamage = CalculateDamageAgainst(target);
+        Debug.Log($"{name} ataca a {target.name} causando {finalDamage} de daño.");
+        
+        target.TakeDamage(finalDamage);
+    }
+
+    public virtual void TakeDamage(int amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            hp = 0;
+            Die();
+        }
+    }
+
+    protected virtual void Die()
+    {
+        
+        Destroy(gameObject);
+    }
+
+    public int GetCurrentTerrainDefense()
+    {
+        if (currentCell == null || defenseBonuses == null) return 0;
+
+        foreach (var def in defenseBonuses)
+        {
+            if (def.terrain == currentCell.TerrainType)
+                return def.value;
+        }
+        return 0;
     }
 
     public void MoveToCell(HexCell targetCell)
@@ -141,6 +294,11 @@ public class Troop : MonoBehaviour
         currentCell = startingCell;
         owner = troopOwner;
         influenceMap = new InfluenceMap();
+
+        if (owner != null)
+        {
+            ApplyFactionSkin(owner.faction);
+        }
 
         transform.position = currentCell.transform.position;
 
