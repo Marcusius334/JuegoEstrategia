@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748656496520048997}
-  - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
+  - component: {fileID: -9278380235565138}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -33,36 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2705571814516224481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852167187606427938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Troop
-  currentCell: {fileID: 0}
-  owner: {fileID: 0}
-  attack: 250
-  hp: 800
-  velocity: 4
-  movementBonuses: []
-  defenseBonuses:
-  - terrain: 3
-    value: 1
-  impassableTerrains: 04000000
-  creditos: 150
-  chatarra: 700
-  tritio: 0
-  cristales: 0
-  name: Ala-Y
-  descripcion: "Nave bombardera, ideal para estructuras como bases enemigas o naves
-    de grandes dimensiones. Lenta y con corto alcanze pero gran vida y enorme da\xF1o
-    a objetivos adecuados. "
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -122,3 +92,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-9278380235565138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852167187606427938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c24e51925066994eb200ee9ec68f246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaYoBombarderio
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 2
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 2
+    extraDamage: 0
+  attack: 250
+  maxhp: 800
+  hp: 800
+  velocity: 4
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses:
+  - terrain: 3
+    value: 100
+  impassableTerrains: 
+  creditos: 150
+  chatarra: 700
+  tritio: 0
+  cristales: 0
+  name: Ala-Y
+  descripcion: "Nave bombardera, ideal para estructuras como bases enemigas o naves
+    de grandes dimensiones. Lenta y con corto alcanze pero gran vida y enorme da\xF1o
+    a objetivos adecuados. "
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-Y
+    factionDescription: Efectivo para destruir naves y estructuras de gran calibre
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Bombardero tie
+    factionDescription: Efectivo para destruir naves y estructuras de gran calibre
+    sprite: {fileID: 0}

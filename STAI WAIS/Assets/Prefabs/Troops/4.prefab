@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
+  - component: {fileID: 8308562915025625322}
   m_Layer: 0
   m_Name: 4
   m_TagString: Untagged
@@ -40,16 +41,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852167187606427938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
+  category: 0
+  troopType: 1
+  damageBonuses: []
   attack: 250
+  maxhp: 1200
   hp: 1200
   velocity: 6
+  extradmg: 0
+  range: 0
   movementBonuses: []
   defenseBonuses: []
   impassableTerrains: 
@@ -60,6 +67,8 @@ MonoBehaviour:
   name: Ala-B
   descripcion: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango.
     Especializada en la destrucci\xF3n de otras naves."
+  spriteRenderer: {fileID: 0}
+  factionSkins: []
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -119,3 +128,54 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8308562915025625322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852167187606427938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2ec1882aab06f44bcb439cd32da69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaBoAvanzado
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 1
+  damageBonuses:
+  - allShips: 1
+    allBuildings: 0
+    targetType: 0
+    extraDamage: 150
+  attack: 250
+  maxhp: 1200
+  hp: 1200
+  velocity: 6
+  extradmg: 0
+  range: 2
+  movementBonuses: []
+  defenseBonuses:
+  - terrain: 2
+    value: -100
+  - terrain: 4
+    value: 100
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 1200
+  tritio: 70
+  cristales: 0
+  name: Ala-B
+  descripcion: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango.
+    Especializada en la destrucci\xF3n de otras naves."
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-B
+    factionDescription: "Una Ala dise\xF1ada para ser efectiva contra las naves"
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie avanzado
+    factionDescription: Un tie hecho para arrasar contra las naves enemigas
+    sprite: {fileID: 0}

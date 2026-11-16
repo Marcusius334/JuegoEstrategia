@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1748656496520048997}
-  - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
+  - component: {fileID: -1494050837678799207}
   m_Layer: 0
   m_Name: 2
   m_TagString: Untagged
@@ -33,36 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2705571814516224481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852167187606427938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Troop
-  currentCell: {fileID: 0}
-  owner: {fileID: 0}
-  attack: 200
-  hp: 450
-  velocity: 8
-  movementBonuses:
-  - terrain: 2
-    value: -1
-  defenseBonuses: []
-  impassableTerrains: 05000000
-  creditos: 0
-  chatarra: 300
-  tritio: 0
-  cristales: 0
-  name: Ala-A
-  descripcion: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera
-    muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o
-    pero d\xE9bil contra otros ataques."
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -122,3 +92,55 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-1494050837678799207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852167187606427938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134197fe04bef804aa60c2c032fea660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaAoInterceptor
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 0
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 2
+    extraDamage: 100
+  - allShips: 0
+    allBuildings: 0
+    targetType: 4
+    extraDamage: -50
+  attack: 200
+  maxhp: 450
+  hp: 450
+  velocity: 8
+  extradmg: 0
+  range: 2
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 300
+  tritio: 0
+  cristales: 0
+  name: Ala-A
+  descripcion: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera
+    muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o
+    pero d\xE9bil contra otros ataques."
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-A
+    factionDescription: Ala eficiente para destruir ties avanzados
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Interceptor TIE
+    factionDescription: Tie util para neutralizar Alas-B
+    sprite: {fileID: 0}
