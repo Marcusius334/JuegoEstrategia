@@ -66,6 +66,11 @@ public class Troop : MonoBehaviour
     public HexCell currentCell;
     public Player owner;
 
+    [Header("Mapas de influencia")]
+    public TerrainInfluenceMap terrainInfluenceMap;
+    public MilitaryInfluenceMap militaryInfluenceMap;
+    public SecurityInfluenceMap securityInfluenceMap;
+
     [Header("Tipo y Ventajas")]
     public UnitCategory category = UnitCategory.Nave;
     public TroopType troopType;
@@ -314,7 +319,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(targetCell.Coordinates, hexGridManager, this);
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
@@ -349,7 +354,7 @@ public class Troop : MonoBehaviour
         if (influenceMap == null)
             influenceMap = new InfluenceMap();
 
-        influenceMap.CalculateTerrainInfluence(gridManager);
+        //influenceMap.CalculateTerrainInfluence(gridManager);
 
 
     }

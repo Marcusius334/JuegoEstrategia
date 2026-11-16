@@ -12792,6 +12792,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1031196501 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6231686375044662820, guid: a1bbfc4c4b105ea43949094b5a5a0070, type: 3}
+  m_PrefabInstance: {fileID: 1669336291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1039732786
 GameObject:
   m_ObjectHideFlags: 0
@@ -25789,17 +25794,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2010087980 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9061628604092513515, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
-  m_PrefabInstance: {fileID: 2036584289}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e4739eb3144ae4459aaf53084a4ce6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnsManager
 --- !u!1 &2019337585
 GameObject:
   m_ObjectHideFlags: 0
@@ -25972,6 +25966,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2331717418107845961, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: boton
+      value: 
+      objectReference: {fileID: 1031196501}
     - target: {fileID: 7588236526768889369, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Name
       value: UI_canva
@@ -29254,7 +29252,7 @@ PrefabInstance:
     - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
       propertyPath: turnsManager
       value: 
-      objectReference: {fileID: 2010087980}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

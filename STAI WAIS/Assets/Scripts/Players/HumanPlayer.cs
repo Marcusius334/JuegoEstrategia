@@ -99,6 +99,14 @@ public class HumanPlayer : Player
             }
     }
 
+    private void ActualizarRecursos()
+    {
+        chatarra = gameManager.j_chatarra;
+        creditos = gameManager.j_creditos;
+        tritio = gameManager.j_tritio;
+        cristal = gameManager.j_cristal;
+    }
+
     // =========================================
     // FASE 3: ATAQUE
     // =========================================
