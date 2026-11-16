@@ -50222,7 +50222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 658892940084756219, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -56247,6 +56247,34 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 29687736}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[0]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: e8421c5cbecb7114c98a373cb95cb010, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[1]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: ced35092c1e4087459aa773a504a0808, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[2]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: 1c40c50ae6308254b8c652323a7b74d3, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[3]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: 4d365e191bcc5ff488714b714e25b37e, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[4]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: 6ea7b60c1dbaf854ab0d0548fd6d3174, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[5]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: 4437d0baa20cca44b86442b5f1fed441, type: 3}
+    - target: {fileID: 4220539620781644362, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
+      propertyPath: 'troops.Array.data[6]'
+      value: 
+      objectReference: {fileID: 677900101326760909, guid: d5700a2eb6b0a6a4885f230a3de2848a, type: 3}
     - target: {fileID: 7649337519619887434, guid: f063ceea0127cf541a72dba7fe0604d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -570.43274

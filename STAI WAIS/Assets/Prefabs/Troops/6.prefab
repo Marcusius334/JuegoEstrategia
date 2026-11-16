@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
-  - component: {fileID: 5888003162299839201}
+  - component: {fileID: 6415375716774774304}
   m_Layer: 0
   m_Name: 6
   m_TagString: Untagged
@@ -41,16 +41,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852167187606427938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
+  category: 0
+  troopType: 5
+  damageBonuses: []
   attack: 300
+  maxhp: 1500
   hp: 1500
   velocity: 6
+  extradmg: 0
+  range: 0
   movementBonuses: []
   defenseBonuses: []
   impassableTerrains: 
@@ -61,6 +67,8 @@ MonoBehaviour:
   name: Ala-U
   descripcion: Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo.
     Ideal para abrirse paso y detruir todo tipo de estructuras o naves pesadas
+  spriteRenderer: {fileID: 0}
+  factionSkins: []
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -120,49 +128,52 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &5888003162299839201
-BoxCollider2D:
+--- !u!114 &6415375716774774304
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852167187606427938}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.67, y: 1.8}
-    newSize: {x: 1.15, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.67, y: 1.8}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481d1dce984345343820ec044e597923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaUoPhantom
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 5
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 1
+    targetType: 0
+    extraDamage: 250
+  attack: 300
+  maxhp: 1500
+  hp: 1500
+  velocity: 6
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 650
+  chatarra: 1800
+  tritio: 50
+  cristales: 1
+  name: Ala-U
+  descripcion: Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo.
+    Ideal para abrirse paso y detruir todo tipo de estructuras o naves pesadas
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-U
+    factionDescription: "Una de las naves m\xE1s poderosas, efectiva contra edificios
+      y naves grandes"
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie Phantom
+    factionDescription: "Una de las naves m\xE1s poderosas, efectiva contra edificios
+      y naves grandes"
+    sprite: {fileID: 0}
