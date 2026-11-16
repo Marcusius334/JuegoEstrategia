@@ -14,7 +14,7 @@ public class InfluenceMap
         if (influenceValues.TryGetValue(coordinates, out float value)) { return value; }
         return 0f;
     }
-    public float GetTroopInfluence(HexGridManager gridManager, HexCoordinates coordinates, Troop troop)
+    public float GetTroopInfluence(HexGridManager gridManager, HexCoordinates coordinates, Troop troop) //en el caso de los terrenos hay que añadir los buffos/debuffos de las naves a los terrenos
     {
         if (gridManager == null || troop == null) return Mathf.Infinity;
         HexCell cell = gridManager.GetCell(coordinates);

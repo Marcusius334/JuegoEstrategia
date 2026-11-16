@@ -14,9 +14,9 @@ public class TerrainInfluenceMap : InfluenceMap
             if(cell == null || cell.Terrain == null) continue;
 
             Terrain terrain = cell.Terrain;
-            
-            //Caracteristicas generales del terreno
-            float influence = terrain.MovementCost - terrain.DefenseBonus;
+
+            // Cuanto mayor sea el resultado, más favorable será el terreno.
+            float influence = - terrain.MovementCost + terrain.DefenseBonus;
 
             SetInfluence(cell.Coordinates, influence);
         }

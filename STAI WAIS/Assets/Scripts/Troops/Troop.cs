@@ -97,13 +97,16 @@ public class Troop : MonoBehaviour
     public new string name;
     public string descripcion;
 
-    //Mapa de influencia propio de esta tropa 
-    public InfluenceMap influenceMap;
-
 
     [Header("Apariencia por Bando")]
     public SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
+
+    private void Start()
+    {
+        if(influenceManager == null)
+            influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
+    }
 
     public virtual void ApplyFactionSkin(Faction playerFaction)
     {
@@ -351,12 +354,13 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(HexGridManager gridManager)
+    public void setInfluenceMaps (TacticalInfluenceManager manager)
     {
-        if (influenceMap == null)
-            influenceMap = new InfluenceMap();
-
-        //influenceMap.CalculateTerrainInfluence(gridManager);
+        if (manager == null) 
+        {
+            Debug.LogWarning("No se ha encontrado TacticalInfluenceManager.");
+            return;
+        }
 
 
         influenceManager = manager;

@@ -4,6 +4,7 @@ public class TacticalInfluenceManager : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private HexGridManager gridManager;
+
     [Header("Configuracion de influencia militar")]
     [SerializeField] private int influenceRadius = 4;
     [SerializeField] private float influenceDecay = 1.5f;
@@ -20,15 +21,16 @@ public class TacticalInfluenceManager : MonoBehaviour
         SecurityMap = new SecurityInfluenceMap();
         if(gridManager == null) gridManager = FindFirstObjectByType<HexGridManager>();
     }
+
     //Actualizar todos los mapas
-    public void RefreshMaps(Player perspective, Troop troop) 
+    public void RefreshMaps(Player perspective) 
     {
         if (gridManager == null) 
         {
             Debug.LogError("No existe HexGridManager.");
             return;
         }
-        if (perspective == null || troop == null) 
+        if (perspective == null) 
         {
             Debug.LogError("Faltan referencias para actualizar los mapas.");
             return;
