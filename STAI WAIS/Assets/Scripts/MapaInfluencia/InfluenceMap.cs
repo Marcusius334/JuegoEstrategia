@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor.U2D.Aseprite;
 
 public class InfluenceMap 
 {
@@ -17,7 +16,53 @@ public class InfluenceMap
     }
     public float GetTroopInfluence(HexGridManager gridManager, HexCoordinates coordinates, Troop troop)
     {
-        //Obtener el value del GetInfluence, y si es distinto de 0 ponemos las cosas delas tropas
+        if (gridManager == null || troop == null) return Mathf.Infinity;
+        HexCell cell = gridManager.GetCell(coordinates);
+        if(cell == null || cell.Terrain == null) return Mathf.Infinity;
+        Terrain terrain = cell.Terrain;
+
+        // Comprobar terrenos imposibles de atravesar
+        if (troop.impassableTerrains != null)
+        {
+            foreach (HexTerrainType type in troop.impassableTerrains)
+            {
+                if (terrain.Type == type)
+                    return Mathf.Infinity;
+            }
+        }
+
+        // Influencia general del terreno
+        float value = GetInfluence(coordinates);
+
+        // Bonificaciones de movimiento
+        if (troop.movementBonuses != null)
+        {
+            foreach (BonusMovementTerrain bonus in troop.movementBonuses)
+            {
+                if (terrain.Type == bonus.terrain)
+                {
+                    value -= bonus.value;
+                    break;
+                }
+            }
+        }
+
+        // Bonificaciones de defensa
+        if (troop.defenseBonuses != null)
+        {
+            foreach (BonusDefenseTerrain bonus in troop.defenseBonuses)
+            {
+                if (terrain.Type == bonus.terrain)
+                {
+                    value += bonus.value;
+                    break;
+                }
+            }
+        }
+
+        return value;
+
+        /*//Obtener el value del GetInfluence, y si es distinto de 0 ponemos las cosas delas tropas
         float value = GetInfluence(coordinates);
         if(value != 0)
         {
@@ -54,7 +99,7 @@ public class InfluenceMap
                 }
             }
         }
-        return value;
+        return value;*/
     }
 
     //Sumar influencia a una casilla

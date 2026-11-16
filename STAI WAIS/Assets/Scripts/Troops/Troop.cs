@@ -67,9 +67,7 @@ public class Troop : MonoBehaviour
     public Player owner;
 
     [Header("Mapas de influencia")]
-    public TerrainInfluenceMap terrainInfluenceMap;
-    public MilitaryInfluenceMap militaryInfluenceMap;
-    public SecurityInfluenceMap securityInfluenceMap;
+    public TacticalInfluenceManager influenceManager; //Este es el GESTOR que contiene los 3 mapas de influencia. Se accede a los mapas Globales a traves del Gestor
 
     [Header("Tipo y Ventajas")]
     public UnitCategory category = UnitCategory.Nave;
@@ -102,11 +100,6 @@ public class Troop : MonoBehaviour
     //Mapa de influencia propio de esta tropa 
     public InfluenceMap influenceMap;
 
-    private void Awake()
-    {
-        
-        influenceMap = new InfluenceMap();
-    }
 
     [Header("Apariencia por Bando")]
     public SpriteRenderer spriteRenderer;
@@ -268,7 +261,6 @@ public class Troop : MonoBehaviour
         // Liberar la casilla si la tropa es destruida
         if (currentCell != null)
             currentCell.ClearOccupant(this);
-        influenceMap = new InfluenceMap();
     }
     public bool Initialize(HexCell startingCell, Player troopOwner)
     {
@@ -280,13 +272,17 @@ public class Troop : MonoBehaviour
         }
 
         //HAY QUE COMPROBAR SI LA TROPA SE PUEDE PONER EN ESE TERRENO DE LA CASILLA ELEJIDA
-        foreach (HexTerrainType terrenoNoValido in impassableTerrains)
+        if (impassableTerrains != null) 
         {
-            if (terrenoNoValido == startingCell.TerrainType) {
-                Debug.Log("No se puede crear la tropa seleccionada en ese tipo de terreno");
-                currentCell = null;
-                Destroy(gameObject);
-                return false;
+            foreach (HexTerrainType terrenoNoValido in impassableTerrains)
+            {
+                if (terrenoNoValido == startingCell.TerrainType)
+                {
+                    Debug.Log("No se puede crear la tropa seleccionada en ese tipo de terreno");
+                    currentCell = null;
+                    Destroy(gameObject);
+                    return false;
+                }
             }
         }
 
@@ -308,7 +304,6 @@ public class Troop : MonoBehaviour
 
         currentCell = startingCell;
         owner = troopOwner;
-        influenceMap = new InfluenceMap();
 
         transform.position = currentCell.transform.position;
 
@@ -364,6 +359,7 @@ public class Troop : MonoBehaviour
         //influenceMap.CalculateTerrainInfluence(gridManager);
 
 
+        influenceManager = manager;
     }
 }
 

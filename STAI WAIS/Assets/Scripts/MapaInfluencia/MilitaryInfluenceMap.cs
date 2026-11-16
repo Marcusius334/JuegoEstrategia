@@ -21,7 +21,7 @@ public class MilitaryInfluenceMap
 
         foreach (Troop source in allTroops) 
         {
-            if (source == null | source.currentCell == null || source.owner == null) continue;
+            if (source == null || source.currentCell == null || source.owner == null) continue;
 
             bool allied = source.owner.team == perspective.team;
             InfluenceMap targetMap = allied? AlliedInfluence : EnemyInfluence;
