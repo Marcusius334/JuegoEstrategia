@@ -35,7 +35,7 @@ public class TacticalInfluenceManager : MonoBehaviour
         }
 
         //1.Calcular influencia del terreno
-        TerrainMap.Calculate(gridManager, troop);
+        TerrainMap.Calculate(gridManager);
         //2.Calcular influencia militar;
         MilitaryMap.Calculate(perspective, influenceRadius, influenceDecay);
         //3. Calcular seguridad
