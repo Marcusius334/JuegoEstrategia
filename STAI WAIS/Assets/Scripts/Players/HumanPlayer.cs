@@ -68,8 +68,14 @@ public class HumanPlayer : Player
                 {
                     Debug.Log("Hay casilla sleccionada");
 
+                    //Creamos la nave:
                     Troop nuevaTropa = Instantiate(selectedTroop);
-                    nuevaTropa.Initialize(clickedCell, this);
+                    if (nuevaTropa.Initialize(clickedCell, this))
+                    {
+                        //Reseteamos valores:
+                        selectedTroop = null;
+                        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    }
                 }
             }
     }
@@ -82,21 +88,29 @@ public class HumanPlayer : Player
     private void Movimiento(RaycastHit2D hit)
     {
         if (hit.collider != null)
-            {
-                Troop clickedTroop = hit.collider.GetComponent<Troop>();
-                HexCell clickedCell = hit.collider.GetComponent<HexCell>();
+        {
+            Debug.Log("Testing mover tropas: se ha clickado algo");
 
-                if (clickedTroop != null && clickedTroop.owner == this)
-                {
-                    selectedTroop = clickedTroop;
-                    Debug.Log("Tropa seleccionada.");
-                }
-                else if (selectedTroop != null && clickedCell != null)
-                {
-                    selectedTroop.MoveToCell(clickedCell, gridManager);
-                    selectedTroop = null; 
-                }
+            Troop clickedTroop = hit.collider.GetComponent<Troop>();
+
+            if (clickedTroop == null) Debug.Log("Testing mover tropas: No se ha encontrado tropa");
+            else Debug.Log("Testing mover tropas: Se ha encontrado tropa: ");
+
+            HexCell clickedCell = hit.collider.GetComponent<HexCell>();
+
+            if (clickedTroop != null && clickedTroop.owner == this)
+            {
+                selectedTroop = clickedTroop;
+                Debug.Log("Testing mover tropas: Tropa seleccionada: " + selectedTroop.name);
             }
+            else if (selectedTroop != null && clickedCell != null)
+            {
+                Debug.Log("Testing mover tropas: Casilla seleccionada");
+                
+                selectedTroop.MoveToCell(clickedCell, gridManager);
+                selectedTroop = null; 
+            }
+        }
     }
 
     private void ActualizarRecursos()

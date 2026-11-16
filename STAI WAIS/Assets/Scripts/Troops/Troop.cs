@@ -270,16 +270,26 @@ public class Troop : MonoBehaviour
             currentCell.ClearOccupant(this);
         influenceMap = new InfluenceMap();
     }
-    public void Initialize(HexCell startingCell, Player troopOwner)
+    public bool Initialize(HexCell startingCell, Player troopOwner)
     {
         if (startingCell == null)
         {
             Debug.LogError("No se puede crear la tropa: la casilla inicial es nula.");
             Destroy(gameObject);
-            return;
+            return false;
         }
 
         //HAY QUE COMPROBAR SI LA TROPA SE PUEDE PONER EN ESE TERRENO DE LA CASILLA ELEJIDA
+        foreach (HexTerrainType terrenoNoValido in impassableTerrains)
+        {
+            if (terrenoNoValido == startingCell.TerrainType) {
+                Debug.Log("No se puede crear la tropa seleccionada en ese tipo de terreno");
+                currentCell = null;
+                Destroy(gameObject);
+                return false;
+            }
+        }
+
         //TAMBIÉN HAY QUE COMPROBAR QUE LA TROPA SE PUEDA PONER EN UNA TROPA ADJACENTE A LA ESTACIÓN DE COMPRA
         //BÁSICAMENTE PARA QUE NO SE PUEDA PONER EN CUALQUIER PARTE DEL MAPA POR LA CARA
 
@@ -293,21 +303,18 @@ public class Troop : MonoBehaviour
             Debug.LogWarning("No se puede crear una tropa: la casilla está ocupada.");
             currentCell = null;
             Destroy(gameObject);
-            return;
+            return false;
         }
 
         currentCell = startingCell;
         owner = troopOwner;
         influenceMap = new InfluenceMap();
 
-        if (owner != null)
-        {
-            ApplyFactionSkin(owner.faction);
-        }
-
         transform.position = currentCell.transform.position;
 
         Debug.Log("Tropa creada en " + currentCell.Coordinates);
+
+        return true;
     }
 
     public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
