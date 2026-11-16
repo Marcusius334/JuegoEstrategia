@@ -16,6 +16,8 @@ public class Botones_tienda : MonoBehaviour
 
 
     [Header("Textos")]
+    [SerializeField] private TextMeshProUGUI textoNombre;
+
     [SerializeField] private TextMeshProUGUI textoDescripcion;
 
     [SerializeField] private TextMeshProUGUI textoCreditos;
@@ -96,6 +98,8 @@ public class Botones_tienda : MonoBehaviour
     private void ActScreen()
     {
         Troop naveActual = troops[tier];
+        
+        textoNombre.text = naveActual.name;
         textoDescripcion.text = naveActual.descripcion;
 
         textoCreditos.text = naveActual.creditos.ToString();
