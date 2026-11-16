@@ -4,6 +4,7 @@ public class Player : MonoBehaviour
 {
     //Para saber si toca turno
     private bool myTurn = false;
+    public Faction faction;
 
     [Header("PlayerTeam")]
     public int team = 0;

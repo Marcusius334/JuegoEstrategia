@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1748656496520048997}
   - component: {fileID: 2705571814516224481}
   - component: {fileID: -5218783866795178269}
-  - component: {fileID: 1085761696643703088}
+  - component: {fileID: -7435761981091828629}
+  - component: {fileID: 5613764772111890499}
   m_Layer: 0
   m_Name: 7
   m_TagString: Untagged
@@ -41,16 +42,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852167187606427938}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Troop
   currentCell: {fileID: 0}
   owner: {fileID: 0}
+  category: 0
+  troopType: 6
+  damageBonuses: []
   attack: 400
+  maxhp: 1200
   hp: 1200
   velocity: 10
+  extradmg: 0
+  range: 5
   movementBonuses: []
   defenseBonuses: []
   impassableTerrains: 
@@ -62,6 +69,8 @@ MonoBehaviour:
   descripcion: Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva, de
     velocidad y alcance. Resulta en un equilibrio sensacional con una gran fuerza
     ofensiva contra otras naves
+  spriteRenderer: {fileID: 0}
+  factionSkins: []
 --- !u!212 &-5218783866795178269
 SpriteRenderer:
   serializedVersion: 2
@@ -121,49 +130,97 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!61 &1085761696643703088
-BoxCollider2D:
+--- !u!114 &-7435761981091828629
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852167187606427938}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.87, y: 0.81}
-    newSize: {x: 1.15, y: 1.29}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 2.87, y: 0.81}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eac1332022a040408900ec9ecd6cde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaXoCaza
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 3
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 4
+    extraDamage: -50
+  attack: 150
+  maxhp: 600
+  hp: 600
+  velocity: 4
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 200
+  tritio: 0
+  cristales: 0
+  name: 
+  descripcion: 
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-X
+    factionDescription: "La nave m\xE1s basica de los rebeldes"
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Caza Tie
+    factionDescription: "El tie m\xE1s basico del imperio"
+    sprite: {fileID: 0}
+--- !u!114 &5613764772111890499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852167187606427938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea1cf7303c7aa44488a246f843c2844, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaEoStrike
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  category: 0
+  troopType: 6
+  damageBonuses:
+  - allShips: 1
+    allBuildings: 0
+    targetType: 0
+    extraDamage: 200
+  attack: 400
+  maxhp: 1200
+  hp: 1200
+  velocity: 10
+  extradmg: 0
+  range: 4
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 800
+  chatarra: 2000
+  tritio: 80
+  cristales: 2
+  name: Ala-E
+  descripcion: Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva, de
+    velocidad y alcance. Resulta en un equilibrio sensacional con una gran fuerza
+    ofensiva contra otras naves
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-E
+    factionDescription: Ala muy efectivo contra todo tipo de naves enemigas
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie Strike
+    factionDescription: Un tie megaOfensivo contra todo tipo de naves
+    sprite: {fileID: 0}
