@@ -7,6 +7,7 @@ public class AIPlayer : Player
     public Troop troopPrefab;
     [SerializeField] private HexGridManager gridManager;
     [SerializeField] private InfluenceMap influenceMap;
+    [SerializeField] private TacticalInfluenceManager influenceManager;
 
     [Header("Tropas Activas")]
     public List<Troop> myTroops = new List<Troop>();
