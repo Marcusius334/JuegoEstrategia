@@ -174,7 +174,8 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     public Terrain GetTerrain(HexCoordinates coordinates)
     {
         HexCell hex = GetCell(coordinates);
-        return hex.Terrain;
+        //return hex.Terrain;
+        return hex != null ? hex.Terrain : null;
     }
 
 #if UNITY_EDITOR

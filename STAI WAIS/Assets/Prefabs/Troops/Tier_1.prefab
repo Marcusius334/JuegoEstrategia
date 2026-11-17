@@ -85,6 +85,14 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: troopType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: descripcion
       value: "Nave de combate b\xE1sica, adaptada para todos las situaciones de manera
         eficiente pero con ninguna especializaci\xF3n. La m\xE1s barata pero m\xE1s
@@ -98,8 +106,68 @@ PrefabInstance:
       propertyPath: 'impassableTerrains.Array.data[0]'
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5674261329887699120}
   m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+--- !u!1 &3841646939471758094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+  m_PrefabInstance: {fileID: 3234848661221677612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5674261329887699120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841646939471758094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eac1332022a040408900ec9ecd6cde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaXoCaza
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  influenceManager: {fileID: 0}
+  category: 0
+  troopType: 3
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 4
+    extraDamage: -50
+  attack: 150
+  maxhp: 600
+  hp: 600
+  velocity: 4
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 200
+  tritio: 0
+  cristales: 0
+  name: Ala-X
+  descripcion: "Nave de combate b\xE1sica, adaptada para todos las situaciones de
+    manera eficiente pero con ninguna especializaci\xF3n. La m\xE1s barata pero m\xE1s
+    simple"
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-X
+    factionDescription: "Nave de combate b\xE1sica, adaptada para todas las situaciones
+      de manera eficiente pero con ninguna especializaci\xF3n. La m\xE1s barata pero
+      m\xE1s simple"
+    sprite: {fileID: 630366323356875342, guid: e2b6a73b4489bcd4d88036f3dfb19ab5, type: 3}
+  - faction: 1
+    factionTroopName: Caza Tie
+    factionDescription: "El tie m\xE1s basico del imperio"
+    sprite: {fileID: 0}

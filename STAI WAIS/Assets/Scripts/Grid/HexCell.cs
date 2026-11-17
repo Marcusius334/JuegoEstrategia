@@ -117,6 +117,11 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         else if (isHovered) { spriteRenderer.color = Color.Lerp(Terrain.TerrainColor, hoverColor, 0.5f); }
         else { spriteRenderer.color = Terrain.TerrainColor; }
     }
+
+    public void ChangeColor()
+    {
+        spriteRenderer.color = Color.Lerp(Terrain.TerrainColor, selectedColor, 0.5f);
+    }
     public void SetTerrain(Terrain terrain) 
     {
         Terrain = terrain;

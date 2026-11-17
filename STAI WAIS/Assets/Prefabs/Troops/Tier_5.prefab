@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1581567129
       objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.88
+      objectReference: {fileID: 0}
     - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11864
@@ -98,12 +106,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: descripcion
-      value: "La primera l\xEDnea de la batalla, resulta el tanque del escuadr\xF3n,
-        con una inmensa vida pero muy lento y poco ataque. Ideal para frenar naves
-        ligeras que resultan poco efectivas contra \xE9l"
+      value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8720059250120229199}
   m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+--- !u!1 &3841646939471758094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+  m_PrefabInstance: {fileID: 3234848661221677612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8720059250120229199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841646939471758094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ab4d4a919334c418905fbdd4ea05e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MartiillooDefensor
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  influenceManager: {fileID: 0}
+  category: 0
+  troopType: 4
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 2
+    extraDamage: 10
+  attack: 100
+  maxhp: 1600
+  hp: 1600
+  velocity: 2
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses:
+  - terrain: 3
+    value: -100
+  impassableTerrains: 
+  creditos: 500
+  chatarra: 1800
+  tritio: 60
+  cristales: 0
+  name: 
+  descripcion: 
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Cabeza de Martillo
+    factionDescription: "La primera l\xEDnea de la batalla, resulta el tanque del
+      escuadr\xF3n, con una inmensa vida pero muy lento y poco ataque. Ideal para
+      frenar naves ligeras que resultan poco efectivas contra \xE9l"
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie Defensor
+    factionDescription: "Efectivo para aguantar numerosos ataques pero no provocara
+      mucho da\xF1o"
+    sprite: {fileID: 0}
