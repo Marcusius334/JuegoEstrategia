@@ -133,6 +133,37 @@ public class Troop : MonoBehaviour
         }
     }
 
+    public SkinFaction GetFactionSkin(Faction playerFaction)
+    {
+        if (factionSkins != null)
+        {
+            foreach (var skin in factionSkins)
+            {
+                if (skin.faction == playerFaction)
+                {
+                    return new SkinFaction
+                    {
+                        faction = playerFaction,
+                        factionTroopName = !string.IsNullOrEmpty(skin.factionTroopName) ? skin.factionTroopName : name,
+                        factionDescription = !string.IsNullOrEmpty(skin.factionDescription) ? skin.factionDescription : descripcion,
+                        sprite = skin.sprite
+                    };
+                }
+            }
+        }
+
+        // Si no tiene skin configurada para esa facción, devuelve los datos base
+        return new SkinFaction
+        {
+            faction = playerFaction,
+            factionTroopName = name,
+            factionDescription = descripcion,
+            sprite = spriteRenderer != null ? spriteRenderer.sprite : null
+        };
+    }
+
+    
+
     // ==========================================
     // SISTEMA DE COMBATE Y DAÑO POR TIPO
     // ==========================================
