@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que aparece en el tablero
 {

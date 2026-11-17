@@ -22328,6 +22328,7 @@ GameObject:
   - component: {fileID: 863038344}
   - component: {fileID: 863038347}
   - component: {fileID: 863038348}
+  - component: {fileID: 863038349}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22476,6 +22477,22 @@ MonoBehaviour:
   maxY: 15
   focusSpeed: 10
   centerKey: 32
+--- !u!114 &863038349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863038343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.Physics2DRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &874951810
 GameObject:
   m_ObjectHideFlags: 0
@@ -30275,6 +30292,10 @@ PrefabInstance:
       propertyPath: boton
       value: 
       objectReference: {fileID: 1488846757}
+    - target: {fileID: 2841849594036761305, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7588236526768889369, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Name
       value: UI_canva
