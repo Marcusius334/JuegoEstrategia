@@ -359,7 +359,7 @@ public class Troop : MonoBehaviour
         //influenceMap.CalculateTerrainInfluence(gridManager);
 
 
-        influenceManager = manager;
+      //  influenceManager = manager;
     }
 }
 
