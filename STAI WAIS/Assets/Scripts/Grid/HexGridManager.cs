@@ -13,11 +13,14 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     private HexCell selectedCell;
 
     //private HexCoordinates destinoAgujero;
-    private HexCell agujeroDeGusano;
+    private HexCell agujeroDeGusano1;
+    private HexCell agujeroDeGusano2;
 
     private void Start()
     {
         RegistrarGrid();
+
+        bool primerAgujeroConectado = false;
 
         foreach (HexCell cell in cells.Values)
         {
@@ -33,21 +36,39 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
 
             else if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
             {
-                if (agujeroDeGusano == null) //NO hay otro agujero de gusano encontrado aún:
+                if (agujeroDeGusano1 == null) //NO hay otro agujero de gusano encontrado aún:
                 {
                     //destinoAgujero = cell.Coordinates;
-                    agujeroDeGusano = cell;
+                    agujeroDeGusano1 = cell;
+                }
+
+                else if (agujeroDeGusano2 == null) //NO hay otro agujero de gusano encontrado aún:
+                {
+                    //destinoAgujero = cell.Coordinates;
+                    agujeroDeGusano2 = cell;
                 }
 
                 else //Ya se ha encontrado el otro agujero de gusano:
                 {
-                    //Creamos las coorrelaciones:
+                    if (!primerAgujeroConectado)
+                    {
+                        //Creamos las coorrelaciones:
+                        cell.SetDestinoAgujeroDeGusano(agujeroDeGusano1);
+                        agujeroDeGusano1.SetDestinoAgujeroDeGusano(cell);
+                    }
+                    else
+                    {
+                        //Creamos las coorrelaciones:
+                        cell.SetDestinoAgujeroDeGusano(agujeroDeGusano2);
+                        agujeroDeGusano2.SetDestinoAgujeroDeGusano(cell);
+                    }
+                    /* //Creamos las coorrelaciones:
                     cell.SetDestinoAgujeroDeGusano(agujeroDeGusano);
                     agujeroDeGusano.SetDestinoAgujeroDeGusano(cell);
                     
                     //Reiniciamos las variables:
                     //destinoAgujero = new HexCoordinates(0, 0);
-                    agujeroDeGusano = null;
+                    agujeroDeGusano = null; */
                 }
             }
         }
