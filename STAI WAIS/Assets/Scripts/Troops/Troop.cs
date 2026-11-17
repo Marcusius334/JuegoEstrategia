@@ -272,18 +272,12 @@ public class Troop : MonoBehaviour
         }
 
         //HAY QUE COMPROBAR SI LA TROPA SE PUEDE PONER EN ESE TERRENO DE LA CASILLA ELEJIDA
-        if (impassableTerrains != null) 
+        if (!TerrenoValido(startingCell))
         {
-            foreach (HexTerrainType terrenoNoValido in impassableTerrains)
-            {
-                if (terrenoNoValido == startingCell.TerrainType)
-                {
-                    Debug.Log("No se puede crear la tropa seleccionada en ese tipo de terreno");
-                    currentCell = null;
-                    Destroy(gameObject);
-                    return false;
-                }
-            }
+            Debug.Log("No se puede crear la tropa seleccionada en ese tipo de terreno");
+            currentCell = null;
+            Destroy(gameObject);
+            return false;
         }
 
         //TAMBIÉN HAY QUE COMPROBAR QUE LA TROPA SE PUEDA PONER EN UNA TROPA ADJACENTE A LA ESTACIÓN DE COMPRA
@@ -322,6 +316,12 @@ public class Troop : MonoBehaviour
             return;
         }
 
+        if (!TerrenoValido(targetCell))
+        {
+            Debug.Log("No se puede mover la tropa a ese terreno");
+            return;
+        }
+
         //Comprobar que la casilla sea válida
         List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceMap);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
@@ -347,10 +347,21 @@ public class Troop : MonoBehaviour
         previousCell.ClearOccupant(this);
 
         // Actualizar posición
-        currentCell = targetCell;
-        transform.position = targetCell.transform.position;
+        if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) //Ha entrado en un agujero de gusano:
+        {
+            if (targetCell.destino != null) //Está conectado com otro agujero de gusano:
+            {
+                currentCell = targetCell.destino;
+                transform.position = targetCell.destino.transform.position;
+            }
+        }
+        else
+        {
+            currentCell = targetCell;
+            transform.position = targetCell.transform.position;
+        }
 
-        Debug.Log("Tropa movida a " + targetCell.Coordinates);
+        Debug.Log("Tropa movida a " + currentCell.Coordinates);
     }
 
     public void UpdateInfluenceMap(TacticalInfluenceManager manager)
@@ -362,6 +373,19 @@ public class Troop : MonoBehaviour
 
 
         influenceManager = manager;
+    }
+
+    private bool TerrenoValido(HexCell casilla)
+    {
+        foreach (HexTerrainType terrenoNoValido in impassableTerrains)
+        {
+            if (terrenoNoValido == casilla.TerrainType)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
 
