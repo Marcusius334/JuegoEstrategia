@@ -97,13 +97,15 @@ public class Troop : MonoBehaviour
     public new string name;
     public string descripcion;
 
-    //Mapa de influencia propio de esta tropa 
-    public InfluenceMap influenceMap;
-
 
     [Header("Apariencia por Bando")]
     public SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
+
+    void Awake()
+    {
+        influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
+    }
 
     public virtual void ApplyFactionSkin(Faction playerFaction)
     {
@@ -345,7 +347,6 @@ public class Troop : MonoBehaviour
 
     public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
     {
-        UpdateInfluenceMap(influenceManager);
 
         if (currentCell == null || targetCell == null)
         {
@@ -354,7 +355,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceMap);//targetCell.Coordinates,
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceManager);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
@@ -382,17 +383,6 @@ public class Troop : MonoBehaviour
         transform.position = targetCell.transform.position;
 
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
-    }
-
-    public void UpdateInfluenceMap(TacticalInfluenceManager manager)
-    {
-        if (influenceMap == null)
-            influenceMap = new InfluenceMap();
-
-        //influenceMap.CalculateTerrainInfluence(gridManager);
-
-
-        influenceManager = manager;
     }
 }
 

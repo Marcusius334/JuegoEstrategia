@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class HumanPlayer : Player
 {
@@ -21,6 +22,7 @@ public class HumanPlayer : Player
     public Troop selectedTroop;
     private Troop selectedAttackTroop;
     [SerializeField] private HexGridManager gridManager;
+    [SerializeField] private TacticalInfluenceManager influenceMap;
 
     void Start(){
         chatarra = gameManager.j_chatarra;
@@ -106,6 +108,12 @@ public class HumanPlayer : Player
             {
                 selectedTroop = clickedTroop;
                 Debug.Log("Testing mover tropas: Tropa seleccionada: " + selectedTroop.name);
+                List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(gridManager, clickedTroop, influenceMap);
+                foreach(HexCoordinates position in validPositions)
+                {
+                    HexCell hex = gridManager.GetCell(position);
+                    hex.ChangeColor();
+                }
             }
             else if (selectedTroop != null && clickedCell != null)
             {

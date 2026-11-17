@@ -9,7 +9,7 @@ public class PathfindingDijkstra : PathfindingManager
     // ================================
     // Realizar Dijkstra
     // ================================
-    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, InfluenceMap newInfluenceMap)
+    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, TacticalInfluenceManager newInfluenceMap)
     {
         //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;
@@ -49,7 +49,7 @@ public class PathfindingDijkstra : PathfindingManager
     // ================================
     // Obtener posiciones validas con Dijkstra
     // ================================
-    public static List<HexCoordinates> GetValidPositions(HexGridManager newGridManager, Troop newTroop, InfluenceMap newInfluenceMap)
+    public static List<HexCoordinates> GetValidPositions(HexGridManager newGridManager, Troop newTroop, TacticalInfluenceManager newInfluenceMap)
     {
         //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;
