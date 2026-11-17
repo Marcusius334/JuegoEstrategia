@@ -97,13 +97,15 @@ public class Troop : MonoBehaviour
     public new string name;
     public string descripcion;
 
-    //Mapa de influencia propio de esta tropa 
-    public InfluenceMap influenceMap;
-
 
     [Header("Apariencia por Bando")]
     public SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
+
+    void Awake()
+    {
+        influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
+    }
 
     public virtual void ApplyFactionSkin(Faction playerFaction)
     {
@@ -132,6 +134,37 @@ public class Troop : MonoBehaviour
             }
         }
     }
+
+    public SkinFaction GetFactionSkin(Faction playerFaction)
+    {
+        if (factionSkins != null)
+        {
+            foreach (var skin in factionSkins)
+            {
+                if (skin.faction == playerFaction)
+                {
+                    return new SkinFaction
+                    {
+                        faction = playerFaction,
+                        factionTroopName = !string.IsNullOrEmpty(skin.factionTroopName) ? skin.factionTroopName : name,
+                        factionDescription = !string.IsNullOrEmpty(skin.factionDescription) ? skin.factionDescription : descripcion,
+                        sprite = skin.sprite
+                    };
+                }
+            }
+        }
+
+        // Si no tiene skin configurada para esa facción, devuelve los datos base
+        return new SkinFaction
+        {
+            faction = playerFaction,
+            factionTroopName = name,
+            factionDescription = descripcion,
+            sprite = spriteRenderer != null ? spriteRenderer.sprite : null
+        };
+    }
+
+    
 
     // ==========================================
     // SISTEMA DE COMBATE Y DAÑO POR TIPO
@@ -308,7 +341,6 @@ public class Troop : MonoBehaviour
 
     public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
     {
-        UpdateInfluenceMap(influenceManager);
 
         if (currentCell == null || targetCell == null)
         {
@@ -323,7 +355,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceMap);//targetCell.Coordinates,
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceManager);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");

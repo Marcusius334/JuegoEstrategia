@@ -6,7 +6,7 @@ public class PathfindingAStar : PathfindingManager
     // ================================
     // Realizar A*
     // ================================
-    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, HexCoordinates endCoordinates, InfluenceMap newInfluenceMap)
+    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, HexCoordinates endCoordinates, TacticalInfluenceManager newInfluenceMap)
     {
         //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;

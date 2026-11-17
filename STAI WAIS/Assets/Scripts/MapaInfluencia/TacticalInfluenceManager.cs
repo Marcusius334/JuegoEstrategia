@@ -43,5 +43,48 @@ public class TacticalInfluenceManager : MonoBehaviour
         Debug.Log("Mapas de influencia actualizados.");
     }
 
+    public float GetTroopInfluence(HexGridManager gridManager, HexCoordinates coordinates, Troop troop)
+    {
+        //Obtener el value del GetInfluence, y si es distinto de 0 ponemos las cosas delas tropas
+        float value = TerrainMap.GetInfluence(coordinates);
+        value += SecurityMap.GetInfluence(coordinates);
+        if(value != 0)
+        {
+            //Obtenemos la cell y el terreno a partir de las coordenadas con el gridManager
+            HexCell cell = gridManager.GetCell(coordinates);
+            Terrain terrain = cell.Terrain;
+
+            //Los terrenos especiales imposibles de atravesar devuelven Mathf.Infinity
+            foreach (HexTerrainType type in troop.impassableTerrains) 
+            {
+                if (terrain.Type == type) 
+                {
+                    return Mathf.Infinity;
+                }
+            }
+
+            //Bonificaciones de movimiento de la tropa
+            foreach (BonusMovementTerrain bonus in troop.movementBonuses) 
+            {
+                if (terrain.Type == bonus.terrain) 
+                {
+                    value -= bonus.value; //Cuanto mayor es la influencia + recomendable.Las penalizaciones de movimiento restan
+                    break;
+                }
+            }
+
+            //Bonificaciones defensivas de la tropa
+            foreach (BonusDefenseTerrain bonus in troop.defenseBonuses)
+            {
+                if (terrain.Type == bonus.terrain)
+                {
+                    value += bonus.value; //Cuanto mayor es la influencia + recomendable. Los bonos de defensa suman
+                    break;
+                }
+            }
+        }
+        return value;
+    }
+
     
 }

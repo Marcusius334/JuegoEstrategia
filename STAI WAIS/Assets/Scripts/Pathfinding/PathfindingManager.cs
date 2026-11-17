@@ -10,7 +10,7 @@ public class PathfindingManager
 
     //GridManager para obtener el terreno
     protected static HexGridManager gridManager;
-    protected static InfluenceMap influenceMap;
+    protected static TacticalInfluenceManager influenceMap;
 
     //Saber qué casillas han sido visitadas
     protected static List<HexNode> closed = new List<HexNode>(); 
