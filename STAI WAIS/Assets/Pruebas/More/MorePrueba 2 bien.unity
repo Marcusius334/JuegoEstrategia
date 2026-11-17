@@ -1278,6 +1278,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &63085809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4937578766561145907, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &63176869
 GameObject:
   m_ObjectHideFlags: 0
@@ -5146,17 +5151,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
   m_PrefabInstance: {fileID: 1298177474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &203886854 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
-  m_PrefabInstance: {fileID: 1298177474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203886852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca5b0539500721d40a18d97b4ddb7f21, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Troop
 --- !u!61 &203886856
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5203,6 +5197,17 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.538822, y: 1.29}
   m_EdgeRadius: 0
+--- !u!114 &203886859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7055047053046531564, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
+  m_PrefabInstance: {fileID: 1298177474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203886852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eac1332022a040408900ec9ecd6cde7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaXoCaza
 --- !u!1 &226649301
 GameObject:
   m_ObjectHideFlags: 0
@@ -10642,7 +10647,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3283340885009570599, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
   m_PrefabInstance: {fileID: 7783576420730082388}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 63085809}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -17768,6 +17773,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &766538118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4645228460618802286, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+  m_PrefabInstance: {fileID: 7783576420730082388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &768994668
 GameObject:
   m_ObjectHideFlags: 0
@@ -34175,6 +34191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d58fb75f7b47444e9965eb29bce39fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HumanPlayer
+  faction: 0
   team: 1
   otherPlayer: {fileID: 1369160973}
   chatarra: 400
@@ -34182,6 +34199,7 @@ MonoBehaviour:
   tritio: 20
   cristal: 0
   gameManager: {fileID: 281005017}
+  selectedTroop: {fileID: 203886859}
   gridManager: {fileID: 466328284}
   turnsManager: {fileID: 2063252835}
 --- !u!4 &1349632269
@@ -34963,6 +34981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916e78d11c584ad42922bdf704e4a460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIPlayer
+  faction: 0
   team: 0
   otherPlayer: {fileID: 1349632268}
   chatarra: 400
@@ -34970,10 +34989,11 @@ MonoBehaviour:
   tritio: 20
   cristal: 0
   gameManager: {fileID: 281005017}
-  troopPrefab: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
+  troopPrefab: {fileID: 7055047053046531564, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
   gridManager: {fileID: 456945619}
+  influenceManager: {fileID: 0}
   myTroops:
-  - {fileID: 203886854}
+  - {fileID: 0}
 --- !u!4 &1369160974
 Transform:
   m_ObjectHideFlags: 0
@@ -41558,6 +41578,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
+      propertyPath: textoTritio
+      value: 
+      objectReference: {fileID: 22288637}
+    - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: textoChatarra
       value: 
       objectReference: {fileID: 962214288}
@@ -41568,7 +41592,7 @@ PrefabInstance:
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: textoCristales
       value: 
-      objectReference: {fileID: 22288637}
+      objectReference: {fileID: 766538118}
     - target: {fileID: 1246870441066836160, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.8735
@@ -46075,9 +46099,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f20ace0a9845674eb9476b80bbfc7d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameController
-  troopPrefab: {fileID: 2705571814516224481, guid: 2a19dcc453371a74bb067980c7fd2a06, type: 3}
+  troopPrefab: {fileID: 203886859}
   currentPlayer: {fileID: 1349632268}
   turnsManager: {fileID: 2063252835}
+  gridManager: {fileID: 466328284}
 --- !u!4 &1778314819
 Transform:
   m_ObjectHideFlags: 0
@@ -53673,6 +53698,8 @@ MonoBehaviour:
   panelTransicion: {fileID: 153141415}
   textoTransicion: {fileID: 1047780519}
   duracionAnimacion: 0.8
+  boton: {fileID: 63085809}
+  faseActual: 0
   jugadorEnemigo: {fileID: 1369160973}
 --- !u!4 &2063252836
 Transform:
@@ -56321,6 +56348,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2331717418107845961, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: boton
+      value: 
+      objectReference: {fileID: 63085809}
+    - target: {fileID: 2331717418107845961, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: jugadorEnemigo
+      value: 
+      objectReference: {fileID: 1369160973}
     - target: {fileID: 6027097300297909684, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Camera
       value: 
