@@ -116,7 +116,7 @@ public class AIPlayer : Player
     // =========================================
     private HexCell ChoosBestCell(Troop troop)
     {
-        return gridManager.GetCell(PathfindingDijkstra.GetBestPosition(gridManager, troop, influenceManager));
+        return gridManager.GetCell(PathfindingDijkstra.GetBestPosition(gridManager, troop, influenceManager));  //cambiar Pathfinding por A* y en el parentesis falta la variable que será la cordenada de donde esta la tropa
     }
     public void PerformMovementPhase()
     {
