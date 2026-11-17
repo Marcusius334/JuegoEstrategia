@@ -12,6 +12,9 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     private Dictionary<HexCoordinates, HexCell> cells = new Dictionary<HexCoordinates, HexCell>(); //almacena las casillas del tablero
     private HexCell selectedCell;
 
+    //private HexCoordinates destinoAgujero;
+    private HexCell agujeroDeGusano;
+
     private void Start()
     {
         RegistrarGrid();
@@ -26,6 +29,26 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
                 Debug.LogError(
                     "No se pudo cargar el terreno de: " + cell.Coordinates
                 );
+            }
+
+            else if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
+            {
+                if (agujeroDeGusano == null) //NO hay otro agujero de gusano encontrado aún:
+                {
+                    //destinoAgujero = cell.Coordinates;
+                    agujeroDeGusano = cell;
+                }
+
+                else //Ya se ha encontrado el otro agujero de gusano:
+                {
+                    //Creamos las coorrelaciones:
+                    cell.SetDestinoAgujeroDeGusano(agujeroDeGusano);
+                    agujeroDeGusano.SetDestinoAgujeroDeGusano(cell);
+                    
+                    //Reiniciamos las variables:
+                    //destinoAgujero = new HexCoordinates(0, 0);
+                    agujeroDeGusano = null;
+                }
             }
         }
 

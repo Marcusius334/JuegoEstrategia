@@ -197,13 +197,13 @@ public class AIPlayer : Player
     // segun su calculo interno de prioridades e influencia.
     // 
     
-    /*
-    private HexCell ChooseBestCellDijkstra(Troop troop)
+    
+    /*private HexCell ChooseBestCellDijkstra(Troop troop)        //BORRAR ESTO
     {
         HexCoordinates bestCoords = PathfindingDijkstra.GetBestPosition(gridManager, troop);
         return gridManager.GetCell(bestCoords);
-    }
-    */
+    }*/
+    
 
     // =========================================
     // CONDICIONES Y ACCIONES: CONSTRUCCION
@@ -316,21 +316,21 @@ public class AIPlayer : Player
         if (troop == null) return false;
 
         // Prototipo de More de los arboles de comportamiento
-        List<HexCell> candidateCells = GetWalkableNeighbors(troop);
+        //List<HexCell> candidateCells = GetWalkableNeighbors(troop);
 
         // Idea de chaty para futuro dikstra -> Obtener todas las casillas alcanzables segun troop.velocity
         // Cuando PathfindingDijkstra esta listo, borraremos la linea de GetWalkableNeighbors de arriba
         // este bloque de chaty es para que la nave huya usando todo su rango de movimiento:
 
-        /*
+        
         List<HexCell> candidateCells = new List<HexCell>();
-        List<HexCoordinates> reachableCoords = PathfindingDijkstra.GetValidPositions(gridManager, troop);
+        List<HexCoordinates> reachableCoords = PathfindingDijkstra.GetValidPositions(gridManager, troop, influenceManager);
         foreach (HexCoordinates coords in reachableCoords)
         {
             HexCell cell = gridManager.GetCell(coords);
             if (cell != null && !cell.IsOccupied) candidateCells.Add(cell);
         }
-        */
+        
 
         if (candidateCells.Count == 0) return false;
 
@@ -399,22 +399,22 @@ public class AIPlayer : Player
         if (closestEnemy == null) return false;
 
         // Prototipo de More a 1 casilla dyacente
-        List<HexCell> candidateCells = GetWalkableNeighbors(troop);
+       // List<HexCell> candidateCells = GetWalkableNeighbors(troop);
 
         // Lo que deberia hacer aqui el DIjstra es evaluar todas las casillas alcanzables con su velocidad
         
         // Chaty me dio otra opcion por si furulase, El BT filtra todas las casillas validas que devuelve Dijstra
         // y elige la que mas acerca la nave al enemigo
 
-        /*
+        
         List<HexCell> candidateCells = new List<HexCell>();
-        List<HexCoordinates> reachableCoords = PathfindingDijkstra.GetValidPositions(gridManager, troop);
+        List<HexCoordinates> reachableCoords = PathfindingDijkstra.GetValidPositions(gridManager, troop, influenceManager);
         foreach (HexCoordinates coords in reachableCoords)
         {
             HexCell cell = gridManager.GetCell(coords);
             if (cell != null && !cell.IsOccupied) candidateCells.Add(cell);
         }
-        */         //Por si os ayudase :sob: 
+                //Por si os ayudase :sob: 
 
         
 
@@ -443,13 +443,13 @@ public class AIPlayer : Player
         if (troop == null || destination == null) return NodeState.Failure;
 
         //  Prototipo de More
-        troop.MoveToCell(destination);
+       // troop.MoveToCell(destination);
 
         // Para Dijstra
         // Cuando actives Dijkstra arriba, comentamos la linea de arriba que esta de forma temporal.
 
         // Esta carga de Troop.cs puede dar por valido el destino usando PathfindingDijkstra.GetValidPositions(): Me la dio chaty por si sirve de ayuda.
-        // troop.MoveToCell(destination, gridManager);
+         troop.MoveToCell(destination, gridManager);
 
         return NodeState.Success;
     }

@@ -58,6 +58,8 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     private bool isHovered = false;
     private Transform tr;
 
+    public HexCell destino; //Solo para agujeros de gusano. 
+
     public void Initialize(HexGridManager gridManager, HexCoordinates coordinates)
     {
         grid = gridManager;
@@ -149,5 +151,12 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     {
         Terrain = grid.CreateTerrain(terrainType);
         UpdateVisual();
+    }
+
+    public void SetDestinoAgujeroDeGusano(HexCell c)
+    {
+        if (terrainType != HexTerrainType.TerrenoAgujeroDeGusano) return;
+
+        destino = c;
     }
 }
