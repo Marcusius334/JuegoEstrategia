@@ -351,7 +351,7 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(HexGridManager gridManager)
+    public void UpdateInfluenceMap(HexGridManager gridManager, TacticalInfluenceManager manager)
     {
         if (influenceMap == null)
             influenceMap = new InfluenceMap();
