@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class HumanPlayer : Player
 {
@@ -37,6 +38,9 @@ public class HumanPlayer : Player
         if (turnsManager == null || TurnsManager.EstaEnTransicion || !turnsManager.EsTurnoJugador) return;
 
         if (!Input.GetMouseButtonDown(0)) return;
+
+        // --- BLOQUEO SI EL RATÓN ESTÁ SOBRE UN BOTÓN O VENTANA DE LA UI ---
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
