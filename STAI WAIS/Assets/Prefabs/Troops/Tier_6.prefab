@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1581567129
       objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.67
+      objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11864
@@ -102,11 +110,69 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: descripcion
-      value: Nave bombardera mejorada, cuenta con un mayor poder ofensivo y defensivo.
-        Ideal para abrirse paso y detruir todo tipo de estructuras o naves pesadas
+      value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9033096892636416898}
   m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+--- !u!1 &3841646939471758094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+  m_PrefabInstance: {fileID: 3234848661221677612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9033096892636416898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841646939471758094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481d1dce984345343820ec044e597923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaUoPhantom
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  influenceManager: {fileID: 0}
+  category: 0
+  troopType: 5
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 1
+    targetType: 0
+    extraDamage: 250
+  attack: 300
+  maxhp: 1500
+  hp: 1500
+  velocity: 6
+  extradmg: 0
+  range: 1
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 650
+  chatarra: 1800
+  tritio: 50
+  cristales: 1
+  name: 
+  descripcion: 
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-U
+    factionDescription: Nave bombardera mejorada, cuenta con un mayor poder ofensivo
+      y defensivo. Ideal para abrirse paso y detruir todo tipo de estructuras o naves
+      pesadas
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie Phantom
+    factionDescription: "Una de las naves m\xE1s poderosas, efectiva contra edificios
+      y naves grandes"
+    sprite: {fileID: 0}

@@ -9,11 +9,12 @@ public class PathfindingDijkstra : PathfindingManager
     // ================================
     // Realizar Dijkstra
     // ================================
-    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop)
+    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, InfluenceMap newInfluenceMap)
     {
-        //Iniciar el gridManager y tropa
+        //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;
         troop = newTroop;
+        influenceMap = newInfluenceMap;
 
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
@@ -48,11 +49,12 @@ public class PathfindingDijkstra : PathfindingManager
     // ================================
     // Obtener posiciones validas con Dijkstra
     // ================================
-    public static List<HexCoordinates> GetValidPositions(HexGridManager newGridManager, Troop newTroop)
+    public static List<HexCoordinates> GetValidPositions(HexGridManager newGridManager, Troop newTroop, InfluenceMap newInfluenceMap)
     {
-        //Iniciar el gridManager y tropa
+        //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;
         troop = newTroop;
+        influenceMap = newInfluenceMap;
 
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
@@ -82,8 +84,7 @@ public class PathfindingDijkstra : PathfindingManager
     {
         float priority = 0;
 
-        InfluenceMap influenceMap = new InfluenceMap();
-        priority -= influenceMap.GetInfluence(coordinates);
+        priority -= influenceMap.GetTroopInfluence(gridManager, coordinates, troop);
 
         if(priority == -Mathf.Infinity)
         {
@@ -106,14 +107,16 @@ public class PathfindingDijkstra : PathfindingManager
 
             if(hex.currentMovementPoints > 0){
                 //Obtener sus vecinos y meter los vecinos en visiting
-                HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(hex);
+                List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(hex);
                 foreach(HexCoordinates newCoordinate in neighborsCoordinates)
                 {
-                    Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
-                    float newPriority = CalculatePriority(newCoordinate);
-                    int currentMovement = CalculateMovement(hex, newTerrain);
-                    HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
-                    AddToVisiting(newHex);
+                    if(gridManager.CoordinateInWorld(newCoordinate)){
+                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                        float newPriority = CalculatePriority(newCoordinate);
+                        int currentMovement = CalculateMovement(hex, newTerrain);
+                        HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
+                        AddToVisiting(newHex);
+                    }
                 }
             }
         }

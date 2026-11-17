@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1581567129
       objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.72
+      objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.36
+      objectReference: {fileID: 0}
     - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11864
@@ -94,11 +102,71 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: descripcion
-      value: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango.
-        Especializada en la destrucci\xF3n de otras naves."
+      value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2074064472521130050}
   m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+--- !u!1 &3841646939471758094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+  m_PrefabInstance: {fileID: 3234848661221677612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2074064472521130050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841646939471758094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2ec1882aab06f44bcb439cd32da69b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaBoAvanzado
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  influenceManager: {fileID: 0}
+  category: 0
+  troopType: 1
+  damageBonuses:
+  - allShips: 1
+    allBuildings: 0
+    targetType: 0
+    extraDamage: 150
+  attack: 250
+  maxhp: 1200
+  hp: 1200
+  velocity: 6
+  extradmg: 0
+  range: 2
+  movementBonuses: []
+  defenseBonuses:
+  - terrain: 2
+    value: -100
+  - terrain: 4
+    value: 100
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 1200
+  tritio: 70
+  cristales: 0
+  name: 
+  descripcion: 
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-B
+    factionDescription: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento
+      y rango. Especializada en la destrucci\xF3n de otras naves."
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Tie avanzado
+    factionDescription: Un tie hecho para arrasar contra las naves enemigas
+    sprite: {fileID: 0}

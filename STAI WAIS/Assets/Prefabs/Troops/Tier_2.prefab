@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1581567129
       objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: -3826174068796890338, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.78
+      objectReference: {fileID: 0}
     - target: {fileID: 1748656496520048997, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.11864
@@ -89,10 +97,12 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: descripcion
-      value: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera
-        muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o
-        pero d\xE9bil contra otros ataques."
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
       propertyPath: impassableTerrains.Array.size
@@ -102,8 +112,70 @@ PrefabInstance:
       propertyPath: 'impassableTerrains.Array.data[0]'
       value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2705571814516224481, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4939925475776703209}
   m_SourcePrefab: {fileID: 100100000, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+--- !u!1 &3841646939471758094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1852167187606427938, guid: af0f4fe5dd38a904cad263feaa65f40d, type: 3}
+  m_PrefabInstance: {fileID: 3234848661221677612}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-4939925475776703209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3841646939471758094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 134197fe04bef804aa60c2c032fea660, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AlaAoInterceptor
+  currentCell: {fileID: 0}
+  owner: {fileID: 0}
+  influenceManager: {fileID: 0}
+  category: 0
+  troopType: 0
+  damageBonuses:
+  - allShips: 0
+    allBuildings: 0
+    targetType: 2
+    extraDamage: 100
+  - allShips: 0
+    allBuildings: 0
+    targetType: 4
+    extraDamage: -50
+  attack: 200
+  maxhp: 450
+  hp: 450
+  velocity: 8
+  extradmg: 0
+  range: 2
+  movementBonuses: []
+  defenseBonuses: []
+  impassableTerrains: 
+  creditos: 0
+  chatarra: 300
+  tritio: 0
+  cristales: 0
+  name: 
+  descripcion: 
+  spriteRenderer: {fileID: 0}
+  factionSkins:
+  - faction: 0
+    factionTroopName: Ala-A
+    factionDescription: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as
+      de manera muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de
+      buen da\xF1o pero d\xE9bil contra otros ataques."
+    sprite: {fileID: 0}
+  - faction: 1
+    factionTroopName: Interceptor TIE
+    factionDescription: Tie util para neutralizar Alas-B
+    sprite: {fileID: 0}

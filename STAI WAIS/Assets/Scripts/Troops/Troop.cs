@@ -133,6 +133,37 @@ public class Troop : MonoBehaviour
         }
     }
 
+    public SkinFaction GetFactionSkin(Faction playerFaction)
+    {
+        if (factionSkins != null)
+        {
+            foreach (var skin in factionSkins)
+            {
+                if (skin.faction == playerFaction)
+                {
+                    return new SkinFaction
+                    {
+                        faction = playerFaction,
+                        factionTroopName = !string.IsNullOrEmpty(skin.factionTroopName) ? skin.factionTroopName : name,
+                        factionDescription = !string.IsNullOrEmpty(skin.factionDescription) ? skin.factionDescription : descripcion,
+                        sprite = skin.sprite
+                    };
+                }
+            }
+        }
+
+        // Si no tiene skin configurada para esa facción, devuelve los datos base
+        return new SkinFaction
+        {
+            faction = playerFaction,
+            factionTroopName = name,
+            factionDescription = descripcion,
+            sprite = spriteRenderer != null ? spriteRenderer.sprite : null
+        };
+    }
+
+    
+
     // ==========================================
     // SISTEMA DE COMBATE Y DAÑO POR TIPO
     // ==========================================
@@ -314,6 +345,8 @@ public class Troop : MonoBehaviour
 
     public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
     {
+        UpdateInfluenceMap(influenceManager);
+
         if (currentCell == null || targetCell == null)
         {
             Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
@@ -321,7 +354,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this);//targetCell.Coordinates,
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceMap);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
@@ -351,7 +384,7 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(HexGridManager gridManager)
+    public void UpdateInfluenceMap(TacticalInfluenceManager manager)
     {
         if (influenceMap == null)
             influenceMap = new InfluenceMap();

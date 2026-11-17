@@ -6,7 +6,7 @@ public class AIPlayer : Player
     [Header("Configuración")]
     public Troop troopPrefab;
     [SerializeField] private HexGridManager gridManager;
-    [SerializeField] private TacticalInfluenceManager influenceManager;
+    [SerializeField] private InfluenceMap influenceMap;
 
     [Header("Tropas Activas")]
     public List<Troop> myTroops = new List<Troop>();
@@ -111,6 +111,13 @@ public class AIPlayer : Player
         _constructionTree.Evaluate();
     }
 
+    // =========================================
+    // FASE 2: MOVIMIENTO
+    // =========================================
+    private HexCell ChoosBestCell(Troop troop)
+    {
+        return gridManager.GetCell(PathfindingDijkstra.GetBestPosition(gridManager, troop, influenceMap));
+    }
     public void PerformMovementPhase()
     {
         Debug.Log("IA: Evaluando BT de Movimiento...");

@@ -6,11 +6,12 @@ public class PathfindingAStar : PathfindingManager
     // ================================
     // Realizar A*
     // ================================
-    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, HexCoordinates endCoordinates)
+    public static HexCoordinates GetBestPosition(HexGridManager newGridManager, Troop newTroop, HexCoordinates endCoordinates, InfluenceMap newInfluenceMap)
     {
-        //Iniciar el gridManager y tropa
+        //Iniciar el gridManager, tropa y el influence map
         gridManager = newGridManager;
         troop = newTroop;
+        influenceMap = newInfluenceMap;
 
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
@@ -60,8 +61,7 @@ public class PathfindingAStar : PathfindingManager
     {
         float priority = 0;
 
-        InfluenceMap influenceMap = new InfluenceMap();
-        priority -= influenceMap.GetInfluence(coordinates);
+        priority -= influenceMap.GetTroopInfluence(gridManager, coordinates, troop);
 
         if(priority == -Mathf.Infinity)
         {
@@ -88,14 +88,16 @@ public class PathfindingAStar : PathfindingManager
             //Si estamos en end paramos
             if(!hex.SameCoordinates(end)){
                 //Obtener sus vecinos y meter los vecinos en visiting
-                HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(hex);
+                List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(hex);
                 foreach(HexCoordinates newCoordinate in neighborsCoordinates)
                 {
-                    Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
-                    float newPriority = CalculatePriority(newCoordinate, start, end);
-                    int currentMovement = CalculateMovement(hex, newTerrain);
-                    HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
-                    AddToVisiting(newHex);
+                    if(gridManager.CoordinateInWorld(newCoordinate)){
+                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                        float newPriority = CalculatePriority(newCoordinate, start, end);
+                        int currentMovement = CalculateMovement(hex, newTerrain);
+                        HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
+                        AddToVisiting(newHex);
+                    }
                 }
             }
             else
@@ -107,15 +109,17 @@ public class PathfindingAStar : PathfindingManager
                     newHex.priority -= 2;
 
                     //Obtener sus vecinos, bufarlos y meterlos en closed
-                    HexCoordinates[] neighborsCoordinates = GetNeighborsCoordinates(newHex);
+                    List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(newHex);
                     foreach(HexCoordinates newCoordinate in neighborsCoordinates)
                     {
-                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
-                        float newPriority = CalculatePriority(newCoordinate, start, end);
-                        newPriority -= 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
-                        int currentMovement = CalculateMovement(hex, newTerrain);
-                        HexNode neighborHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
-                        AddToClosed(neighborHex);
+                        if(gridManager.CoordinateInWorld(newCoordinate)){
+                            Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                            float newPriority = CalculatePriority(newCoordinate, start, end);
+                            newPriority -= 1;//Bonus extra por estar cerca o en el camino ideal (es uno porque si tiene muchos vecinos puede que aumente demasiado si fuera más de 1)
+                            int currentMovement = CalculateMovement(hex, newTerrain);
+                            HexNode neighborHex = new HexNode(newCoordinate, newPriority, currentMovement, hex);
+                            AddToClosed(neighborHex);
+                        }
                     }
 
                     hex = newHex;

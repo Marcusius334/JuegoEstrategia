@@ -22328,6 +22328,7 @@ GameObject:
   - component: {fileID: 863038344}
   - component: {fileID: 863038347}
   - component: {fileID: 863038348}
+  - component: {fileID: 863038349}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -22476,6 +22477,22 @@ MonoBehaviour:
   maxY: 15
   focusSpeed: 10
   centerKey: 32
+--- !u!114 &863038349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863038343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.Physics2DRaycaster
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &874951810
 GameObject:
   m_ObjectHideFlags: 0
@@ -30275,6 +30292,10 @@ PrefabInstance:
       propertyPath: boton
       value: 
       objectReference: {fileID: 1488846757}
+    - target: {fileID: 2841849594036761305, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7588236526768889369, guid: 5b5fde016ecd17a43ac874e8a18417af, type: 3}
       propertyPath: m_Name
       value: UI_canva
@@ -51935,6 +51956,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1999003005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1999003007}
+  - component: {fileID: 1999003006}
+  m_Layer: 0
+  m_Name: InfluenceMaps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1999003006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999003005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ca45879733d2fd4ca981b6e1bc8a69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TacticalInfluenceManager
+  gridManager: {fileID: 1968465723}
+  influenceRadius: 4
+  influenceDecay: 1.5
+--- !u!4 &1999003007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999003005}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08712, y: -0.42457, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001035856
 GameObject:
   m_ObjectHideFlags: 0
@@ -56335,3 +56403,4 @@ SceneRoots:
   - {fileID: 1968465721}
   - {fileID: 29687735}
   - {fileID: 1186253223}
+  - {fileID: 1999003007}
