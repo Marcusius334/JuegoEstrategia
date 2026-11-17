@@ -10,6 +10,7 @@ public class PathfindingManager
 
     //GridManager para obtener el terreno
     protected static HexGridManager gridManager;
+    protected static InfluenceMap influenceMap;
 
     //Saber qué casillas han sido visitadas
     protected static List<HexNode> closed = new List<HexNode>(); 
@@ -87,24 +88,17 @@ public class PathfindingManager
     // ================================
     // Obtener las coordenadas de los vecinos de un hexágono dado
     // ================================
-    protected static HexCoordinates[] GetNeighborsCoordinates(HexNode hex)
+    protected static List<HexCoordinates> GetNeighborsCoordinates(HexNode hex)
     {
-        HexCoordinates[] neighbors = new HexCoordinates[6];
+        List<HexCoordinates> neighbors = new List<HexCoordinates> {};
 
-        int[,] directions = {
-            { 1, 0 },
-            { 1, -1 },
-            { 0, 1 },
-            { -1, 0 },
-            { -1, 1 },
-            { 0, -1 }
-        };
+        int[] directions = {0,1,2,3,4,5};
 
         foreach (int direction in directions)
         {
-            hex.coordinates.GetNeighbor(direction);
+            neighbors.Add(hex.coordinates.GetNeighbor(direction));
         }
-
+            
         return neighbors;
     }
     // ================================

@@ -314,6 +314,8 @@ public class Troop : MonoBehaviour
 
     public void MoveToCell(HexCell targetCell, HexGridManager hexGridManager)
     {
+        UpdateInfluenceMap(influenceManager);
+
         if (currentCell == null || targetCell == null)
         {
             Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
@@ -321,7 +323,7 @@ public class Troop : MonoBehaviour
         }
 
         //Comprobar que la casilla sea válida
-        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this);//targetCell.Coordinates,
+        List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(hexGridManager, this, influenceMap);//targetCell.Coordinates,
         if (!validPositions.Contains(targetCell.Coordinates))
         {
             Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
@@ -351,7 +353,7 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(HexGridManager gridManager, TacticalInfluenceManager manager)
+    public void UpdateInfluenceMap(TacticalInfluenceManager manager)
     {
         if (influenceMap == null)
             influenceMap = new InfluenceMap();

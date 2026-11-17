@@ -84,6 +84,12 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         cells.TryGetValue(coordinates, out HexCell cell);
         return cell;
     }
+
+    public bool CoordinateInWorld(HexCoordinates coordinates) 
+    {
+        cells.TryGetValue(coordinates, out HexCell cell);
+        return cell is not null;
+    }
     public void SelectCell(HexCell cell) 
     {
         //Quitar la seleccion anterior
