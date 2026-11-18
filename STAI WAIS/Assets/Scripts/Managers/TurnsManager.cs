@@ -22,6 +22,10 @@ public class TurnsManager : MonoBehaviour
     [Header("Botón de la tienda")]
     [SerializeField] private GameObject boton;
 
+    [Header("Referencia jugadores")]
+    [SerializeField] private HumanPlayer jugadorHumano;
+    [SerializeField] private AIPlayer jugadorEnemigo;
+
     public enum Fase { Construccion, Movimiento, Ataque }
     private bool enTurno;
     public Fase faseActual;
@@ -29,9 +33,6 @@ public class TurnsManager : MonoBehaviour
     
     //Variable general para deshabilitar las casillas:
     public static bool EstaEnTransicion { get; private set; }
-
-    [Header("Referencia IA")]
-    [SerializeField] private AIPlayer jugadorEnemigo;
 
     public bool EsTurnoJugador => enTurno;
 
@@ -85,6 +86,7 @@ public class TurnsManager : MonoBehaviour
         ActButton();
         ActFaseTexto();
         ActTurnoTexto();
+        if(jugadorHumano != null) jugadorHumano.PlayerTurnStart();
     }
 
     private void ActButton()
@@ -139,6 +141,7 @@ public class TurnsManager : MonoBehaviour
     {
         // Buscar la IA por si no estaba asignada inicialmente
         BuscarAIPlayer();
+        if(jugadorEnemigo != null) jugadorEnemigo.PlayerTurnStart();
 
         // =========================================
         // FASE 1: CONSTRUCCION
@@ -188,6 +191,7 @@ public class TurnsManager : MonoBehaviour
         // =========================================
         // DEVOLVER EL TURNO AL JUGADOR
         // =========================================
+        if (jugadorHumano != null) jugadorHumano.PlayerTurnStart();
 
         enTurno = true;
         boton.SetActive(true); //Activamos la tienda

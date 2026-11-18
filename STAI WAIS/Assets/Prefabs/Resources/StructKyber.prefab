@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Structure
   structureType: 3
+  recursosPorTurno: 2
 --- !u!212 &5811482035018532799
 SpriteRenderer:
   serializedVersion: 2

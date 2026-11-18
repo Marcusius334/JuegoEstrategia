@@ -12,13 +12,15 @@ public class TacticalInfluenceManager : MonoBehaviour
     public TerrainInfluenceMap TerrainMap { get; private set; }
     public MilitaryInfluenceMap MilitaryMap { get; private set; }
     public SecurityInfluenceMap SecurityMap { get; private set; }
+    public StructureInfluenceMap StructureMap { get; private set; }
 
     private void Awake()
     {
         TerrainMap = new TerrainInfluenceMap();
         MilitaryMap = new MilitaryInfluenceMap();
         SecurityMap = new SecurityInfluenceMap();
-        if(gridManager == null) gridManager = FindFirstObjectByType<HexGridManager>();
+        StructureMap = new StructureInfluenceMap();
+        if (gridManager == null) gridManager = FindFirstObjectByType<HexGridManager>();
     }
     //Actualizar todos los mapas
     public void RefreshMaps(Player perspective, Troop troop) 
@@ -40,6 +42,8 @@ public class TacticalInfluenceManager : MonoBehaviour
         MilitaryMap.Calculate(perspective, influenceRadius, influenceDecay);
         //3. Calcular seguridad
         SecurityMap.Calculate(MilitaryMap);
+        //Calcular recursos
+        StructureMap.Calculate(influenceRadius, influenceDecay);
         Debug.Log("Mapas de influencia actualizados.");
     }
 
@@ -48,6 +52,8 @@ public class TacticalInfluenceManager : MonoBehaviour
         //Obtener el value del GetInfluence, y si es distinto de 0 ponemos las cosas delas tropas
         float value = TerrainMap.GetInfluence(coordinates);
         value += SecurityMap.GetInfluence(coordinates);
+        value += StructureMap.GetInfluence(coordinates);
+
         if(value != 0)
         {
             //Obtenemos la cell y el terreno a partir de las coordenadas con el gridManager

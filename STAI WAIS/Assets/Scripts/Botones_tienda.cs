@@ -122,7 +122,13 @@ public class Botones_tienda : MonoBehaviour
 
         marcosBotones[tier].SetActive(true);
     }
-
+    private void ActualizarRecursos()
+    {
+        textoCreditos.text = gameManager.j_creditos.ToString();
+        textoChatarra.text = gameManager.j_chatarra.ToString();
+        textoTritio.text = gameManager.j_tritio.ToString();
+        textoCristal.text = gameManager.j_cristal.ToString();
+    }
     // Update is called once per frame
     void Update()
     {
