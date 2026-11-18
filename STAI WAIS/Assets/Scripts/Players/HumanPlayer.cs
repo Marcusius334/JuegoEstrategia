@@ -112,7 +112,7 @@ public class HumanPlayer : Player
                 foreach(HexCoordinates position in validPositions)
                 {
                     HexCell hex = gridManager.GetCell(position);
-                    hex.ChangeColor();
+                    hex.EnableBorder(true);
                 }
             }
             else if (selectedTroop != null && clickedCell != null)

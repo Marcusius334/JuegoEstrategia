@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que aparece en el tablero
 {
@@ -14,10 +15,18 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     // Tropa que ocupa actualmente esta casilla
     private Troop occupyingTroop;
 
+    private SpriteRenderer outline;
+
     // Comprobar si la casilla está ocupada
     public bool IsOccupied => occupyingTroop != null;
 
     // Intentar colocar una tropa en esta casilla
+
+    void Awake()
+    {
+        outline = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        outline.enabled = false;
+    }
     public bool TrySetOccupant(Troop troop)
     {
         if (troop == null) return false;
@@ -114,13 +123,13 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         if(spriteRenderer == null || Terrain == null) return;
 
         if (isSelected) { spriteRenderer.color = Color.Lerp(Terrain.TerrainColor, selectedColor, 0.5f); }
-        else if (isHovered) { spriteRenderer.color = Color.Lerp(Terrain.TerrainColor, hoverColor, 0.5f); }
+        else if (isHovered) { spriteRenderer.color = Color.Lerp(spriteRenderer.color, hoverColor, 0.5f); }
         else { spriteRenderer.color = Terrain.TerrainColor; }
     }
 
-    public void ChangeColor()
+    public void EnableBorder(bool enable)
     {
-        spriteRenderer.color = Color.Lerp(Terrain.TerrainColor, selectedColor, 0.5f);
+        outline.enabled = enable;
     }
     public void SetTerrain(Terrain terrain) 
     {
