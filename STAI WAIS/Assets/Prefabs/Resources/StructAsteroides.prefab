@@ -106,3 +106,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Structure
   structureType: 2
   recursosPorTurno: 5
+  strategicValue: 15
