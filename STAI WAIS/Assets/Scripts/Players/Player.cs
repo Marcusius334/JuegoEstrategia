@@ -33,8 +33,11 @@ public class Player : MonoBehaviour
         foreach (Structure estructura in estructuras) 
         {
             if (estructura == null) continue;
-            //Si no pertenece a este jugador, no produce recursos
+            // PRIMERO: Actualizar quién controla la estructura.
+            estructura.ActualizarControl();
+            // SEGUNDO: Comprobar si pertenece a este jugador.
             if (estructura.ControllingPLayer != this) continue;
+
             int cantidad = estructura.recursosPorTurno;
             //Añadir el recurso corresponidente
             switch (estructura.ResourceProduced)
