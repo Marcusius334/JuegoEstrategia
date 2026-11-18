@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
+using TMPro;
 
 public class HumanPlayer : Player
 {
@@ -24,11 +25,14 @@ public class HumanPlayer : Player
     [SerializeField] private HexGridManager gridManager;
     [SerializeField] private TacticalInfluenceManager influenceMap;
 
+    [Header("Interfaz de usuario")]
+    [SerializeField] private TextMeshProUGUI textoCreditos;
+    [SerializeField] private TextMeshProUGUI textoChatarra;
+    [SerializeField] private TextMeshProUGUI textoTritio;
+    [SerializeField] private TextMeshProUGUI textoCristales;
+
     void Start(){
-        chatarra = gameManager.j_chatarra;
-        creditos = gameManager.j_creditos;
-        tritio = gameManager.j_tritio;
-        cristal = gameManager.j_cristal;
+        
     }
     
     // --- NUEVO: Necesitamos leer el turno ---
@@ -38,6 +42,8 @@ public class HumanPlayer : Player
     {
         // --- BLOQUEO ESTRICTO DE TURNO ---
         if (turnsManager == null || TurnsManager.EstaEnTransicion || !turnsManager.EsTurnoJugador) return;
+
+        ActText();
 
         if (!Input.GetMouseButtonDown(0)) return;
 
@@ -55,6 +61,14 @@ public class HumanPlayer : Player
         {
             Movimiento(hit);
         }
+    }
+
+    private void ActText()
+    {
+        textoCreditos.text = "Creditos: " + creditos.ToString();
+        textoChatarra.text = "Chatarra: " + chatarra.ToString();
+        textoTritio.text = "Tritio: " + tritio.ToString();
+        textoCristales.text = "Cristales Kayber: " + cristal.ToString();
     }
 
     // =========================================
@@ -123,14 +137,6 @@ public class HumanPlayer : Player
                 selectedTroop = null; 
             }
         }
-    }
-
-    private void ActualizarRecursos()
-    {
-        chatarra = gameManager.j_chatarra;
-        creditos = gameManager.j_creditos;
-        tritio = gameManager.j_tritio;
-        cristal = gameManager.j_cristal;
     }
 
     // =========================================
