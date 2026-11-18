@@ -1,7 +1,10 @@
 using UnityEngine;
 
-public class ResourceBuilding : MonoBehaviour
+public class Structure : MonoBehaviour
 {
+    [SerializeField] private StructureTpe structureType;
+    public StructureTpe StructureType => structureType;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

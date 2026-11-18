@@ -49,6 +49,14 @@ MonoBehaviour:
   hexPrefab: {fileID: 4758753633746839665, guid: 3a48d170f9925cd4fbd18659f0b4b10f, type: 3}
   mapRadius: 7
   hexSize: 0.5
+  macronavePrefab: {fileID: 1047527877052572646, guid: 9fcf4e6216ad9464eb4c41bdc5d5a677, type: 3}
+  planetaPrefab: {fileID: 5354358307204103557, guid: 642d5bd20ffc3b248b7e1745a327165b, type: 3}
+  asteroidesPrefab: {fileID: 0}
+  kyberPrefab: {fileID: 0}
+  minStructuresPerType: 1
+  maxStructuresPerType: 3
+  preferredTerrainWeight: 5
+  otherTerrainWeight: 1
 --- !u!60 &3117730054915724361
 PolygonCollider2D:
   m_ObjectHideFlags: 0
