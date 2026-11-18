@@ -14,13 +14,13 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
 
     // Tropa que ocupa actualmente esta casilla
     private Troop occupyingTroop;
+    public Troop OccupyingTroop => occupyingTroop;
 
     private SpriteRenderer outline;
 
     // Comprobar si la casilla está ocupada
     public bool IsOccupied => occupyingTroop != null;
-
-    // Intentar colocar una tropa en esta casilla
+    
 
     //ESTRUCTURAS
     private Structure occupyingStructure;
@@ -32,6 +32,7 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         outline = transform.GetChild(0).GetComponent<SpriteRenderer>();
         outline.enabled = false;
     }
+    // Intentar colocar una tropa en esta casilla
     public bool TrySetOccupant(Troop troop)
     {
         if (troop == null) return false;

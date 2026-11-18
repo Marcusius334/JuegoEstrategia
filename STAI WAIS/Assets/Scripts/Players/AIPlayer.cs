@@ -107,7 +107,17 @@ public class AIPlayer : Player
     public void PerformConstructionPhase()
     {
         Debug.Log("IA: Evaluando BT de Construcción...");
+        if (_blackboard == null)
+        {
+            _blackboard = new Blackboard();
+            BuildBehaviorTrees();
+        }
         RefreshTroopLists();
+        if (_constructionTree == null)
+        {
+            Debug.LogError("El árbol de construcción no se ha inicializado.");
+            return;
+        }
         _constructionTree.Evaluate();
     }
 
@@ -120,6 +130,11 @@ public class AIPlayer : Player
     }
     public void PerformMovementPhase()
     {
+        if (_blackboard == null)
+        {
+            _blackboard = new Blackboard();
+            BuildBehaviorTrees();
+        }
         Debug.Log("IA: Evaluando BT de Movimiento...");
         RefreshTroopLists();
 
@@ -133,6 +148,11 @@ public class AIPlayer : Player
 
     public void PerformAttackPhase()
     {
+        if (_blackboard == null)
+        {
+            _blackboard = new Blackboard();
+            BuildBehaviorTrees();
+        }
         Debug.Log("IA: Evaluando BT de Ataque...");
         RefreshTroopLists();
 

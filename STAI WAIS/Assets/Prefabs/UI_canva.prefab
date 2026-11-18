@@ -695,8 +695,9 @@ MonoBehaviour:
   textoTransicion: {fileID: 3361535623692350039}
   duracionAnimacion: 2
   boton: {fileID: 0}
+  jugadorHumano: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+  jugadorEnemigo: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
   faseActual: 0
-  jugadorEnemigo: {fileID: 0}
 --- !u!1 &6791971527113409063
 GameObject:
   m_ObjectHideFlags: 0
