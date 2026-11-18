@@ -396,17 +396,6 @@ public class Troop : MonoBehaviour
         Debug.Log("Tropa movida a " + currentCell.Coordinates);
     }
 
-    public void UpdateInfluenceMap(TacticalInfluenceManager manager)
-    {
-        if (influenceMap == null)
-            influenceMap = new InfluenceMap();
-
-        //influenceMap.CalculateTerrainInfluence(gridManager);
-
-
-        influenceManager = manager;
-    }
-
     private bool TerrenoValido(HexCell casilla)
     {
         foreach (HexTerrainType terrenoNoValido in impassableTerrains)
