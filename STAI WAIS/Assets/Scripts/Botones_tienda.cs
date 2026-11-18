@@ -8,7 +8,7 @@ public class Botones_tienda : MonoBehaviour
     [SerializeField] private GameObject ventana;
     [SerializeField] private GameObject boton;
 
-    public GameManager gameManager;
+    //public GameManager gameManager;
 
     [Header("Jugador y naves")]
     [SerializeField] private HumanPlayer player;
@@ -72,16 +72,16 @@ public class Botones_tienda : MonoBehaviour
     public void Buy()
     {
         //Primero se comprueba si se puede comprar:
-        if (gameManager.j_creditos - troops[tier].creditos < 0 ||
-            gameManager.j_chatarra - troops[tier].chatarra < 0 ||
-            gameManager.j_tritio - troops[tier].tritio < 0 ||
-            gameManager.j_cristal - troops[tier].cristales < 0) return;
+        if (player.creditos - troops[tier].creditos < 0 ||
+            player.chatarra - troops[tier].chatarra < 0 ||
+            player.tritio - troops[tier].tritio < 0 ||
+            player.cristal - troops[tier].cristales < 0) return;
 
         //Consumimos los materiales:    
-        gameManager.j_creditos -= troops[tier].creditos;
-        gameManager.j_chatarra -= troops[tier].chatarra; 
-        gameManager.j_tritio -= troops[tier].tritio; 
-        gameManager.j_cristal -= troops[tier].cristales; 
+        player.creditos -= troops[tier].creditos;
+        player.chatarra -= troops[tier].chatarra;
+        player.tritio -= troops[tier].tritio;
+        player.cristal -= troops[tier].cristales;
 
         //Actualizamos la nave seleccionada del jugador:
         player.selectedTroop = troops[tier];
@@ -122,13 +122,7 @@ public class Botones_tienda : MonoBehaviour
 
         marcosBotones[tier].SetActive(true);
     }
-    private void ActualizarRecursos()
-    {
-        textoCreditos.text = gameManager.j_creditos.ToString();
-        textoChatarra.text = gameManager.j_chatarra.ToString();
-        textoTritio.text = gameManager.j_tritio.ToString();
-        textoCristal.text = gameManager.j_cristal.ToString();
-    }
+    
     // Update is called once per frame
     void Update()
     {

@@ -11,18 +11,36 @@ public class Player : MonoBehaviour
     public Player otherPlayer;
 
     [Header("Resources")]
-    public int chatarra = 400;
-    public int creditos = 200;
-    public int tritio = 20;
-    public int cristal = 0;
+    public int chatarra = 9999;
+    public int creditos = 9999;
+    public int tritio = 9999;
+    public int cristal = 9999;
 
-    [Header("Managers")]
-    public GameManager gameManager;
+    //[Header("Managers")]
+    //public GameManager gameManager;
+
+    void Start()
+    {
+        /* if (this is HumanPlayer)
+        {
+            chatarra = gameManager.j_chatarra;
+            creditos = gameManager.j_creditos;
+            tritio = gameManager.j_tritio;
+            cristal = gameManager.j_cristal;
+        }
+        else
+        {
+            chatarra = gameManager.ia_chatarra;
+            creditos = gameManager.ia_creditos;
+            tritio = gameManager.ia_tritio;
+            cristal = gameManager.ia_cristal;
+        } */
+    }
 
     public void PlayerTurnStart(){
         myTurn = true;
         // Cargar los recursos actuales del GameManager.
-        SincronizarDesdeGameManager();
+        //SincronizarDesdeGameManager();
         RecolectResources();
     }
 
@@ -33,13 +51,13 @@ public class Player : MonoBehaviour
         foreach (Structure estructura in estructuras) 
         {
             if (estructura == null) continue;
-            // PRIMERO: Actualizar quién controla la estructura.
+            // PRIMERO: Actualizar quiï¿½n controla la estructura.
             estructura.ActualizarControl();
             // SEGUNDO: Comprobar si pertenece a este jugador.
             if (estructura.ControllingPLayer != this) continue;
 
             int cantidad = estructura.recursosPorTurno;
-            //Añadir el recurso corresponidente
+            //Aï¿½adir el recurso corresponidente
             switch (estructura.ResourceProduced)
             {
                 case ResourceType.Chatarra:
@@ -61,15 +79,21 @@ public class Player : MonoBehaviour
             Debug.Log($"{name} obtiene {cantidad} de " +$"{estructura.ResourceProduced} de una estructura.");
         }
         // Guardar los recursos actualizados.
-        SincronizarHaciaGameManager();
+        //SincronizarHaciaGameManager();
         Debug.Log(
             $"RECURSOS {faction}: " +
             $"Chatarra={chatarra}, " +
-            $"Créditos={creditos}, " +
+            $"Crï¿½ditos={creditos}, " +
             $"Tritio={tritio}, " +
             $"Cristal={cristal}"
         );
+
+        Debug.Log(
+            $"OBJETO: {gameObject.name} | TIPO: {GetType().Name} | ID: {GetInstanceID()} | ESCENA: {gameObject.scene.name} | " +
+            $"RECURSOS {faction}: Chatarra={chatarra}, CrÃ©ditos={creditos}, Tritio={tritio}, Cristal={cristal}"
+        );
     }
+    /*
     private void SincronizarDesdeGameManager() 
     {
         if (gameManager == null) return;
@@ -107,6 +131,7 @@ public class Player : MonoBehaviour
             gameManager.ia_cristal = cristal;
         }
     }
+    */
 
     public void PlayerTurnEnd(){
         myTurn = false;

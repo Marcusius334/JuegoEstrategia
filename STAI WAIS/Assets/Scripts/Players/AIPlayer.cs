@@ -19,13 +19,13 @@ public class AIPlayer : Player
 
     private void Start()
     {
-        if (gameManager != null)
+        /* if (gameManager != null)
         {
             chatarra = gameManager.ia_chatarra;
             creditos = gameManager.ia_creditos;
             tritio = gameManager.ia_tritio;
             cristal = gameManager.ia_cristal;
-        }
+        } */
 
         if (gridManager == null) gridManager = FindFirstObjectByType<HexGridManager>();
         if (influenceManager == null) influenceManager = FindFirstObjectByType<TacticalInfluenceManager>();
@@ -294,13 +294,13 @@ public class AIPlayer : Player
             tritio -= troopPrefab.tritio;
             cristal -= troopPrefab.cristales;
 
-            if (gameManager != null)
+            /* if (gameManager != null)
             {
                 gameManager.ia_chatarra = chatarra;
                 gameManager.ia_creditos = creditos;
                 gameManager.ia_tritio = tritio;
                 gameManager.ia_cristal = cristal;
-            }
+            } */
 
             myTroops.Add(newTroop);
             Debug.Log($"IA construye {newTroop.name} en {spawnCell.Coordinates}");
