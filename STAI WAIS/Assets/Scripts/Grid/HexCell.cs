@@ -14,19 +14,25 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
 
     // Tropa que ocupa actualmente esta casilla
     private Troop occupyingTroop;
+    public Troop OccupyingTroop => occupyingTroop;
 
     private SpriteRenderer outline;
 
     // Comprobar si la casilla está ocupada
     public bool IsOccupied => occupyingTroop != null;
+    
 
-    // Intentar colocar una tropa en esta casilla
+    //ESTRUCTURAS
+    private Structure occupyingStructure;
+    public Structure OccupyingStructure => occupyingStructure;
+    public bool HasStructure => occupyingStructure != null;
 
     void Awake()
     {
         outline = transform.GetChild(0).GetComponent<SpriteRenderer>();
         outline.enabled = false;
     }
+    // Intentar colocar una tropa en esta casilla
     public bool TrySetOccupant(Troop troop)
     {
         if (troop == null) return false;
@@ -158,5 +164,27 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
         if (terrainType != HexTerrainType.TerrenoAgujeroDeGusano) return;
 
         destino = c;
+    }
+
+
+    ////////////////////////////////////////////////
+    /// ESTRUCTURAS
+    ///////////////////////////////////////////////
+    public bool TrySetStructure(Structure structure) 
+    {
+        if(structure == null) return false;
+        //Noo permitimos tener 2 estructuras en la misma casilla
+        if(occupyingStructure != null) return false;
+
+        occupyingStructure = structure;
+        return true;
+    }
+    public void ClearStructure() 
+    {
+        if (occupyingStructure != null) 
+        {
+            Destroy(occupyingStructure.gameObject);
+            occupyingStructure = null;
+        }
     }
 }
