@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +16,21 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     //private HexCoordinates destinoAgujero;
     private HexCell agujeroDeGusano1;
     private HexCell agujeroDeGusano2;
+
+    [Header("Prefabs de estructuras")]
+    [SerializeField] private Structure macronavePrefab;
+    [SerializeField] private Structure planetaPrefab;
+    [SerializeField] private Structure asteroidesPrefab;
+    [SerializeField] private Structure kyberPrefab;
+
+    [Header("Configuración de generación")]
+    [SerializeField] private int minStructuresPerType = 2; //salvo el Kyber, el resto de estreucturas se generan de 1 a 3 estructuras
+    [SerializeField] private int maxStructuresPerType = 3;
+
+    // Probabilidad relativa de aparecer en su terreno favorito
+    [SerializeField] private int preferredTerrainWeight = 5; //He hecho que todas las estructuras aparezcan en todos los terrenos pero que tengan tendencia a aparecer en el "suyo"
+    // Probabilidad relativa de aparecer en otros terrenos
+    [SerializeField] private int otherTerrainWeight = 1;
 
     private void Start()
     {
@@ -72,7 +88,7 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
                 }
             }
         }
-
+        GenerarEstructuras();
         Debug.Log("Casillas registradas: " + cells.Count);
     }
     private void RegistrarGrid() 
@@ -199,20 +215,136 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         return hex != null ? hex.Terrain : null;
     }
 
+    //////////////////////////////////////////////////////////////
+    /////////////////CREACION DE ESTRUCTURAS//////////////////////
+    //////////////////////////////////////////////////////////////
+    private void GenerarEstructuras() 
+    {
+        // Evitamos duplicar estructuras si se vuelve a ejecutar
+        LimpiarEstructuras();
+
+        // El centro del tablero, en coordenadas axiales, es (0,0)
+        HexCoordinates centro = new HexCoordinates(0, 0);
+        HexCell celdaCentro = GetCell(centro);
+        if (celdaCentro == null) Debug.Log("No se ha encontrado la casilla central");
+        else { CrearEstructuraEnCelda(celdaCentro, kyberPrefab); }
+
+        GenerarEstructurasAleatorias(macronavePrefab, HexTerrainType.TerrenoEscombros);
+        GenerarEstructurasAleatorias(planetaPrefab,HexTerrainType.TerrenoOrbitaPlanetaria);
+        GenerarEstructurasAleatorias(asteroidesPrefab,HexTerrainType.TerrenoAsteroides);
+        Debug.Log("Generación de estructuras completada.");
+    }
+    private void GenerarEstructurasAleatorias(Structure prefab, HexTerrainType terrenoPreferido) 
+    {
+        if (prefab == null) return;
+        int cantidad = Random.Range(minStructuresPerType, maxStructuresPerType + 1);//Cantidad aleatoria de 1 a 3
+        //casillas disponibles 
+        List<HexCell> celdasDisponibles = new List<HexCell>();
+        foreach(HexCell cell in cells.Values) 
+        {
+            // No permitimos colocar las estructuras aleatorias en el centro,porque el centro está reservado para el Kyber.
+            if (cell.Coordinates.Q == 0 && cell.Coordinates.R == 0) continue;
+            // No colocamos estructuras en casillas que ya tienen otra
+            if (cell.HasStructure) continue;
+            //No ponemos estructuras en aujeros de gusano
+            if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) continue;
+            celdasDisponibles.Add(cell);
+        }
+        //Si hay menos casillas disponibles que estructuras solicitadas, reducimos la cantidad para evitar errores.
+        cantidad = Mathf.Min(cantidad, celdasDisponibles.Count);
+        for (int i = 0; i < cantidad; i++) 
+        {
+            HexCell celdaElegida = ElegirCeldaPonderada(celdasDisponibles, terrenoPreferido);
+            if (celdaElegida == null) break;
+            CrearEstructuraEnCelda(celdaElegida, prefab);
+            //Evitamos repetir la casilla elegida
+            celdasDisponibles.Remove(celdaElegida);
+        }
+
+    }
+    private HexCell ElegirCeldaPonderada(List<HexCell> celdasDisponibles, HexTerrainType terrenoPreferido) 
+    {
+        if(celdasDisponibles == null||celdasDisponibles.Count == 0) return null;
+        int pesoTotal = 0;
+        //Calculamos el peso total de todas las casillas 
+        foreach (HexCell cell in celdasDisponibles) 
+        {
+            if (cell.TerrainType == terrenoPreferido)
+                pesoTotal += preferredTerrainWeight;
+            else
+                pesoTotal += otherTerrainWeight;
+        }
+        if (pesoTotal <= 0) return celdasDisponibles[Random.Range(0, celdasDisponibles.Count)];
+        //Elegimos un número aleatorio dentro del peso total 
+        int numeroAleatorio = Random.Range(0, pesoTotal);
+        //Recorremos las casillas hasta encontrar la seleccionada
+        foreach (HexCell cell in celdasDisponibles) 
+        {
+            int peso;
+            if (cell.TerrainType == terrenoPreferido) peso = preferredTerrainWeight;
+            else peso = otherTerrainWeight;
+
+            numeroAleatorio -= peso;
+            if (numeroAleatorio < 0) return cell;
+        }
+        // Caso de seguridad
+        return celdasDisponibles[celdasDisponibles.Count - 1];
+    }
+    private void CrearEstructuraEnCelda(HexCell cell, Structure prefab) 
+    {
+        if(cell == null||prefab == null) return;
+        if (cell.HasStructure) return;
+        //Crear el prefab en la posicion del hexagono 
+        Structure nuevaEstructura = Instantiate(prefab, cell.transform.position, Quaternion.identity, cell.transform);
+        //Se mantiene como hijo de la cailla
+        nuevaEstructura.transform.localPosition = Vector3.zero;
+        //Registrar la estructura dentro de la casilla
+        if (!cell.TrySetStructure(nuevaEstructura)) 
+        {
+            Destroy(nuevaEstructura.gameObject);
+            return;
+        }
+        Debug.Log(
+        "Estructura " + nuevaEstructura.StructureType +
+        " creada en " + cell.Coordinates +
+        " sobre el terreno " + cell.TerrainType
+    );
+    }
+    private void LimpiarEstructuras() 
+    {
+        foreach (HexCell cell in cells.Values) 
+        {
+            if(cell.HasStructure) cell.ClearStructure();
+        }
+    }
+
 #if UNITY_EDITOR
     [ContextMenu("Generar tablero en escena")]
-    private void GenerateGridInEdtor() 
+    private void GenerateGridInEdtor()
     {
-        //Eliminar tablero anterior
+        // Comprobar que el HexGridManager pertenece a la escena
+        if (UnityEditor.EditorUtility.IsPersistent(this))
+        {
+            Debug.LogError(
+                "No se puede generar el tablero desde un prefab del Project. " +
+                "Selecciona el HexGridManager de la Hierarchy."
+            );
+            return;
+        }
+
+        // Eliminar el tablero anterior
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
             DestroyImmediate(transform.GetChild(i).gameObject);
         }
+
         cells.Clear();
         selectedCell = null;
 
-        //Generar el nuevo Tablero
+        // Generar el nuevo tablero
         GenerateGrid();
+
+        Debug.Log("Tablero generado correctamente en la escena.");
     }
 
 #endif
