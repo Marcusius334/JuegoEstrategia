@@ -126,6 +126,8 @@ public class HumanPlayer : Player
 
             Troop clickedTroop = hit.collider.GetComponent<Troop>();
 
+            Debug.Log("Cosa clicada -> "+hit);
+
             if (clickedTroop == null) Debug.Log("Testing mover tropas: No se ha encontrado tropa");
             else Debug.Log("Testing mover tropas: Se ha encontrado tropa: ");
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
@@ -105,7 +106,26 @@ public class PathfindingDijkstra : PathfindingManager
             //Sacar el nodo más prioritario de visiting y comprobar si le queda movimiento
             HexNode hex = PopVisiting();
 
-            if(hex.currentMovementPoints > 0){
+            if (gridManager.GetTerrain(hex.coordinates).Type == HexTerrainType.TerrenoAgujeroDeGusano)
+            {
+                HexCell agujeroDeGusano1 = gridManager.GetCell(hex.coordinates);
+                HexCell agujeroDeGusano2 = agujeroDeGusano1.destino;
+
+
+                HexNode hexGusano = new HexNode(agujeroDeGusano2.Coordinates, Mathf.Infinity, 0, hex);
+                List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(hexGusano);
+                foreach(HexCoordinates newCoordinate in neighborsCoordinates)
+                {
+                    if(gridManager.CoordinateInWorld(newCoordinate)){
+                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                        float newPriority = CalculatePriority(newCoordinate);
+                        int currentMovement = 0;
+                        HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hexGusano);
+                        AddToVisiting(newHex);
+                    }
+                }
+            }
+            else if(hex.currentMovementPoints > 0){
                 //Obtener sus vecinos y meter los vecinos en visiting
                 List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(hex);
                 foreach(HexCoordinates newCoordinate in neighborsCoordinates)
