@@ -102,10 +102,14 @@ public class Troop : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
 
+    [Header("GridManager")]
+    private HexGridManager gridManager;
+
     void Awake()
     {
         influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
-    }
+        gridManager = FindAnyObjectByType<HexGridManager>();
+    } 
 
     public virtual void ApplyFactionSkin(Faction playerFaction)
     {
@@ -236,57 +240,6 @@ public class Troop : MonoBehaviour
                 return def.value;
         }
         return 0;
-    }
-
-    public void MoveToCell(HexCell targetCell)
-    {
-        //TODO
-        if (currentCell == null || targetCell == null)
-        {
-            Debug.LogWarning("Movimiento imposible: no existe una casilla válida.");
-            return;
-        }
-
-        //TODO dijsktra
-        // Comprobar que sea una casilla vecina
-        if (currentCell.Coordinates.DistanceTo(targetCell.Coordinates) != 1)
-        {
-            Debug.Log("Movimiento inválido: la casilla está demasiado lejos.");
-            return;
-        }
-
-        //TODO si es válido el terreno
-        // Comprobar el terreno 
-        if (targetCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano)
-        {
-            Debug.Log("Movimiento inválido: no se puede atravesar un agujero de gusano.");
-            return;
-        }
-
-        // Comprobar si está ocupada
-        if (targetCell.IsOccupied)
-        {
-            Debug.Log("Movimiento inválido: la casilla está ocupada.");
-            return;
-        }
-
-        // Guardar la casilla anterior
-        HexCell previousCell = currentCell;
-
-        //TODO no casilla anterior
-
-        // Ocupar la nueva casilla
-        if (!targetCell.TrySetOccupant(this))
-            return;
-
-        // Liberar la anterior
-        previousCell.ClearOccupant(this);
-
-        // Actualizar posición
-        currentCell = targetCell;
-        transform.position = targetCell.transform.position;
-
-        Debug.Log("Tropa movida a " + targetCell.Coordinates);
     }
 
     private void OnDestroy()
