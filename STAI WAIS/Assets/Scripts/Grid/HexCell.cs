@@ -27,6 +27,9 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
     public Structure OccupyingStructure => occupyingStructure;
     public bool HasStructure => occupyingStructure != null;
 
+    //Para saber si tiene alguna estructura cerca:
+    public List<StructureTpe> listaEstructuras;
+
     void Awake()
     {
         outline = transform.GetChild(0).GetComponent<SpriteRenderer>();
@@ -186,5 +189,19 @@ public class HexCell : MonoBehaviour //Representa cada hex�gono inividual que 
             Destroy(occupyingStructure.gameObject);
             occupyingStructure = null;
         }
+    }
+
+    public void AddNeighborStructure(StructureTpe est)
+    {
+        if (!ComprobarEstructuraCercana(est))
+        {
+            listaEstructuras.Add(est);
+        }
+    }
+
+    public bool ComprobarEstructuraCercana(StructureTpe est)
+    {
+        if (listaEstructuras.Contains(est)) return true;
+        return false;
     }
 }

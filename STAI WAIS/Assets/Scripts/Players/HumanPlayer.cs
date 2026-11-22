@@ -88,6 +88,17 @@ public class HumanPlayer : Player
                 {
                     Debug.Log("Hay casilla sleccionada");
 
+                    //Comprobamos si se intenta construir sobre una estructura:
+                    if (clickedCell.HasStructure) return;
+                    
+                    //Comprobamos si hay estructura válida:
+                    bool sePuedeConstruir = false;
+                    foreach (StructureTpe estructura in selectedTroop.estructurasConstruibles) {
+                        if (clickedCell.ComprobarEstructuraCercana(estructura)) sePuedeConstruir = true;
+                    }
+
+                    if (!sePuedeConstruir) return;
+
                     //Creamos la nave:
                     Troop nuevaTropa = Instantiate(selectedTroop);
                     if (nuevaTropa.Initialize(clickedCell, this))
@@ -132,6 +143,9 @@ public class HumanPlayer : Player
             else if (selectedTroop != null && clickedCell != null)
             {
                 Debug.Log("Testing mover tropas: Casilla seleccionada");
+
+                //Comprobamos si se intenta construir sobre una estructura:
+                if (clickedCell.HasStructure) return;
                 
                 selectedTroop.MoveToCell(clickedCell, gridManager);
                 selectedTroop = null; 

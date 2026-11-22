@@ -102,6 +102,9 @@ public class Troop : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
 
+    [Header("Estructuras donde se puede construir")]
+    public StructureTpe[] estructurasConstruibles;
+
     void Awake()
     {
         influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
@@ -335,6 +338,12 @@ public class Troop : MonoBehaviour
         transform.position = currentCell.transform.position;
 
         Debug.Log("Tropa creada en " + currentCell.Coordinates);
+
+        //Consumimos los materiales:    
+        owner.creditos -= creditos;
+        owner.chatarra -= chatarra;
+        owner.tritio -= tritio;
+        owner.cristal -= cristales;
 
         return true;
     }

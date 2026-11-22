@@ -179,3 +179,4 @@ MonoBehaviour:
     factionTroopName: Interceptor TIE
     factionDescription: Tie util para neutralizar Alas-B
     sprite: {fileID: 0}
+  estructurasConstruibles: 00000000010000000200000003000000
