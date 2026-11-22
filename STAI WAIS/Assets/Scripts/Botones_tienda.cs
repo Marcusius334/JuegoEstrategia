@@ -77,12 +77,6 @@ public class Botones_tienda : MonoBehaviour
             player.tritio - troops[tier].tritio < 0 ||
             player.cristal - troops[tier].cristales < 0) return;
 
-        //Consumimos los materiales:    
-        player.creditos -= troops[tier].creditos;
-        player.chatarra -= troops[tier].chatarra;
-        player.tritio -= troops[tier].tritio;
-        player.cristal -= troops[tier].cristales;
-
         //Actualizamos la nave seleccionada del jugador:
         player.selectedTroop = troops[tier];
 

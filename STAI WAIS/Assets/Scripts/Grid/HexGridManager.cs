@@ -307,7 +307,18 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         "Estructura " + nuevaEstructura.StructureType +
         " creada en " + cell.Coordinates +
         " sobre el terreno " + cell.TerrainType
-    );
+        );
+
+        //Damos a conocer a las casillas colindantes de la estructura:
+        for (int i = 0; i < 6; i++)
+        {
+            HexCell casilla;
+            HexCoordinates coordenadas = cell.Coordinates.GetNeighbor(i);
+            if (CoordinateInWorld(coordenadas)) {
+                casilla = GetCell(coordenadas);
+                casilla.AddNeighborStructure(nuevaEstructura.StructureType);
+            }
+        }
     }
     private void LimpiarEstructuras() 
     {

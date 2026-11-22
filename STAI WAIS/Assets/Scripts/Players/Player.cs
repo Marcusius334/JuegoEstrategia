@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
         Debug.Log(
             $"RECURSOS {faction}: " +
             $"Chatarra={chatarra}, " +
-            $"Cr�ditos={creditos}, " +
+            $"Créditos={creditos}, " +
             $"Tritio={tritio}, " +
             $"Cristal={cristal}"
         );
