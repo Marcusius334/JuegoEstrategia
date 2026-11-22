@@ -36931,6 +36931,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1366585032}
     - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: textoTritio
+      value: 
+      objectReference: {fileID: 219121741}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
       propertyPath: influenceMap
       value: 
       objectReference: {fileID: 703865990}
@@ -36938,6 +36942,18 @@ PrefabInstance:
       propertyPath: turnsManager
       value: 
       objectReference: {fileID: 1295101211}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: textoChatarra
+      value: 
+      objectReference: {fileID: 936730043}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: textoCreditos
+      value: 
+      objectReference: {fileID: 840898750}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: textoCristales
+      value: 
+      objectReference: {fileID: 420347399}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -41329,7 +41345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HexCell
   coordinatesQ: -3
   coordinatesR: -3
-  terrainType: 0
+  terrainType: 5
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -41437,7 +41453,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 0.79, g: 0.92, b: 0.92, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -44440,7 +44456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HexCell
   coordinatesQ: 3
   coordinatesR: 0
-  terrainType: 2
+  terrainType: 5
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44548,7 +44564,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  m_Color: {r: 0.7, g: 0.58, b: 0.43, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

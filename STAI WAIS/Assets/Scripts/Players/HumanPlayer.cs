@@ -22,6 +22,7 @@ public class HumanPlayer : Player
     //=====================================
     public Troop selectedTroop;
     private Troop selectedAttackTroop;
+    private List<HexCoordinates> validPositions;//Cosa para bordear y desbordear las casillas a las que se mueve
     [SerializeField] private HexGridManager gridManager;
     [SerializeField] private TacticalInfluenceManager influenceMap;
 
@@ -32,7 +33,7 @@ public class HumanPlayer : Player
     [SerializeField] private TextMeshProUGUI textoCristales;
 
     void Start(){
-        
+        validPositions = new List<HexCoordinates>{};
     }
     
     // --- NUEVO: Necesitamos leer el turno ---
@@ -118,11 +119,25 @@ public class HumanPlayer : Player
     // =========================================
     private void Movimiento(RaycastHit2D hit)
     {
+        //reseteo de los bordes de las posiciones valid
+        if(validPositions.Count > 0)
+        {
+            Debug.Log("entra");
+            foreach(HexCoordinates position in validPositions)
+            {
+                HexCell hex = gridManager.GetCell(position);
+                Debug.Log("Hexexexe");
+                hex.EnableBorder(false);
+            }
+        }
+        
         if (hit.collider != null)
         {
             Debug.Log("Testing mover tropas: se ha clickado algo");
 
             Troop clickedTroop = hit.collider.GetComponent<Troop>();
+
+            Debug.Log("Cosa clicada -> "+hit);
 
             if (clickedTroop == null) Debug.Log("Testing mover tropas: No se ha encontrado tropa");
             else Debug.Log("Testing mover tropas: Se ha encontrado tropa: ");
@@ -133,7 +148,7 @@ public class HumanPlayer : Player
             {
                 selectedTroop = clickedTroop;
                 Debug.Log("Testing mover tropas: Tropa seleccionada: " + selectedTroop.name);
-                List<HexCoordinates> validPositions = PathfindingDijkstra.GetValidPositions(gridManager, clickedTroop, influenceMap);
+                validPositions = PathfindingDijkstra.GetValidPositions(gridManager, clickedTroop, influenceMap);
                 foreach(HexCoordinates position in validPositions)
                 {
                     HexCell hex = gridManager.GetCell(position);

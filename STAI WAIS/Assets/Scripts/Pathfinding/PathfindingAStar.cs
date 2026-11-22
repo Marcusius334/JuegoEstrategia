@@ -85,6 +85,26 @@ public class PathfindingAStar : PathfindingManager
             //Sacar el nodo más prioritario de visiting (no comprobamos el movimiento, eso se mira más tarde)
             HexNode hex = PopVisiting();
 
+            if (gridManager.GetTerrain(hex.coordinates).Type == HexTerrainType.TerrenoAgujeroDeGusano)
+            {
+                HexCell agujeroDeGusano1 = gridManager.GetCell(hex.coordinates);
+                HexCell agujeroDeGusano2 = agujeroDeGusano1.destino;
+
+
+                HexNode hexGusano = new HexNode(agujeroDeGusano2.Coordinates, Mathf.Infinity, 0, hex);
+                List<HexCoordinates> neighborsCoordinates = GetNeighborsCoordinates(hexGusano);
+                foreach(HexCoordinates newCoordinate in neighborsCoordinates)
+                {
+                    if(gridManager.CoordinateInWorld(newCoordinate)){
+                        Terrain newTerrain = gridManager.GetTerrain(newCoordinate);
+                        float newPriority = CalculatePriority(newCoordinate, start, end);
+                        int currentMovement = 0;
+                        HexNode newHex = new HexNode(newCoordinate, newPriority, currentMovement, hexGusano);
+                        AddToVisiting(newHex);
+                    }
+                }
+            }
+            else
             //Si estamos en end paramos
             if(!hex.SameCoordinates(end)){
                 //Obtener sus vecinos y meter los vecinos en visiting

@@ -205,7 +205,6 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         if (random < 80)
             return CreateTerrain(HexTerrainType.TerrenoNebulosa);
         return CreateTerrain(HexTerrainType.TerrenoEspacio);
-        //TerrenoEspacio lo he cambiado por espacio de momento para probar
     }
     //Forma de obtener el tipo de terreno
     public Terrain GetTerrain(HexCoordinates coordinates)
