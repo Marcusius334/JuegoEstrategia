@@ -24,9 +24,9 @@ public class PathfindingManager
     // ================================
     protected static void AddToVisiting(HexNode hex)
     {
-        if (!closed.Contains(hex) && hex.priority < int.MaxValue)
+        if (!closed.Any(x => SameNode(x, hex)) && hex.priority < int.MaxValue)
         {
-            int index = visiting.FindIndex(x => x.Equals(hex));
+            int index = visiting.FindIndex(x => SameNode(x, hex));
 
             if(index != -1)
             {
@@ -108,16 +108,25 @@ public class PathfindingManager
     // ================================
     protected static int CalculateMovement(HexNode hex, Terrain terrain)
     {
+
+        if (hex == null || terrain == null || troop == null){
+            return 0;
+        }
+        
+
         int currentMovement = hex.currentMovementPoints;
 
         currentMovement -= terrain.MovementCost;
 
-        foreach(BonusMovementTerrain bonus in troop.movementBonuses)
+         if (troop.movementBonuses != null)
         {
-            if(terrain.Type == bonus.terrain)
+            foreach(BonusMovementTerrain bonus in troop.movementBonuses)
             {
-                currentMovement -= bonus.value; //Mayor número = peor
-                break;
+                if(terrain.Type == bonus.terrain)
+                {
+                    currentMovement -= bonus.value; //Mayor número = peor
+                    break;
+                }
             }
         }
 
@@ -134,4 +143,10 @@ public class PathfindingManager
         return cell.IsOccupied;
     }
     // ================================
+
+    protected static bool SameNode(HexNode a, HexNode b)
+    {
+        return a.coordinates.Q == b.coordinates.Q &&
+            a.coordinates.R == b.coordinates.R;
+    }
 }

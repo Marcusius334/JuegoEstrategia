@@ -359,14 +359,16 @@ public class Troop : MonoBehaviour
 
     private bool TerrenoValido(HexCell casilla)
     {
-        foreach (HexTerrainType terrenoNoValido in impassableTerrains)
+        if (impassableTerrains != null)
         {
-            if (terrenoNoValido == casilla.TerrainType)
+            foreach (HexTerrainType terrenoNoValido in impassableTerrains)
             {
-                return false;
+                if (terrenoNoValido == casilla.TerrainType)
+                {
+                    return false;
+                }
             }
         }
-
         return true;
     }
 }

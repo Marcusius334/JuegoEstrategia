@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class AIPlayer : Player
 {
     [Header("Configuración")]
@@ -16,6 +17,7 @@ public class AIPlayer : Player
     private BTNode _constructionTree;
     private BTNode _movementTree;
     private BTNode _attackTree;
+    private HashSet<Structure> estructurasReservadas = new HashSet<Structure>();
 
     private void Start()
     {
@@ -59,7 +61,7 @@ public class AIPlayer : Player
         // =========================================
         _movementTree = new Selector(new List<BTNode>
         {
-            // Rama 1 Importante: Retirada si tiene menos del 30% de vida
+            // Rama 1: Retirada si tiene menos del 30% de vida
             new Sequence(new List<BTNode>
             {
                 new ConditionNode(IsCurrentTroopLowHealth),
@@ -67,14 +69,22 @@ public class AIPlayer : Player
                 new ConditionNode(FindRetreatCell),
                 new ActionNode(MoveCurrentTroopAction)
             }),
-            // Rama 2 Prioridad media: Avanzar hacia el enemigo mas cercano si no esta en rango
+
+            // Rama 2: Buscar una posición favorable para combatir
             new Sequence(new List<BTNode>
             {
-                new ConditionNode(NoEnemyInAttackRange),
                 new ConditionNode(FindAdvanceCellTowardEnemy),
                 new ActionNode(MoveCurrentTroopAction)
             }),
-            // Rama 3 (Fallback): Mantener posición
+
+            // Rama 3: Buscar una estructura que conquistar
+            new Sequence(new List<BTNode>
+            {
+                new ConditionNode(FindBestStructureToCapture),
+                new ActionNode(MoveCurrentTroopAction)
+            }),
+
+            // Rama 4: Mantener posición
             new ActionNode(() => NodeState.Success)
         });
 
@@ -138,6 +148,9 @@ public class AIPlayer : Player
         Debug.Log("IA: Evaluando BT de Movimiento...");
         RefreshTroopLists();
 
+        Debug.Log("IA: Número de tropas: " + myTroops.Count);
+
+        estructurasReservadas.Clear();
         foreach (Troop troop in myTroops)
         {
             if (troop == null || troop.currentCell == null) continue;
@@ -397,6 +410,7 @@ public class AIPlayer : Player
         return true;
     }
 
+    /* El que hizo more, lo dejo por si acaso era necesario, pero el que voy a poner se adapta al arbol local y se moveran al más eficiente
     private bool FindAdvanceCellTowardEnemy()
     {
         Troop troop = _blackboard.Get<Troop>("CurrentTroop");
@@ -455,6 +469,66 @@ public class AIPlayer : Player
         _blackboard.Set("MoveDestination", bestCell);
         return true;
     }
+    */
+
+
+    private bool FindAdvanceCellTowardEnemy()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+
+        if (troop == null || troop.currentCell == null)
+            return false;
+
+        // Seleccionar el enemigo más interesante.
+        if (!FindBestEnemyToEngage())
+            return false;
+
+        Troop target = _blackboard.Get<Troop>("TargetEnemy");
+
+        if (target == null || target.currentCell == null)
+            return false;
+
+        // Obtener las posiciones a las que puede moverse.
+        List<HexCoordinates> reachableCoords =
+            PathfindingDijkstra.GetValidPositions(
+                gridManager, troop, influenceManager
+            );
+
+        HexCell bestCell = null;
+        float bestScore = CalculatePositionScore(
+            troop.currentCell, target, troop
+        );
+
+        foreach (HexCoordinates coords in reachableCoords)
+        {
+            HexCell cell = gridManager.GetCell(coords);
+
+            if (cell == null || cell.IsOccupied)
+                continue;
+
+            float score = CalculatePositionScore(cell, target, troop);
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestCell = cell;
+            }
+        }
+
+        // Si no encontramos una posición mejor, se queda donde está.
+        if (bestCell == null)
+            return false;
+
+        _blackboard.Set("MoveDestination", bestCell);
+
+        Debug.Log(
+            $"{troop.name} busca posicionarse frente a {target.name} " +
+            $"a distancia {bestCell.Coordinates.DistanceTo(target.currentCell.Coordinates)}"
+        );
+
+        return true;
+    }
+
 
     private NodeState MoveCurrentTroopAction()
     {
@@ -482,45 +556,97 @@ public class AIPlayer : Player
     {
         Troop troop = _blackboard.Get<Troop>("CurrentTroop");
         List<Troop> enemies = _blackboard.Get<List<Troop>>("EnemyTroops");
-        if (troop == null || enemies == null) return false;
+
+        if (troop == null || troop.currentCell == null ||
+            enemies == null || enemies.Count == 0)
+            return false;
+
+        Troop bestTarget = null;
+        float bestScore = float.MinValue;
 
         foreach (Troop enemy in enemies)
         {
-            int dist = troop.currentCell.Coordinates.DistanceTo(enemy.currentCell.Coordinates);
-            if (dist <= troop.range && troop.CalculateDamageAgainst(enemy) >= enemy.hp)
+            if (enemy == null || enemy.currentCell == null)
+                continue;
+
+            int distance = troop.currentCell.Coordinates.DistanceTo(
+                enemy.currentCell.Coordinates
+            );
+
+            if (distance > troop.range)
+                continue;
+
+            int damage = troop.CalculateDamageAgainst(enemy);
+
+            // Solo nos interesan los enemigos que podemos eliminar.
+            if (damage < enemy.hp)
+                continue;
+
+            float score = CalculateEnemyScore(troop, enemy);
+
+            if (score > bestScore)
             {
-                _blackboard.Set("TargetEnemy", enemy);
-                return true;
+                bestScore = score;
+                bestTarget = enemy;
             }
         }
-        return false;
+
+        if (bestTarget == null)
+            return false;
+
+        _blackboard.Set("TargetEnemy", bestTarget);
+
+        Debug.Log(
+            $"{troop.name} puede eliminar a {bestTarget.name}. " +
+            $"Puntuación: {bestScore}"
+        );
+
+        return true;
     }
 
     private bool FindBestTargetInRange()
     {
         Troop troop = _blackboard.Get<Troop>("CurrentTroop");
         List<Troop> enemies = _blackboard.Get<List<Troop>>("EnemyTroops");
-        if (troop == null || enemies == null) return false;
+
+        if (troop == null || troop.currentCell == null ||
+            enemies == null || enemies.Count == 0)
+            return false;
 
         Troop bestTarget = null;
-        int highestDamage = -1;
+        float bestScore = float.MinValue;
 
         foreach (Troop enemy in enemies)
         {
-            int dist = troop.currentCell.Coordinates.DistanceTo(enemy.currentCell.Coordinates);
-            if (dist <= troop.range)
+            if (enemy == null || enemy.currentCell == null)
+                continue;
+
+            int distance = troop.currentCell.Coordinates.DistanceTo(
+                enemy.currentCell.Coordinates
+            );
+
+            if (distance > troop.range)
+                continue;
+
+            float score = CalculateEnemyScore(troop, enemy);
+
+            if (score > bestScore)
             {
-                int dmg = troop.CalculateDamageAgainst(enemy);
-                if (dmg > highestDamage)
-                {
-                    highestDamage = dmg;
-                    bestTarget = enemy;
-                }
+                bestScore = score;
+                bestTarget = enemy;
             }
         }
 
-        if (bestTarget == null) return false;
+        if (bestTarget == null)
+            return false;
+
         _blackboard.Set("TargetEnemy", bestTarget);
+
+        Debug.Log(
+            $"{troop.name} ataca a {bestTarget.name}. " +
+            $"Puntuación: {bestScore}"
+        );
+
         return true;
     }
 
@@ -533,4 +659,200 @@ public class AIPlayer : Player
         troop.Attack(target);
         return NodeState.Success;
     }
+
+    //-----------------------------------------------------------------------------
+    //arbol local
+    //-----------------------------------------------------------------------------
+
+    //enemigos con mas o menos importancia
+    //se mirara si es efectivo, si esta más cerca, si esta debil, etc...
+    
+    private float CalculateEnemyScore(Troop troop, Troop enemy)
+    {
+        if (troop == null || enemy == null ||
+            troop.currentCell == null || enemy.currentCell == null)
+            return float.MinValue;
+
+        int damageDealt = troop.CalculateDamageAgainst(enemy);
+
+        int distance = troop.currentCell.Coordinates.DistanceTo(
+            enemy.currentCell.Coordinates
+        );
+
+        // Solo considerar el daño recibido si el enemigo
+        // tiene alcance suficiente para atacarnos.
+        int damageReceived = 0;
+
+        if (distance <= enemy.range)
+        {
+            damageReceived = enemy.CalculateDamageAgainst(troop);
+        }
+
+        float score = 0f;
+
+        // Daño que podemos causar.
+        score += damageDealt;
+
+        // Priorizar objetivos que podemos eliminar.
+        if (damageDealt >= enemy.hp)
+            score += 500f;
+
+        // Penalizar el peligro real del enfrentamiento.
+        score -= damageReceived * 0.5f;
+
+        // Penalizar enemigos demasiado lejanos.
+        score -= distance * 50f;
+
+        return score;
+    }
+
+
+
+    //mirar cual es el que tiene más puntuacion 
+    private bool FindBestEnemyToEngage()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        List<Troop> enemies = _blackboard.Get<List<Troop>>("EnemyTroops");
+
+        if (troop == null || enemies == null || enemies.Count == 0)
+            return false;
+
+        Troop bestEnemy = null;
+        float bestScore = float.MinValue;
+
+        foreach (Troop enemy in enemies)
+        {
+            if (enemy == null || enemy.currentCell == null)
+                continue;
+
+            float score = CalculateEnemyScore(troop, enemy);
+
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestEnemy = enemy;
+            }
+        }
+
+        if (bestEnemy == null)
+            return false;
+
+        _blackboard.Set("TargetEnemy", bestEnemy);
+
+        Debug.Log(
+            $"{troop.name} selecciona como objetivo a {bestEnemy.name}. " +
+            $"Puntuación: {bestScore}"
+        );
+
+        return true;
+    }
+
+
+    private float CalculatePositionScore(HexCell cell, Troop target, Troop troop)
+    {
+        if (cell == null || target == null || troop == null)
+            return float.MinValue;
+
+        int distance = cell.Coordinates.DistanceTo(
+            target.currentCell.Coordinates
+        );
+
+        int desiredRange = troop.range;
+
+        // Para estar en rango max
+        if (distance <= desiredRange)
+        {
+            return 1000f - (desiredRange - distance) * 100f;
+        }
+
+        // Si estamos fuera de rango, se pone más cercaa
+        return -(distance - desiredRange) * 100f;
+    }
+
+    private bool FindBestStructureToCapture()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+
+        if (troop == null || troop.currentCell == null)
+            return false;
+
+        // Calculamos las posiciones alcanzables una sola vez.
+        List<HexCoordinates> reachable =
+            PathfindingDijkstra.GetValidPositions(
+                gridManager, troop, influenceManager
+            );
+
+        HexCell[] allCells = FindObjectsByType<HexCell>(
+            FindObjectsSortMode.None
+        );
+
+        HexCell bestCell = null;
+        Structure bestStructure = null;
+        float bestScore = float.MinValue;
+
+        foreach (HexCell structureCell in allCells)
+        {
+            if (structureCell == null || !structureCell.HasStructure)
+                continue;
+
+            Structure structure = structureCell.OccupyingStructure;
+
+            if (structure == null)
+                continue;
+
+            // Ignorar estructuras que ya controla la IA.
+            if (structure.ControllingPLayer == this)
+                continue;
+
+            if (estructurasReservadas.Contains(structure))
+                continue;
+
+            for (int i = 0; i < 6; i++)
+            {
+                HexCoordinates coords =
+                    structureCell.Coordinates.GetNeighbor(i);
+
+                HexCell adjacentCell = gridManager.GetCell(coords);
+
+                if (adjacentCell == null || adjacentCell.IsOccupied)
+                    continue;
+
+                if (!reachable.Contains(coords))
+                    continue;
+
+                int distance =
+                    troop.currentCell.Coordinates.DistanceTo(coords);
+
+                float score =
+                    structure.StrategicValue * 10f - distance * 20f;
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestCell = adjacentCell;
+                    bestStructure = structure;
+                }
+            }
+        }
+
+        if (bestCell == null)
+            return false;
+
+        _blackboard.Set("MoveDestination", bestCell);
+        _blackboard.Set("TargetStructure", bestStructure);
+
+        estructurasReservadas.Add(bestStructure);
+
+        Debug.Log(
+            $"{troop.name} intenta conquistar una estructura. " +
+            $"Destino: {bestCell.Coordinates}. Puntuación: {bestScore}"
+        );
+
+        return true;
+    }
+
 }
+
+
+
+

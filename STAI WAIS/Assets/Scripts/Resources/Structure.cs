@@ -6,10 +6,10 @@ public class Structure : MonoBehaviour
     [SerializeField] private StructureTpe structureType;
     public StructureTpe StructureType => structureType;
 
-    [Header("Producción")]
+    [Header("Producciï¿½n")]
     [SerializeField] public int recursosPorTurno = 10;
 
-    [Header("Interés estratégico")]
+    [Header("Interï¿½s estratï¿½gico")]
     [SerializeField] private float strategicValue = 20f;
     public float StrategicValue => strategicValue;
 
@@ -76,7 +76,7 @@ public class Structure : MonoBehaviour
                 jugadorImperio = tropa.owner;
             }
         }
-        //determinar el dueño. En caso de empate queda neutral
+        //determinar el dueï¿½o. En caso de empate queda neutral
         if (rebeldes > imperio) ControllingPLayer = jugadorRebelde;
         else if (imperio > rebeldes) ControllingPLayer = jugadorImperio;
         else ControllingPLayer = null;

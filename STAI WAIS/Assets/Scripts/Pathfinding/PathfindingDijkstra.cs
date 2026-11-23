@@ -17,6 +17,9 @@ public class PathfindingDijkstra : PathfindingManager
         troop = newTroop;
         influenceMap = newInfluenceMap;
 
+        visiting.Clear();
+        closed.Clear(); //para que no se guarden las listas
+
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
         Terrain terrain = gridManager.GetTerrain(coordinates);
@@ -56,6 +59,9 @@ public class PathfindingDijkstra : PathfindingManager
         gridManager = newGridManager;
         troop = newTroop;
         influenceMap = newInfluenceMap;
+
+        visiting.Clear();
+        closed.Clear();
 
         //Iniciar el primer nodo
         HexCoordinates coordinates = troop.currentCell.Coordinates;
@@ -109,6 +115,8 @@ public class PathfindingDijkstra : PathfindingManager
             if (gridManager.GetTerrain(hex.coordinates).Type == HexTerrainType.TerrenoAgujeroDeGusano)
             {
                 HexCell agujeroDeGusano1 = gridManager.GetCell(hex.coordinates);
+
+                if (agujeroDeGusano1 == null || agujeroDeGusano1.destino == null) continue;
                 HexCell agujeroDeGusano2 = agujeroDeGusano1.destino;
 
 
