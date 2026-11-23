@@ -121,7 +121,7 @@ public class TurnsManager : MonoBehaviour
         switch (faseActual)
         {
             case Fase.Construccion:
-                boton.SetActive(true); //Desactivamoms la tienda
+                boton.SetActive(false); //Desactivamoms la tienda
                 faseActual = Fase.Movimiento;
                 StartCoroutine(AnimarTransicionFase());
                 break;
