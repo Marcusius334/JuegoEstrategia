@@ -159,7 +159,7 @@ MonoBehaviour:
   descripcion: "Nave de combate b\xE1sica, adaptada para todos las situaciones de
     manera eficiente pero con ninguna especializaci\xF3n. La m\xE1s barata pero m\xE1s
     simple"
-  spriteRenderer: {fileID: 0}
+  impSprite: {fileID: -435622858714437253, guid: 9ea175867d9e8db4ebb3aa4ac1d4b19f, type: 3}
   factionSkins:
   - faction: 0
     factionTroopName: Ala-X
@@ -170,5 +170,5 @@ MonoBehaviour:
   - faction: 1
     factionTroopName: Caza Tie
     factionDescription: "El tie m\xE1s basico del imperio"
-    sprite: {fileID: 0}
+    sprite: {fileID: -435622858714437253, guid: 9ea175867d9e8db4ebb3aa4ac1d4b19f, type: 3}
   estructurasConstruibles: 00000000010000000200000003000000

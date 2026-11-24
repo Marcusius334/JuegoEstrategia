@@ -159,8 +159,10 @@ MonoBehaviour:
   chatarra: 1800
   tritio: 60
   cristales: 0
-  name: 
-  descripcion: 
+  name: Cabeza de martillo
+  descripcion: "La primera l\xEDnea de la batalla, resulta el tanque del escuadr\xF3n,
+    con una inmensa vida pero muy lento y poco ataque. Ideal para frenar naves ligeras
+    que resultan poco efectivas contra \xE9l"
   spriteRenderer: {fileID: 0}
   factionSkins:
   - faction: 0
@@ -168,9 +170,10 @@ MonoBehaviour:
     factionDescription: "La primera l\xEDnea de la batalla, resulta el tanque del
       escuadr\xF3n, con una inmensa vida pero muy lento y poco ataque. Ideal para
       frenar naves ligeras que resultan poco efectivas contra \xE9l"
-    sprite: {fileID: 0}
+    sprite: {fileID: 2853448231941074415, guid: 85e020db9525d954b88d1c5b934b6052, type: 3}
   - faction: 1
     factionTroopName: Tie Defensor
     factionDescription: "Efectivo para aguantar numerosos ataques pero no provocara
       mucho da\xF1o"
-    sprite: {fileID: 0}
+    sprite: {fileID: 7677847752203320847, guid: 44ce50bda5945464ebe94200a1db23e7, type: 3}
+  estructurasConstruibles: 

@@ -287,7 +287,8 @@ public class AIPlayer : Player
         Troop newTroop = Instantiate(troopPrefab);
         if (newTroop.Initialize(spawnCell, this))
         {
-            newTroop.ApplyFactionSkin(this.faction);
+            //newTroop.ApplyFactionSkin(this.faction);
+            newTroop.ChangeSkin();
 
             chatarra -= troopPrefab.chatarra;
             creditos -= troopPrefab.creditos;

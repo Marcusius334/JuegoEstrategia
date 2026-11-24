@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-
 using UnityEngine;
 
 // ================================
@@ -99,7 +98,8 @@ public class Troop : MonoBehaviour
 
 
     [Header("Apariencia por Bando")]
-    public SpriteRenderer spriteRenderer;
+    public Sprite impSprite;
+    private SpriteRenderer spriteRenderer;
     public SkinFaction[] factionSkins;
 
     [Header("Estructuras donde se puede construir")]
@@ -111,14 +111,17 @@ public class Troop : MonoBehaviour
     {
         influenceManager = FindAnyObjectByType<TacticalInfluenceManager>();
         gridManager = FindAnyObjectByType<HexGridManager>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     } 
 
-    public virtual void ApplyFactionSkin(Faction playerFaction)
+    /* public virtual void ApplyFactionSkin(Faction playerFaction)
     {
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (factionSkins == null) return;
+
+        Debug.Log("Cambiando Skin");
 
         foreach (var skin in factionSkins)
         {
@@ -139,6 +142,14 @@ public class Troop : MonoBehaviour
                 break;
             }
         }
+    } */
+
+    public virtual void ChangeSkin()
+    {
+        if (impSprite == null) return;
+
+        spriteRenderer.sprite = impSprite; 
+        spriteRenderer.flipX = true;
     }
 
     public SkinFaction GetFactionSkin(Faction playerFaction)

@@ -165,18 +165,20 @@ MonoBehaviour:
   chatarra: 300
   tritio: 0
   cristales: 0
-  name: 
-  descripcion: 
-  spriteRenderer: {fileID: 0}
+  name: Ala-A
+  descripcion: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as de manera
+    muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de buen da\xF1o
+    pero d\xE9bil contra otros ataques."
+  impSprite: {fileID: -4081884353770112701, guid: 5cbf5b10d8b5c5447a46dcc0b4fc9568, type: 3}
   factionSkins:
   - faction: 0
     factionTroopName: Ala-A
     factionDescription: "Nave de caza b\xE1sica, ideal para atacar naves peque\xF1as
       de manera muy eficiente. Cuenta con una gran mobilidad y rango adem\xE1s de
       buen da\xF1o pero d\xE9bil contra otros ataques."
-    sprite: {fileID: 0}
+    sprite: {fileID: -1343423376722548337, guid: 6aa68c5a767edee449e18875d444fbe4, type: 3}
   - faction: 1
     factionTroopName: Interceptor TIE
     factionDescription: Tie util para neutralizar Alas-B
-    sprite: {fileID: 0}
+    sprite: {fileID: -4081884353770112701, guid: 5cbf5b10d8b5c5447a46dcc0b4fc9568, type: 3}
   estructurasConstruibles: 00000000010000000200000003000000
