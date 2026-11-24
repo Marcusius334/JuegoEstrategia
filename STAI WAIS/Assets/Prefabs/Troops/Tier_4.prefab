@@ -157,16 +157,18 @@ MonoBehaviour:
   chatarra: 1200
   tritio: 70
   cristales: 0
-  name: 
-  descripcion: 
+  name: Ala-B
+  descripcion: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento y rango.
+    Especializada en la destrucci\xF3n de otras naves."
   spriteRenderer: {fileID: 0}
   factionSkins:
   - faction: 0
     factionTroopName: Ala-B
     factionDescription: "Una mejora del Ala-X, mayor aguante, vida, ataque, movimiento
       y rango. Especializada en la destrucci\xF3n de otras naves."
-    sprite: {fileID: 0}
+    sprite: {fileID: 4848252416118211582, guid: a8c4fbc789dd9704a95390af0d2f61ca, type: 3}
   - faction: 1
     factionTroopName: Tie avanzado
     factionDescription: Un tie hecho para arrasar contra las naves enemigas
-    sprite: {fileID: 0}
+    sprite: {fileID: 5339220066031868377, guid: 3714e88fe1f638b43a957b1caa0180fe, type: 3}
+  estructurasConstruibles: 

@@ -161,8 +161,10 @@ MonoBehaviour:
   chatarra: 2000
   tritio: 80
   cristales: 2
-  name: 
-  descripcion: 
+  name: Ala-E
+  descripcion: Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva, de
+    velocidad y alcance. Resulta en un equilibrio sensacional con una gran fuerza
+    ofensiva contra otras naves
   spriteRenderer: {fileID: 0}
   factionSkins:
   - faction: 0
@@ -170,8 +172,9 @@ MonoBehaviour:
     factionDescription: Perfeccionamiento final del Ala-X, mejora defensiva, ofensiva,
       de velocidad y alcance. Resulta en un equilibrio sensacional con una gran fuerza
       ofensiva contra otras naves
-    sprite: {fileID: 0}
+    sprite: {fileID: -6098828764623027175, guid: acdda0bfdb78ba347bc3fe8ef5896ed8, type: 3}
   - faction: 1
     factionTroopName: Tie Strike
     factionDescription: Un tie megaOfensivo contra todo tipo de naves
-    sprite: {fileID: 0}
+    sprite: {fileID: 6195373481580250214, guid: 0fca3fb6f0ff08f47bf01c08f7c08610, type: 3}
+  estructurasConstruibles: 00000000010000000200000003000000

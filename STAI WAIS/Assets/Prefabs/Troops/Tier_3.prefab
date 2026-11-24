@@ -179,8 +179,10 @@ MonoBehaviour:
   chatarra: 700
   tritio: 0
   cristales: 0
-  name: 
-  descripcion: 
+  name: Ala-Y
+  descripcion: "Nave bombardera, ideal para estructuras como bases enemigas o naves
+    de grandes dimensiones. Lenta y con corto alcanze pero gran vida y enorme da\xF1o
+    a objetivos adecuados. "
   spriteRenderer: {fileID: 0}
   factionSkins:
   - faction: 0
@@ -188,8 +190,9 @@ MonoBehaviour:
     factionDescription: "Nave bombardera, ideal para estructuras como bases enemigas
       o naves de grandes dimensiones. Lenta y con corto alcanze pero gran vida y
       enorme da\xF1o a objetivos adecuados. "
-    sprite: {fileID: 0}
+    sprite: {fileID: -6418445256563099894, guid: aec2d276c6215be47a64d5b9d2a048c5, type: 3}
   - faction: 1
     factionTroopName: Bombardero tie
     factionDescription: Efectivo para destruir naves y estructuras de gran calibre
-    sprite: {fileID: 0}
+    sprite: {fileID: -1409330379305639698, guid: 2d67bf04f2eeb9d4aaa94df40402630b, type: 3}
+  estructurasConstruibles: 

@@ -702,7 +702,8 @@ public class AIPlayer : Player
         // newTroop.Initialize() ya descuenta automáticamente creditos, chatarra, tritio y cristal al owner
         if (newTroop.Initialize(spawnCell, this))
         {
-            newTroop.ApplyFactionSkin(this.faction);
+            //newTroop.ApplyFactionSkin(this.faction);
+            newTroop.ChangeSkin();
 
             /* if (gameManager != null)
             {
