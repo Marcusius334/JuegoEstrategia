@@ -43,7 +43,7 @@ public class PathfindingManager
                 visiting.Sort((a, b) => a.priority.CompareTo(b.priority));
             }
             
-        }else if (!closed.Contains(hex))
+        }else if (!closed.Any(x => SameNode(x, hex)))
         {
             closed.Add(hex);
         }
@@ -55,9 +55,11 @@ public class PathfindingManager
     // ================================
     protected static void AddToClosed(HexNode hex)
     {
-        if (closed.Contains(hex) && hex.priority < int.MaxValue)
+        // Comprobamos por coordenadas con SameNode para evitar nodos duplicados en closed
+        int index = closed.FindIndex(x => SameNode(x, hex));
+
+        if (index != -1 && hex.priority < int.MaxValue)
         {
-            int index = closed.FindIndex(x => x.Equals(hex));
             if(hex.priority < closed[index].priority)
             {
                 closed.RemoveAt(index);
@@ -65,7 +67,7 @@ public class PathfindingManager
                 closed.Sort((a, b) => a.priority.CompareTo(b.priority));
             }
             
-        }else if (!closed.Contains(hex))
+        }else if (index == -1)
         {
             closed.Add(hex);
         }
@@ -139,7 +141,12 @@ public class PathfindingManager
     // ================================
     public static bool CellIsOccupied(HexNode hex)
     {
+        // Protección contra coordenadas nulas o fuera de rango
+        if (hex == null || gridManager == null) return true;
+
         HexCell cell = gridManager.GetCell(hex.coordinates);
+        if (cell == null) return true;
+
         return cell.IsOccupied;
     }
     // ================================

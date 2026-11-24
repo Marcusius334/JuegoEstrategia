@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
+    // Estructuras internas para la planificación de la IA Global
+    private enum GlobalRole
+    {
+        Retirada,
+        CazarObjetivo,
+        ConquistarRecurso
+    }
+
+    private class TroopAssignment
+    {
+        public GlobalRole Role;
+        public HexCoordinates TargetCoordinates;
+        public Troop TargetEnemy;
+        public Structure TargetStructure;
+    }
+
     [Header("Configuración")]
     public Troop troopPrefab;
+    // Lista opcional para asignar en el Inspector las 7 naves y que la IA elija según recursos y ventaja
+    public List<Troop> availableTroopPrefabs = new List<Troop>();
     [SerializeField] private HexGridManager gridManager;
     [SerializeField] private TacticalInfluenceManager influenceManager;
 
@@ -18,6 +36,11 @@ public class AIPlayer : Player
     private BTNode _movementTree;
     private BTNode _attackTree;
     private HashSet<Structure> estructurasReservadas = new HashSet<Structure>();
+
+    // Memoria de decisiones de la IA Global para el turno actual
+    private readonly Dictionary<Troop, TroopAssignment> _globalPlan = new Dictionary<Troop, TroopAssignment>();
+    private readonly Dictionary<ResourceType, float> _resourceWeights = new Dictionary<ResourceType, float>();
+    private Troop _globalFocusEnemy;
 
     private void Start()
     {
@@ -70,6 +93,23 @@ public class AIPlayer : Player
                 new ActionNode(MoveCurrentTroopAction)
             }),
 
+            // Rama 2 (IA Global): Cazar nave enemiga prioritaria / baja de vida con A*
+            new Sequence(new List<BTNode>
+            {
+                new ConditionNode(HasGlobalHuntAssignment),
+                new ConditionNode(NoEnemyInAttackRange),
+                new ConditionNode(FindGlobalHuntStepWithAStar),
+                new ActionNode(MoveCurrentTroopAction)
+            }),
+
+            // Rama 3 (IA Global): Trazar rumbo hacia la estructura más rentable con A*
+            new Sequence(new List<BTNode>
+            {
+                new ConditionNode(HasGlobalStructureAssignment),
+                new ConditionNode(FindGlobalStructureStepWithAStar),
+                new ActionNode(MoveCurrentTroopAction)
+            }),
+
             // Rama 2: Buscar una posición favorable para combatir
             new Sequence(new List<BTNode>
             {
@@ -99,6 +139,12 @@ public class AIPlayer : Player
                 new ConditionNode(FindLethalTargetInRange),
                 new ActionNode(AttackTargetAction)
             }),
+            // Rama 2 (IA Global): Priorizar enemigos heridos o marcados como foco global
+            new Sequence(new List<BTNode>
+            {
+                new ConditionNode(FindLowHealthOrFocusTargetInRange),
+                new ActionNode(AttackTargetAction)
+            }),
             // Rama 2 (Prioridad media): Atacar al enemigo en rango al que mas daño haga
             new Sequence(new List<BTNode>
             {
@@ -123,6 +169,8 @@ public class AIPlayer : Player
             BuildBehaviorTrees();
         }
         RefreshTroopLists();
+        // Analizamos la economía y el estado global del mapa antes de decidir qué construir
+        EvaluarEstrategiaGlobal();
         if (_constructionTree == null)
         {
             Debug.LogError("El árbol de construcción no se ha inicializado.");
@@ -136,7 +184,7 @@ public class AIPlayer : Player
     // =========================================
     private HexCell ChoosBestCell(Troop troop)
     {
-        return gridManager.GetCell(PathfindingDijkstra.GetBestPosition(gridManager, troop, influenceManager));  //cambiar Pathfinding por A* y en el parentesis falta la variable que será la cordenada de donde esta la tropa
+        return gridManager.GetCell(PathfindingAStar.GetBestPosition(gridManager, troop, troop.currentCell.Coordinates, influenceManager));  //cambiar Pathfinding por A* y en el parentesis falta la variable que será la cordenada de donde esta la tropa
     }
     public void PerformMovementPhase()
     {
@@ -147,6 +195,8 @@ public class AIPlayer : Player
         }
         Debug.Log("IA: Evaluando BT de Movimiento...");
         RefreshTroopLists();
+        // Planificamos los objetivos globales (recursos rentables y enemigos débiles) para toda la flota
+        EvaluarEstrategiaGlobal();
 
         Debug.Log("IA: Número de tropas: " + myTroops.Count);
 
@@ -175,6 +225,228 @@ public class AIPlayer : Player
             _blackboard.Set("CurrentTroop", troop);
             _attackTree.Evaluate();
         }
+    }
+
+    // =========================================
+    // CEREBRO DE LA IA GLOBAL (ANÁLISIS DEL MAPA)
+    // =========================================
+
+    private void EvaluarEstrategiaGlobal()
+    {
+        _globalPlan.Clear();
+        _globalFocusEnemy = null;
+
+        if (gridManager == null) gridManager = FindFirstObjectByType<HexGridManager>();
+        if (influenceManager == null) influenceManager = FindFirstObjectByType<TacticalInfluenceManager>();
+
+        List<Troop> enemies = _blackboard.Get<List<Troop>>("EnemyTroops") ?? new List<Troop>();
+        Structure[] allStructures = FindObjectsByType<Structure>(FindObjectsSortMode.None);
+
+        // 1. Calcular ingresos actuales por turno de las estructuras controladas por la IA
+        Dictionary<ResourceType, int> incomePerTurn = new Dictionary<ResourceType, int>
+        {
+            { ResourceType.Chatarra, 0 },
+            { ResourceType.Creditos, 0 },
+            { ResourceType.Tritio, 0 },
+            { ResourceType.CristalKyber, 0 }
+        };
+
+        List<Structure> targetableStructures = new List<Structure>();
+
+        foreach (Structure st in allStructures)
+        {
+            if (st == null) continue;
+            st.ActualizarControl();
+
+            if (st.ControllingPLayer == this)
+            {
+                incomePerTurn[st.ResourceProduced] += st.recursosPorTurno;
+            }
+            else
+            {
+                targetableStructures.Add(st);
+            }
+        }
+
+        // 2. Calcular qué recurso es más rentable conquistar según reservas e ingresos
+        CalcularRentabilidadRecursos(incomePerTurn);
+
+        // 3. Identificar la nave enemiga más prioritaria (baja de vida o amenazando estructuras)
+        float bestEnemyPriority = float.MinValue;
+        foreach (Troop enemy in enemies)
+        {
+            if (enemy == null || enemy.currentCell == null) continue;
+
+            float hpRatio = (float)enemy.hp / Mathf.Max(1, enemy.maxhp);
+            float threatValue = enemy.attack + (enemy.maxhp * 0.25f);
+
+            // Gran prioridad si el enemigo tiene menos del 50% de vida
+            if (hpRatio <= 0.5f) threatValue += (1f - hpRatio) * 800f;
+
+            // Prioridad extra si está intentando capturar una estructura nuestra
+            for (int i = 0; i < 6; i++)
+            {
+                HexCell neighbor = gridManager.GetCell(enemy.currentCell.Coordinates.GetNeighbor(i));
+                if (neighbor != null && neighbor.HasStructure && neighbor.OccupyingStructure.ControllingPLayer == this)
+                {
+                    threatValue += 350f;
+                    break;
+                }
+            }
+
+            if (threatValue > bestEnemyPriority)
+            {
+                bestEnemyPriority = threatValue;
+                _globalFocusEnemy = enemy;
+            }
+        }
+
+        // 4. Puntuar cada estructura libre o enemiga según la rentabilidad de su recurso
+        Dictionary<Structure, float> structureScores = new Dictionary<Structure, float>();
+        foreach (Structure st in targetableStructures)
+        {
+            HexCell stCell = st.GetComponentInParent<HexCell>();
+            if (stCell == null) continue;
+
+            float resourceWeight = _resourceWeights[st.ResourceProduced];
+            float score = (st.recursosPorTurno * resourceWeight) + (st.StrategicValue * 5f);
+
+            // Penalizar si hay defensores enemigos alrededor
+            int defenders = 0;
+            for (int i = 0; i < 6; i++)
+            {
+                HexCell adj = gridManager.GetCell(stCell.Coordinates.GetNeighbor(i));
+                if (adj != null && adj.OccupyingTroop != null && adj.OccupyingTroop.owner != this)
+                    defenders++;
+            }
+            score -= defenders * 120f;
+
+            structureScores[st] = score;
+        }
+
+        // 5. Repartir misiones entre las naves de la IA sin duplicar estructuras objetivo
+        HashSet<Structure> globalReservedStructures = new HashSet<Structure>();
+
+        foreach (Troop troop in myTroops)
+        {
+            if (troop == null || troop.currentCell == null) continue;
+
+            if (troop.hp < troop.maxhp * 0.3f)
+            {
+                _globalPlan[troop] = new TroopAssignment { Role = GlobalRole.Retirada };
+                continue;
+            }
+
+            Structure bestSt = null;
+            HexCell bestStAdjCell = null;
+            float bestStNetScore = float.MinValue;
+
+            foreach (var kvp in structureScores)
+            {
+                Structure st = kvp.Key;
+                if (globalReservedStructures.Contains(st)) continue;
+
+                HexCell adjCell = GetBestAdjacentFreeCellForStructure(st, troop);
+                if (adjCell == null) continue;
+
+                int dist = troop.currentCell.Coordinates.DistanceTo(adjCell.Coordinates);
+                float netScore = kvp.Value - (dist * 35f);
+
+                if (netScore > bestStNetScore)
+                {
+                    bestStNetScore = netScore;
+                    bestSt = st;
+                    bestStAdjCell = adjCell;
+                }
+            }
+
+            Troop bestHuntTarget = null;
+            float bestHuntScore = float.MinValue;
+
+            foreach (Troop enemy in enemies)
+            {
+                if (enemy == null || enemy.currentCell == null) continue;
+                int dist = troop.currentCell.Coordinates.DistanceTo(enemy.currentCell.Coordinates);
+                float hpRatio = (float)enemy.hp / Mathf.Max(1, enemy.maxhp);
+                int dmg = troop.CalculateDamageAgainst(enemy);
+
+                float huntScore = dmg * 1.5f - (dist * 45f);
+                if (hpRatio <= 0.45f) huntScore += 450f;
+                if (enemy == _globalFocusEnemy) huntScore += 200f;
+
+                if (huntScore > bestHuntScore)
+                {
+                    bestHuntScore = huntScore;
+                    bestHuntTarget = enemy;
+                }
+            }
+
+            if (bestHuntTarget != null && (bestSt == null || bestHuntScore > bestStNetScore))
+            {
+                _globalPlan[troop] = new TroopAssignment
+                {
+                    Role = GlobalRole.CazarObjetivo,
+                    TargetEnemy = bestHuntTarget,
+                    TargetCoordinates = bestHuntTarget.currentCell.Coordinates
+                };
+            }
+            else if (bestSt != null && bestStAdjCell != null)
+            {
+                globalReservedStructures.Add(bestSt);
+                _globalPlan[troop] = new TroopAssignment
+                {
+                    Role = GlobalRole.ConquistarRecurso,
+                    TargetStructure = bestSt,
+                    TargetCoordinates = bestStAdjCell.Coordinates
+                };
+            }
+        }
+    }
+
+    private void CalcularRentabilidadRecursos(Dictionary<ResourceType, int> incomePerTurn)
+    {
+        // Valoramos más los recursos escasos o de los que aún no tenemos producción por turno
+        _resourceWeights[ResourceType.Chatarra] = (chatarra < 600 ? 25f : 12f) + (incomePerTurn[ResourceType.Chatarra] == 0 ? 15f : 0f);
+        _resourceWeights[ResourceType.Creditos] = (creditos < 300 ? 22f : 10f) + (incomePerTurn[ResourceType.Creditos] == 0 ? 15f : 0f);
+        _resourceWeights[ResourceType.Tritio] = (tritio < 60 ? 24f : 11f) + (incomePerTurn[ResourceType.Tritio] == 0 ? 18f : 0f);
+        _resourceWeights[ResourceType.CristalKyber] = (cristal < 2 ? 35f : 14f) + (incomePerTurn[ResourceType.CristalKyber] == 0 ? 20f : 0f);
+
+        // Si ya tenemos chatarra y créditos suficientes, priorizamos Kyber y Tritio para naves avanzadas
+        if (chatarra >= 1200 && creditos >= 500)
+        {
+            _resourceWeights[ResourceType.CristalKyber] += 25f;
+            _resourceWeights[ResourceType.Tritio] += 15f;
+        }
+    }
+
+    private HexCell GetBestAdjacentFreeCellForStructure(Structure structure, Troop troop)
+    {
+        HexCell stCell = structure.GetComponentInParent<HexCell>();
+        if (stCell == null || gridManager == null) return null;
+
+        HexCell bestCell = null;
+        int minDist = int.MaxValue;
+
+        for (int i = 0; i < 6; i++)
+        {
+            HexCoordinates adjCoords = stCell.Coordinates.GetNeighbor(i);
+            HexCell adjCell = gridManager.GetCell(adjCoords);
+            if (adjCell == null) continue;
+
+            // Si la nave ya está junto a la estructura, mantenemos esa casilla como objetivo
+            if (adjCell == troop.currentCell) return adjCell;
+
+            if (adjCell.IsOccupied || adjCell.HasStructure) continue;
+            if (adjCell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) continue;
+
+            int d = troop.currentCell.Coordinates.DistanceTo(adjCoords);
+            if (d < minDist)
+            {
+                minDist = d;
+                bestCell = adjCell;
+            }
+        }
+        return bestCell;
     }
 
     // =========================================
@@ -244,33 +516,90 @@ public class AIPlayer : Player
 
     private bool CanAffordTroop()
     {
+        // Si hay lista de naves disponibles en el Inspector, elegimos la mejor que podamos pagar
+        if (availableTroopPrefabs != null && availableTroopPrefabs.Count > 0)
+        {
+            Troop bestPrefab = null;
+            float bestPower = float.MinValue;
+
+            foreach (Troop prefab in availableTroopPrefabs)
+            {
+                if (prefab == null) continue;
+                bool affordable = chatarra >= prefab.chatarra &&
+                                  creditos >= prefab.creditos &&
+                                  tritio >= prefab.tritio &&
+                                  cristal >= prefab.cristales;
+                if (!affordable) continue;
+
+                float power = prefab.attack * 2f + prefab.hp * 0.5f + prefab.velocity * 20f;
+                if (power > bestPower)
+                {
+                    bestPower = power;
+                    bestPrefab = prefab;
+                }
+            }
+
+            if (bestPrefab != null)
+            {
+                _blackboard.Set("SelectedTroopPrefab", bestPrefab);
+                return true;
+            }
+        }
+
         if (troopPrefab == null) return false;
-        return chatarra >= troopPrefab.chatarra &&
-               creditos >= troopPrefab.creditos &&
-               tritio >= troopPrefab.tritio &&
-               cristal >= troopPrefab.cristales;
+        bool canAffordDefault = chatarra >= troopPrefab.chatarra &&
+                                creditos >= troopPrefab.creditos &&
+                                tritio >= troopPrefab.tritio &&
+                                cristal >= troopPrefab.cristales;
+
+        if (canAffordDefault)
+        {
+            _blackboard.Set("SelectedTroopPrefab", troopPrefab);
+        }
+        return canAffordDefault;
     }
 
     private bool FindSpawnCell()
     {
+        // Usamos el prefab elegido por CanAffordTroop (o troopPrefab por defecto)
+        Troop prefabToUse = _blackboard.Get<Troop>("SelectedTroopPrefab") ?? troopPrefab;
+        if (prefabToUse == null) return false;
+
         HexCell[] allCells = FindObjectsByType<HexCell>(FindObjectsSortMode.None);
         HexCell bestCell = null;
         float bestScore = float.MinValue;
 
+        // Comprobamos si la nave requiere una estructura adyacente para poder desplegarse
+        bool requiresStructure = prefabToUse.estructurasConstruibles != null && prefabToUse.estructurasConstruibles.Length > 0;
+
         foreach (HexCell cell in allCells)
         {
-            if (cell == null || cell.IsOccupied) continue;
+            if (cell == null || cell.IsOccupied || cell.HasStructure) continue;
             if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) continue;
 
             bool blocked = false;
-            if (troopPrefab.impassableTerrains != null)
+            if (prefabToUse.impassableTerrains != null)
             {
-                foreach (var t in troopPrefab.impassableTerrains)
+                foreach (var t in prefabToUse.impassableTerrains)
                 {
                     if (cell.TerrainType == t) { blocked = true; break; }
                 }
             }
             if (blocked) continue;
+
+            if (requiresStructure)
+            {
+                bool hasValidStructure = false;
+                foreach (StructureTpe stType in prefabToUse.estructurasConstruibles)
+                {
+                    if (cell.ComprobarEstructuraCercana(stType))
+                    {
+                        hasValidStructure = true;
+                        break;
+                    }
+                }
+                if (!hasValidStructure) continue;
+            }
 
             float score = 0f;
             foreach (Troop ally in myTroops)
@@ -295,17 +624,14 @@ public class AIPlayer : Player
     private NodeState BuildTroopAction()
     {
         HexCell spawnCell = _blackboard.Get<HexCell>("SpawnCell");
-        if (spawnCell == null || troopPrefab == null) return NodeState.Failure;
+        Troop prefabToBuild = _blackboard.Get<Troop>("SelectedTroopPrefab") ?? troopPrefab;
+        if (spawnCell == null || prefabToBuild == null) return NodeState.Failure;
 
-        Troop newTroop = Instantiate(troopPrefab);
+        Troop newTroop = Instantiate(prefabToBuild);
+        // newTroop.Initialize() ya descuenta automáticamente creditos, chatarra, tritio y cristal al owner
         if (newTroop.Initialize(spawnCell, this))
         {
             newTroop.ApplyFactionSkin(this.faction);
-
-            chatarra -= troopPrefab.chatarra;
-            creditos -= troopPrefab.creditos;
-            tritio -= troopPrefab.tritio;
-            cristal -= troopPrefab.cristales;
 
             /* if (gameManager != null)
             {
@@ -392,7 +718,65 @@ public class AIPlayer : Player
         }
 
         if (safestCell == null) return false;
-        _blackboard.Set("MoveDestination", safestCell);
+
+        // Trazamos la ruta de retirada con A* hacia la casilla segura elegida
+        HexCoordinates aStarCoords = PathfindingAStar.GetBestPosition(gridManager, troop, safestCell.Coordinates, influenceManager);
+        HexCell aStarCell = gridManager.GetCell(aStarCoords);
+
+        _blackboard.Set("MoveDestination", (aStarCell != null && !aStarCell.IsOccupied) ? aStarCell : safestCell);
+        return true;
+    }
+
+    // Condiciones y acciones de ruta con A* guiadas por la IA Global
+    private bool HasGlobalHuntAssignment()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        if (troop == null || !_globalPlan.TryGetValue(troop, out var plan)) return false;
+        return plan.Role == GlobalRole.CazarObjetivo && plan.TargetEnemy != null && plan.TargetEnemy.currentCell != null;
+    }
+
+    private bool FindGlobalHuntStepWithAStar()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        if (troop == null || !_globalPlan.TryGetValue(troop, out var plan)) return false;
+
+        if (influenceManager != null) influenceManager.RefreshMaps(this, troop);
+
+        HexCoordinates goal = plan.TargetEnemy.currentCell.Coordinates;
+        HexCoordinates stepCoords = PathfindingAStar.GetBestPosition(gridManager, troop, goal, influenceManager);
+        HexCell stepCell = gridManager.GetCell(stepCoords);
+
+        if (stepCell == null || stepCell == troop.currentCell || stepCell.IsOccupied) return false;
+
+        _blackboard.Set("MoveDestination", stepCell);
+        Debug.Log($"IA Global (A*): {troop.name} persigue a {plan.TargetEnemy.name} -> paso a {stepCell.Coordinates}");
+        return true;
+    }
+
+    private bool HasGlobalStructureAssignment()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        if (troop == null || !_globalPlan.TryGetValue(troop, out var plan)) return false;
+        return plan.Role == GlobalRole.ConquistarRecurso && plan.TargetStructure != null;
+    }
+
+    private bool FindGlobalStructureStepWithAStar()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        if (troop == null || !_globalPlan.TryGetValue(troop, out var plan)) return false;
+
+        // Si ya está adyacente a la estructura asignada, mantiene la posición para controlarla
+        if (troop.currentCell.Coordinates.Equals(plan.TargetCoordinates)) return false;
+
+        if (influenceManager != null) influenceManager.RefreshMaps(this, troop);
+
+        HexCoordinates stepCoords = PathfindingAStar.GetBestPosition(gridManager, troop, plan.TargetCoordinates, influenceManager);
+        HexCell stepCell = gridManager.GetCell(stepCoords);
+
+        if (stepCell == null || stepCell == troop.currentCell || stepCell.IsOccupied) return false;
+
+        _blackboard.Set("MoveDestination", stepCell);
+        Debug.Log($"IA Global (A*): {troop.name} rumbo a {plan.TargetStructure.StructureType} ({plan.TargetStructure.ResourceProduced}) -> paso a {stepCell.Coordinates}");
         return true;
     }
 
@@ -488,35 +872,14 @@ public class AIPlayer : Player
         if (target == null || target.currentCell == null)
             return false;
 
-        // Obtener las posiciones a las que puede moverse.
-        List<HexCoordinates> reachableCoords =
-            PathfindingDijkstra.GetValidPositions(
-                gridManager, troop, influenceManager
-            );
-
-        HexCell bestCell = null;
-        float bestScore = CalculatePositionScore(
-            troop.currentCell, target, troop
+        // Usamos A* para trazar el camino hacia la posición del objetivo enemigo
+        HexCoordinates stepCoords = PathfindingAStar.GetBestPosition(
+            gridManager, troop, target.currentCell.Coordinates, influenceManager
         );
-
-        foreach (HexCoordinates coords in reachableCoords)
-        {
-            HexCell cell = gridManager.GetCell(coords);
-
-            if (cell == null || cell.IsOccupied)
-                continue;
-
-            float score = CalculatePositionScore(cell, target, troop);
-
-            if (score > bestScore)
-            {
-                bestScore = score;
-                bestCell = cell;
-            }
-        }
+        HexCell bestCell = gridManager.GetCell(stepCoords);
 
         // Si no encontramos una posición mejor, se queda donde está.
-        if (bestCell == null)
+        if (bestCell == null || bestCell == troop.currentCell || bestCell.IsOccupied)
             return false;
 
         _blackboard.Set("MoveDestination", bestCell);
@@ -601,6 +964,46 @@ public class AIPlayer : Player
             $"Puntuación: {bestScore}"
         );
 
+        return true;
+    }
+
+    // Prioriza atacar a enemigos heridos (<= 50% HP) o al objetivo global marcado
+    private bool FindLowHealthOrFocusTargetInRange()
+    {
+        Troop troop = _blackboard.Get<Troop>("CurrentTroop");
+        List<Troop> enemies = _blackboard.Get<List<Troop>>("EnemyTroops");
+
+        if (troop == null || troop.currentCell == null ||
+            enemies == null || enemies.Count == 0)
+            return false;
+
+        Troop bestTarget = null;
+        float lowestHpRatio = 0.50f;
+
+        foreach (Troop enemy in enemies)
+        {
+            if (enemy == null || enemy.currentCell == null)
+                continue;
+
+            int distance = troop.currentCell.Coordinates.DistanceTo(
+                enemy.currentCell.Coordinates
+            );
+
+            if (distance > troop.range)
+                continue;
+
+            float hpRatio = (float)enemy.hp / Mathf.Max(1, enemy.maxhp);
+            if (enemy == _globalFocusEnemy || hpRatio <= lowestHpRatio)
+            {
+                lowestHpRatio = hpRatio;
+                bestTarget = enemy;
+            }
+        }
+
+        if (bestTarget == null)
+            return false;
+
+        _blackboard.Set("TargetEnemy", bestTarget);
         return true;
     }
 
@@ -696,6 +1099,12 @@ public class AIPlayer : Player
         // Priorizar objetivos que podemos eliminar.
         if (damageDealt >= enemy.hp)
             score += 500f;
+
+        // Bonificación adicional si el enemigo ya está herido o es el objetivo global
+        float hpRatio = (float)enemy.hp / Mathf.Max(1, enemy.maxhp);
+        score += (1f - hpRatio) * 300f;
+        if (enemy == _globalFocusEnemy)
+            score += 200f;
 
         // Penalizar el peligro real del enfrentamiento.
         score -= damageReceived * 0.5f;
@@ -852,7 +1261,6 @@ public class AIPlayer : Player
     }
 
 }
-
 
 
 
