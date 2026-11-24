@@ -11420,17 +11420,33 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: aiPlayer
+      value: 
+      objectReference: {fileID: 1366585032}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: mapRadius
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: humanPlayer
+      value: 
+      objectReference: {fileID: 1678639885}
     - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: kyberPrefab
       value: 
       objectReference: {fileID: 2298697014047955037, guid: fb2cd6de0f5b39947a4361597808f701, type: 3}
     - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: baseIAPrefab
+      value: 
+      objectReference: {fileID: 5354358307204103557, guid: 642d5bd20ffc3b248b7e1745a327165b, type: 3}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: asteroidesPrefab
       value: 
       objectReference: {fileID: 8571150482590650911, guid: f1464713ca945224382dae999da8a963, type: 3}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: baseHumanoPrefab
+      value: 
+      objectReference: {fileID: 5354358307204103557, guid: 642d5bd20ffc3b248b7e1745a327165b, type: 3}
     - target: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_Name
       value: HexGrid
@@ -16126,6 +16142,10 @@ PrefabInstance:
       value: 99999
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
+      propertyPath: faction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: chatarra
       value: 99999
       objectReference: {fileID: 0}
@@ -16144,7 +16164,7 @@ PrefabInstance:
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: otherPlayer
       value: 
-      objectReference: {fileID: 1366585032}
+      objectReference: {fileID: 1678639885}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: troopPrefab
       value: 

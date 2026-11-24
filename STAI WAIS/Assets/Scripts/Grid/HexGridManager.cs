@@ -8,7 +8,7 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     [Header("Configuracion del tablero")]
     public GameObject hexPrefab; //prefab del hexagono
     public int mapRadius = 6; //Radio del tablero N = 1 + 3R(R+1) donde N = numero de casillas y R el radio
-    public float hexSize = 1f; //tama�o del hexagono y separacion entre los centros
+    public float hexSize = 1f; //tamaño del hexagono y separacion entre los centros
     
     private Dictionary<HexCoordinates, HexCell> cells = new Dictionary<HexCoordinates, HexCell>(); //almacena las casillas del tablero
     private HexCell selectedCell;
@@ -22,6 +22,14 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
     [SerializeField] private Structure planetaPrefab;
     [SerializeField] private Structure asteroidesPrefab;
     [SerializeField] private Structure kyberPrefab;
+
+    [Header("Bases de los jugadores")]          //Estas bases para que los jugadores tengan instanciadas sus bases ya al empezar - More
+    [SerializeField] private Structure baseHumanoPrefab;
+    [SerializeField] private Structure baseIAPrefab;
+    [SerializeField] private HumanPlayer humanPlayer;
+    [SerializeField] private AIPlayer aiPlayer;
+    [SerializeField] private Vector2Int coordenadasBaseHumano = new Vector2Int(-5, 0);
+    [SerializeField] private Vector2Int coordenadasBaseIA = new Vector2Int(5, 0);
 
     [Header("Configuración de generación")]
     [SerializeField] private int minStructuresPerType = 2; //salvo el Kyber, el resto de estreucturas se generan de 1 a 3 estructuras

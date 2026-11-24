@@ -22,8 +22,9 @@ public class AIPlayer : Player
 
     [Header("Configuración")]
     public Troop troopPrefab;
-    // Lista opcional para asignar en el Inspector las 7 naves y que la IA elija según recursos y ventaja
+    // Lista opcional para asignar en el Inspector las 7 naves y que la IA elija segun recursos y ventaja
     public List<Troop> availableTroopPrefabs = new List<Troop>();
+    [SerializeField] private Structure baseStructure;
     [SerializeField] private HexGridManager gridManager;
     [SerializeField] private TacticalInfluenceManager influenceManager;
 
@@ -57,6 +58,11 @@ public class AIPlayer : Player
 
         _blackboard = new Blackboard();
         BuildBehaviorTrees();
+    }
+
+    public void SetBaseStructure(Structure structure)   //Le pasa hexgrid manager la estructura que si no es privada
+    {
+        baseStructure = structure;
     }
 
     private void BuildBehaviorTrees()
@@ -563,56 +569,90 @@ public class AIPlayer : Player
     {
         // Usamos el prefab elegido por CanAffordTroop (o troopPrefab por defecto)
         Troop prefabToUse = _blackboard.Get<Troop>("SelectedTroopPrefab") ?? troopPrefab;
-        if (prefabToUse == null) return false;
+        if (prefabToUse == null || gridManager == null) return false;
 
-        HexCell[] allCells = FindObjectsByType<HexCell>(FindObjectsSortMode.None);
+        // 1. Reunimos todas las estructuras desde las que la IA tiene permitido desplegar
+        List<Structure> validBases = new List<Structure>();
+
+        // Si tiene asignada su base principal en el Inspector, siempre es valida
+        if (baseStructure != null)
+        {
+            validBases.Add(baseStructure);
+        }
+
+        // Añadimos tambien cualquier otra estructura que la IA controle actualmente
+        Structure[] allStructures = FindObjectsByType<Structure>(FindObjectsSortMode.None);
+        foreach (Structure st in allStructures)
+        {
+            if (st == null || validBases.Contains(st)) continue;
+            st.ActualizarControl();
+            if (st.ControllingPLayer == this)
+            {
+                validBases.Add(st);
+            }
+        }
+
+        // Si la nave exige un tipo de estructura concreto (estructurasConstruibles), lo filtra por ese tipo
+        bool requiresSpecificType = prefabToUse.estructurasConstruibles != null && prefabToUse.estructurasConstruibles.Length > 0;
+        if (requiresSpecificType)
+        {
+            validBases.RemoveAll(st =>
+            {
+                foreach (StructureTpe allowedType in prefabToUse.estructurasConstruibles)
+                {
+                    if (st.StructureType == allowedType) return false;
+                }
+                return true;
+            });
+        }
+
+        // Si la IA no tiene base ni estructuras validas, no construye en mitad de la nada
+        if (validBases.Count == 0) return false;
+
+        // aqui Buscamos unicamente entre las 6 casillas adyacentes a esas bases
         HexCell bestCell = null;
         float bestScore = float.MinValue;
 
-        // Comprobamos si la nave requiere una estructura adyacente para poder desplegarse
-        bool requiresStructure = prefabToUse.estructurasConstruibles != null && prefabToUse.estructurasConstruibles.Length > 0;
-
-        foreach (HexCell cell in allCells)
+        foreach (Structure originStructure in validBases)
         {
-            if (cell == null || cell.IsOccupied || cell.HasStructure) continue;
-            if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) continue;
+            HexCell structureCell = originStructure.GetComponentInParent<HexCell>();
+            if (structureCell == null) continue;
 
-            bool blocked = false;
-            if (prefabToUse.impassableTerrains != null)
+            for (int i = 0; i < 6; i++)
             {
-                foreach (var t in prefabToUse.impassableTerrains)
-                {
-                    if (cell.TerrainType == t) { blocked = true; break; }
-                }
-            }
-            if (blocked) continue;
+                HexCoordinates neighborCoords = structureCell.Coordinates.GetNeighbor(i);
+                HexCell cell = gridManager.GetCell(neighborCoords);
 
-            if (requiresStructure)
-            {
-                bool hasValidStructure = false;
-                foreach (StructureTpe stType in prefabToUse.estructurasConstruibles)
+                if (cell == null || cell.IsOccupied || cell.HasStructure) continue;
+                if (cell.TerrainType == HexTerrainType.TerrenoAgujeroDeGusano) continue;
+
+                bool blocked = false;
+                if (prefabToUse.impassableTerrains != null)
                 {
-                    if (cell.ComprobarEstructuraCercana(stType))
+                    foreach (var t in prefabToUse.impassableTerrains)
                     {
-                        hasValidStructure = true;
-                        break;
+                        if (cell.TerrainType == t) { blocked = true; break; }
                     }
                 }
-                if (!hasValidStructure) continue;
-            }
+                if (blocked) continue;
 
-            float score = 0f;
-            foreach (Troop ally in myTroops)
-            {
-                int dist = cell.Coordinates.DistanceTo(ally.currentCell.Coordinates);
-                if (dist == 1) score += 10f;
-                else score -= dist;
-            }
+                float score = 0f;
 
-            if (score > bestScore)
-            {
-                bestScore = score;
-                bestCell = cell;
+                // Priorizamos su base principal frente a puestos secundarios
+                if (originStructure == baseStructure) score += 50f;
+
+                foreach (Troop ally in myTroops)
+                {
+                    int dist = cell.Coordinates.DistanceTo(ally.currentCell.Coordinates);
+                    if (dist == 1) score += 10f;
+                    else score -= dist;
+                }
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestCell = cell;
+                }
             }
         }
 

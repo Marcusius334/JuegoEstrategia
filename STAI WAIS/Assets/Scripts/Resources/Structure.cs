@@ -15,6 +15,15 @@ public class Structure : MonoBehaviour
 
     //jugador que controla actualmente la estructura
     public Player ControllingPLayer { get; private set; }
+
+    private Player baseOwner;             //Nuevo añadido de more
+
+    public void SetBaseOwner(Player owner)
+    {
+        baseOwner = owner;
+        ControllingPLayer = owner;
+    }
+
     //tipo de recurso que produce esta estructura
     public ResourceType ResourceProduced 
     {
@@ -76,10 +85,10 @@ public class Structure : MonoBehaviour
                 jugadorImperio = tropa.owner;
             }
         }
-        //determinar el due�o. En caso de empate queda neutral
+        // determinar el dueño. En caso de empate mantiene el dueño base (null si es neutral)
         if (rebeldes > imperio) ControllingPLayer = jugadorRebelde;
         else if (imperio > rebeldes) ControllingPLayer = jugadorImperio;
-        else ControllingPLayer = null;
+        else ControllingPLayer = baseOwner;
     }
 
 }
