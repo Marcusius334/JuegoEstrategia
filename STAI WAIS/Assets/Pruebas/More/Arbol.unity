@@ -15911,19 +15911,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: j_tritio
-      value: 9999
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: j_cristal
-      value: 9999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: j_chatarra
-      value: 9999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: j_creditos
-      value: 9999
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
+      propertyPath: ia_chatarra
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
+      propertyPath: ia_creditos
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 683100376539839977, guid: c54833ec90f834545b6dea204954faf6, type: 3}
       propertyPath: textoTritio
@@ -16135,23 +16143,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: tritio
-      value: 99999
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: cristal
-      value: 99999
-      objectReference: {fileID: 0}
-    - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
-      propertyPath: faction
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: chatarra
-      value: 99999
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: creditos
-      value: 99999
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6522023628248702051, guid: 2ca32107412a88a409242e24d0d75cd1, type: 3}
       propertyPath: gameManager
@@ -22663,8 +22671,24 @@ PrefabInstance:
       value: HumanPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: tritio
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: cristal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
       propertyPath: faction
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: chatarra
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
+      propertyPath: creditos
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9178774287994692858, guid: 1a11af9401a128a43a031d77b30399c5, type: 3}
       propertyPath: gameManager

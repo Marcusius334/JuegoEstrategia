@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-    // Estructuras internas para la planificación de la IA Global
+    // Estructuras internas para la planificacion de la IA Global
     private enum GlobalRole
     {
         Retirada,
@@ -31,7 +31,7 @@ public class AIPlayer : Player
     [Header("Tropas Activas")]
     public List<Troop> myTroops = new List<Troop>();
 
-    // Arquitectura de Árboles de Comportamiento
+    // Arquitectura de Arboles de Comportamiento
     private Blackboard _blackboard;
     private BTNode _constructionTree;
     private BTNode _movementTree;
@@ -536,6 +536,7 @@ public class AIPlayer : Player
                                   tritio >= prefab.tritio &&
                                   cristal >= prefab.cristales;
                 if (!affordable) continue;
+                if (!CanBuildAtOwnedStructures(prefab)) continue;
 
                 float power = prefab.attack * 2f + prefab.hp * 0.5f + prefab.velocity * 20f;
                 if (power > bestPower)
@@ -563,6 +564,36 @@ public class AIPlayer : Player
             _blackboard.Set("SelectedTroopPrefab", troopPrefab);
         }
         return canAffordDefault;
+    }
+
+    private bool CanBuildAtOwnedStructures(Troop prefab)  // Esto solo sirve para comprobar si puede construir en la casilla cerca de la estructura
+    {
+        if (prefab == null) return false;
+
+        List<Structure> owned = new List<Structure>();
+        if (baseStructure != null) owned.Add(baseStructure);
+
+        Structure[] allStructures = FindObjectsByType<Structure>(FindObjectsSortMode.None);
+        foreach (Structure st in allStructures)
+        {
+            if (st == null || owned.Contains(st)) continue;
+            st.ActualizarControl();
+            if (st.ControllingPLayer == this) owned.Add(st);
+        }
+
+        if (owned.Count == 0) return false;
+
+        bool requiresSpecificType = prefab.estructurasConstruibles != null && prefab.estructurasConstruibles.Length > 0;
+        if (!requiresSpecificType) return true;
+
+        foreach (Structure st in owned)
+        {
+            foreach (StructureTpe allowed in prefab.estructurasConstruibles)
+            {
+                if (st.StructureType == allowed) return true;
+            }
+        }
+        return false;
     }
 
     private bool FindSpawnCell()

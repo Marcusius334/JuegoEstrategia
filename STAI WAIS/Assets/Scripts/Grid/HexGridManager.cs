@@ -230,6 +230,27 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         // Evitamos duplicar estructuras si se vuelve a ejecutar
         LimpiarEstructuras();
 
+        // 1. Generar Base del Jugador Humano
+        HexCell celdaHumano = GetCell(new HexCoordinates(coordenadasBaseHumano.x, coordenadasBaseHumano.y));
+        if (celdaHumano != null && baseHumanoPrefab != null)
+        {
+            Structure baseHumana = CrearEstructuraEnCelda(celdaHumano, baseHumanoPrefab);
+            if (baseHumana != null && humanPlayer != null)
+                baseHumana.SetBaseOwner(humanPlayer);
+        }
+
+        // 2. Generar Base de la IA
+        HexCell celdaIA = GetCell(new HexCoordinates(coordenadasBaseIA.x, coordenadasBaseIA.y));
+        if (celdaIA != null && baseIAPrefab != null)
+        {
+            Structure baseIA = CrearEstructuraEnCelda(celdaIA, baseIAPrefab);
+            if (baseIA != null && aiPlayer != null)
+            {
+                baseIA.SetBaseOwner(aiPlayer);
+                aiPlayer.SetBaseStructure(baseIA);
+            }
+        }
+
         // El centro del tablero, en coordenadas axiales, es (0,0)
         HexCoordinates centro = new HexCoordinates(0, 0);
         HexCell celdaCentro = GetCell(centro);
@@ -297,36 +318,38 @@ public class HexGridManager : MonoBehaviour //Administra todo el tablero
         // Caso de seguridad
         return celdasDisponibles[celdasDisponibles.Count - 1];
     }
-    private void CrearEstructuraEnCelda(HexCell cell, Structure prefab) 
+    private Structure CrearEstructuraEnCelda(HexCell cell, Structure prefab)  // esto era void ahora es Structure
     {
-        if(cell == null||prefab == null) return;
-        if (cell.HasStructure) return;
-        //Crear el prefab en la posicion del hexagono 
+        if (cell == null || prefab == null) return null;
+        if (cell.HasStructure) return null;
+
         Structure nuevaEstructura = Instantiate(prefab, cell.transform.position, Quaternion.identity, cell.transform);
-        //Se mantiene como hijo de la cailla
         nuevaEstructura.transform.localPosition = Vector3.zero;
-        //Registrar la estructura dentro de la casilla
+
         if (!cell.TrySetStructure(nuevaEstructura)) 
         {
             Destroy(nuevaEstructura.gameObject);
-            return;
+            return null;
         }
+
         Debug.Log(
-        "Estructura " + nuevaEstructura.StructureType +
-        " creada en " + cell.Coordinates +
-        " sobre el terreno " + cell.TerrainType
+            "Estructura " + nuevaEstructura.StructureType +
+            " creada en " + cell.Coordinates +
+            " sobre el terreno " + cell.TerrainType
         );
 
-        //Damos a conocer a las casillas colindantes de la estructura:
+        // Damos a conocer a las casillas colindantes de la estructura:
         for (int i = 0; i < 6; i++)
         {
-            HexCell casilla;
             HexCoordinates coordenadas = cell.Coordinates.GetNeighbor(i);
-            if (CoordinateInWorld(coordenadas)) {
-                casilla = GetCell(coordenadas);
+            if (CoordinateInWorld(coordenadas))
+            {
+                HexCell casilla = GetCell(coordenadas);
                 casilla.AddNeighborStructure(nuevaEstructura.StructureType);
             }
         }
+
+        return nuevaEstructura;
     }
     private void LimpiarEstructuras() 
     {
