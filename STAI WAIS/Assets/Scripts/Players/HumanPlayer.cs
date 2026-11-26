@@ -32,6 +32,8 @@ public class HumanPlayer : Player
     [SerializeField] private TextMeshProUGUI textoTritio;
     [SerializeField] private TextMeshProUGUI textoCristales;
 
+    private List<Troop> tropasActivas = new List<Troop>();
+
     void Start(){
         validPositions = new List<HexCoordinates>{};
     }
@@ -61,7 +63,12 @@ public class HumanPlayer : Player
         else if (turnsManager.faseActual == TurnsManager.Fase.Movimiento)
         {
             Movimiento(hit);
+            Ataque(hit);
         }
+        /* else if (turnsManager.faseActual == TurnsManager.Fase.Ataque)
+        {
+            Ataque(hit);
+        } */
     }
 
     private void ActText()
@@ -108,6 +115,9 @@ public class HumanPlayer : Player
                         selectedTroop = null;
                         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
                     }
+
+                    //Añadimos la nueva tropa a la lista de tropas:
+                    tropasActivas.Add(nuevaTropa);
                 }
             }
     }
@@ -146,8 +156,16 @@ public class HumanPlayer : Player
 
             if (clickedTroop != null && clickedTroop.owner == this)
             {
+                //Comprobamos si ya se ha movido:
+                if (clickedTroop.EstadoMovimiento()) {
+                    Debug.Log("Testing mover tropas: La tropa " + clickedTroop.name + " ya se ha movido, no se puede volver a mover");
+                    return;
+                }
+                
                 selectedTroop = clickedTroop;
                 Debug.Log("Testing mover tropas: Tropa seleccionada: " + selectedTroop.name);
+
+                //Mostramos las posiciones válidas:
                 validPositions = PathfindingDijkstra.GetValidPositions(gridManager, clickedTroop, influenceMap);
                 foreach(HexCoordinates position in validPositions)
                 {
@@ -188,6 +206,11 @@ public class HumanPlayer : Player
         {
             if (clickedTroop.owner == this)
             {
+                if (clickedTroop.EstadoAtaque())
+                {
+                    Debug.Log("Testing atacar tropas: La tropa " + clickedTroop.name + " ya ha atacado, no puede volver a atacar");
+                    return;
+                }
                 selectedAttackTroop = clickedTroop;
                 Debug.Log("Tropa atacante seleccionada: " + selectedAttackTroop.name);
             }
@@ -200,6 +223,11 @@ public class HumanPlayer : Player
 
         if (clickedTroop.owner == this)
         {
+            if (clickedTroop.EstadoAtaque())
+            {
+                Debug.Log("Testing atacar tropas: La tropa " + clickedTroop.name + " ya se ha atacado, no puede volver a atacar");
+                return;
+            }
             selectedAttackTroop = clickedTroop;
             Debug.Log("Nueva tropa atacante seleccionada: " + selectedAttackTroop.name);
             return;
@@ -236,7 +264,19 @@ public class HumanPlayer : Player
         selectedAttackTroop.Attack(clickedTroop);
     }
 
-    
+    //Resetear los valores de topas las tropas:
+    public void ReiniciarTropas()
+    {
+        foreach(Troop tropa in tropasActivas)
+        {
+            tropa.ReiniciarEstado();
+        }
+    }
 
+    //Eliminar la tropa de la lista al morir:
+    public void EliminarTropa(Troop tropa)
+    {
+        tropasActivas.Remove(tropa);
+    }
 }
 

@@ -93,9 +93,9 @@ public class TurnsManager : MonoBehaviour
     {
         switch (faseActual)
         {
-            case Fase.Construccion: ActualizarBoton("Mover tropas", Color.blue); break;
-            case Fase.Movimiento: ActualizarBoton("Atacar", Color.red); break;
-            case Fase.Ataque: ActualizarBoton("Pasar turno", Color.green); break;
+            case Fase.Construccion: ActualizarBoton("Mover y atacar", Color.blue); break;
+            case Fase.Movimiento: ActualizarBoton("Pasar turno", Color.red); break;
+            //case Fase.Ataque: ActualizarBoton("Pasar turno", Color.green); break;
             default: ActualizarBoton("ERROR", Color.gray); break;
         }
     }
@@ -126,13 +126,15 @@ public class TurnsManager : MonoBehaviour
                 StartCoroutine(AnimarTransicionFase());
                 break;
             case Fase.Movimiento:
-                faseActual = Fase.Ataque;
-                StartCoroutine(AnimarTransicionFase());
+                //faseActual = Fase.Ataque;
+                enTurno = false;
+                StartCoroutine(SecuenciaTurnoEnemigo()); // Lanzamos la secuencia de la IA
+                //StartCoroutine(AnimarTransicionFase());
                 break;
-            case Fase.Ataque:
+            /* case Fase.Ataque:
                 enTurno = false; // Bloqueamos tus clics
                 StartCoroutine(SecuenciaTurnoEnemigo()); // Lanzamos la secuencia de la IA
-                break;
+                break; */
         }
     }
 
@@ -171,22 +173,27 @@ public class TurnsManager : MonoBehaviour
             jugadorEnemigo.PerformMovementPhase();
         }
 
-        yield return new WaitForSeconds(1f);
-
-        // =========================================
-        // FASE 3: ATAQUE
-        // =========================================
-
-        faseActual = Fase.Ataque;
-
-        yield return StartCoroutine(AnimarTransicionFase());
-
         if (jugadorEnemigo != null)
         {
             jugadorEnemigo.PerformAttackPhase();
         }
 
         yield return new WaitForSeconds(1f);
+
+        // =========================================
+        // FASE 3: ATAQUE
+        // =========================================
+
+        /* faseActual = Fase.Ataque;
+
+        yield return StartCoroutine(AnimarTransicionFase()); 
+
+        if (jugadorEnemigo != null)
+        {
+            jugadorEnemigo.PerformAttackPhase();
+        }
+
+        yield return new WaitForSeconds(1f);*/
 
         // =========================================
         // DEVOLVER EL TURNO AL JUGADOR
@@ -196,6 +203,9 @@ public class TurnsManager : MonoBehaviour
         enTurno = true;
         boton.SetActive(true); //Activamos la tienda
         faseActual = Fase.Construccion;
+
+        //Reiniciamos los estados de las naves:
+        jugadorHumano.ReiniciarTropas();
 
         yield return StartCoroutine(AnimarTransicionFase());
 

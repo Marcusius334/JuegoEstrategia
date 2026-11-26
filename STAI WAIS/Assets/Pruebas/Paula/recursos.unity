@@ -169,6 +169,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -517,6 +518,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -683,6 +685,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: 0
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -849,6 +852,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -4
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -1015,6 +1019,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: -1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -1272,6 +1277,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -1893,6 +1899,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -2059,6 +2066,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -2225,6 +2233,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -2
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -2482,6 +2491,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -3199,6 +3209,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -3365,6 +3376,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 3
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -3622,6 +3634,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 4
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -3788,6 +3801,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -2
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -4136,6 +4150,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -4484,6 +4499,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -4650,6 +4666,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -5009,6 +5026,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -5448,6 +5466,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 2
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -6069,6 +6088,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -6599,6 +6619,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -7150,6 +7171,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -8
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -7316,6 +7338,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -4
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -7664,6 +7687,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: -4
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -7909,6 +7933,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -8166,6 +8191,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -8332,6 +8358,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -8498,6 +8525,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 0
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -8846,6 +8874,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -9012,6 +9041,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -9178,6 +9208,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -9446,6 +9477,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 3
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -9612,6 +9644,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -9960,6 +9993,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -10126,6 +10160,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 1
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -10292,6 +10327,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -10458,6 +10494,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -7
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -10624,6 +10661,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: 2
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -10881,6 +10919,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 5
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -11047,6 +11086,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -11213,6 +11253,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -11379,6 +11420,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 3
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -11545,6 +11587,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 6
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -11984,6 +12027,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 5
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -12423,6 +12467,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -12589,6 +12634,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -12755,6 +12801,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -12921,6 +12968,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -13178,6 +13226,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 0
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -13435,6 +13484,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: -1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -13601,6 +13651,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -3
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -14950,6 +15001,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -15116,6 +15168,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -15282,6 +15335,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: 1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -15721,6 +15775,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 8
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -15887,6 +15942,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 5
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -16610,6 +16666,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -17140,6 +17197,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: -3
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -17306,6 +17364,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 4
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -17472,6 +17531,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -17644,6 +17704,14 @@ PrefabInstance:
       propertyPath: mapRadius
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: kyberPrefab
+      value: 
+      objectReference: {fileID: 2298697014047955037, guid: fb2cd6de0f5b39947a4361597808f701, type: 3}
+    - target: {fileID: 830050336906156311, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
+      propertyPath: asteroidesPrefab
+      value: 
+      objectReference: {fileID: 8571150482590650911, guid: f1464713ca945224382dae999da8a963, type: 3}
     - target: {fileID: 1106275829480559028, guid: b32e5d0c71fd9464b942e3b0582792cc, type: 3}
       propertyPath: m_Name
       value: HexGrid
@@ -18537,6 +18605,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: -1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -18703,6 +18772,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -18869,6 +18939,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 2
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -19035,6 +19106,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -7
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -19383,6 +19455,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -19549,6 +19622,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -19715,6 +19789,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 2
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -19881,6 +19956,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 5
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20047,6 +20123,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 4
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20315,6 +20392,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -2
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20481,6 +20559,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 0
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20647,6 +20726,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 7
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20813,6 +20893,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -3
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -20979,6 +21060,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -4
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -21236,6 +21318,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: 0
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -21629,6 +21712,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -22068,6 +22152,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -22234,6 +22319,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 7
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -22400,6 +22486,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -22930,6 +23017,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -7
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -23642,6 +23730,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 4
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -23808,6 +23897,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: 4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -23990,6 +24080,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -24338,6 +24429,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -24504,6 +24596,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -24866,6 +24959,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 4
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -25032,6 +25126,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -5
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -25380,6 +25475,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -1
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -25546,6 +25642,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -25712,6 +25809,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: -1
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26066,6 +26164,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: -2
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26232,6 +26331,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26398,6 +26498,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26655,6 +26756,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26821,6 +26923,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -26987,6 +27090,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -27244,6 +27348,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -27592,6 +27697,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -27758,6 +27864,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -2
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -28106,6 +28213,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 4
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -28454,6 +28562,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -28620,6 +28729,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -1
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -28877,6 +28987,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -29043,6 +29154,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -29209,6 +29321,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 3
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -29557,6 +29670,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 6
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -29723,6 +29837,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 1
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -29980,6 +30095,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -30237,6 +30353,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 0
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -30767,6 +30884,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 7
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -30933,6 +31051,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -5
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -31099,6 +31218,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -31356,6 +31476,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -31522,6 +31643,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -6
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -31870,6 +31992,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: -2
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -32127,6 +32250,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -32293,6 +32417,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -32550,6 +32675,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -7
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -32989,6 +33115,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -4
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -33155,6 +33282,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: -2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -33321,6 +33449,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -33487,6 +33616,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: 4
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -33926,6 +34056,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -34285,6 +34416,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -34451,6 +34583,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -34708,6 +34841,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: 2
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -35056,6 +35190,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -35222,6 +35357,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -35388,6 +35524,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -35554,6 +35691,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -35935,6 +36073,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -3
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -36101,6 +36240,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -36267,6 +36407,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -36524,6 +36665,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -2
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -36690,6 +36832,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -36947,6 +37090,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -37113,6 +37257,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -37370,6 +37515,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 7
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -37536,6 +37682,7 @@ MonoBehaviour:
   coordinatesQ: -5
   coordinatesR: -3
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -37793,6 +37940,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -38141,6 +38289,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -38307,6 +38456,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -8
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -38473,6 +38623,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: 3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -38639,6 +38790,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -38805,6 +38957,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 8
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -39062,6 +39215,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 3
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -39319,6 +39473,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 0
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -39667,6 +39822,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -40015,6 +40171,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -6
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -40181,6 +40338,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: 1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -40529,6 +40687,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -40968,6 +41127,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -41134,6 +41294,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -8
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -41300,6 +41461,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: -2
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -41466,6 +41628,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -5
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -41723,6 +41886,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -42071,6 +42235,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -42237,6 +42402,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: 0
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -42403,6 +42569,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 8
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -42842,6 +43009,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -4
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -43008,6 +43176,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -8
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -43265,6 +43434,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 4
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -43431,6 +43601,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -43597,6 +43768,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 1
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44127,6 +44299,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 5
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44384,6 +44557,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44550,6 +44724,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -2
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44716,6 +44891,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -44882,6 +45058,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -1
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -45150,6 +45327,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -45498,6 +45676,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: 0
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -45664,6 +45843,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: -3
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -46103,6 +46283,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: 3
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -46498,6 +46679,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -46664,6 +46846,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -47376,6 +47559,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -47542,6 +47726,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -5
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -48101,6 +48286,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -48449,6 +48635,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: -3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -48615,6 +48802,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: -4
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -48781,6 +48969,7 @@ MonoBehaviour:
   coordinatesQ: 8
   coordinatesR: -5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -49038,6 +49227,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: -6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -49295,6 +49485,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: 0
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -49713,6 +49904,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: 0
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -49879,6 +50071,7 @@ MonoBehaviour:
   coordinatesQ: -2
   coordinatesR: 7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50136,6 +50329,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50302,6 +50496,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -4
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50468,6 +50663,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -7
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50634,6 +50830,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: -4
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50800,6 +50997,7 @@ MonoBehaviour:
   coordinatesQ: 7
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -50966,6 +51164,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: -4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -51132,6 +51331,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: -1
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -51389,6 +51589,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -51555,6 +51756,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 2
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -51812,6 +52014,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 1
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -52069,6 +52272,7 @@ MonoBehaviour:
   coordinatesQ: -8
   coordinatesR: 1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -52235,6 +52439,7 @@ MonoBehaviour:
   coordinatesQ: -7
   coordinatesR: 7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -52492,6 +52697,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -52931,6 +53137,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -3
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -53188,6 +53395,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 5
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -53354,6 +53562,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -2
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -53611,6 +53820,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: 3
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -53777,6 +53987,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: -2
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -54034,6 +54245,7 @@ MonoBehaviour:
   coordinatesQ: 1
   coordinatesR: -4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -54200,6 +54412,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 8
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -54832,6 +55045,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 6
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -55089,6 +55303,7 @@ MonoBehaviour:
   coordinatesQ: 5
   coordinatesR: 1
   terrainType: 3
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -55255,6 +55470,7 @@ MonoBehaviour:
   coordinatesQ: 0
   coordinatesR: 7
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -55421,6 +55637,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: 7
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -55678,6 +55895,7 @@ MonoBehaviour:
   coordinatesQ: -1
   coordinatesR: -4
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -55844,6 +56062,7 @@ MonoBehaviour:
   coordinatesQ: -6
   coordinatesR: 0
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -56101,6 +56320,7 @@ MonoBehaviour:
   coordinatesQ: 6
   coordinatesR: -5
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -56358,6 +56578,7 @@ MonoBehaviour:
   coordinatesQ: -4
   coordinatesR: 1
   terrainType: 1
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -56524,6 +56745,7 @@ MonoBehaviour:
   coordinatesQ: -3
   coordinatesR: -5
   terrainType: 2
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -56690,6 +56912,7 @@ MonoBehaviour:
   coordinatesQ: 2
   coordinatesR: 6
   terrainType: 0
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -56947,6 +57170,7 @@ MonoBehaviour:
   coordinatesQ: 4
   coordinatesR: -3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
@@ -57477,6 +57701,7 @@ MonoBehaviour:
   coordinatesQ: 3
   coordinatesR: -3
   terrainType: 4
+  listaEstructuras: 
   normalColor: {r: 1, g: 1, b: 1, a: 0}
   hoverColor: {r: 0, g: 0, b: 0, a: 0.25}
   selectedColor: {r: 0, g: 0, b: 0, a: 0.4}
