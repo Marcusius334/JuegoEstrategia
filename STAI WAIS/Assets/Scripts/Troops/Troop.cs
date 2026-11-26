@@ -81,6 +81,10 @@ public class Troop : MonoBehaviour
     public int extradmg;
     public int range;
 
+    [Header("Estados")]
+    private bool seHaMovido;
+    private bool haAtacado;
+
     [Header("Terrenos especiales")]
     public BonusMovementTerrain[] movementBonuses;
     public BonusDefenseTerrain[] defenseBonuses;
@@ -104,6 +108,7 @@ public class Troop : MonoBehaviour
 
     [Header("Estructuras donde se puede construir")]
     public StructureTpe[] estructurasConstruibles;
+
     [Header("GridManager")]
     private HexGridManager gridManager;
 
@@ -113,6 +118,10 @@ public class Troop : MonoBehaviour
         gridManager = FindAnyObjectByType<HexGridManager>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        //Inicializamos los estados:
+        seHaMovido = false;
+        haAtacado = false;
     } 
 
     /* public virtual void ApplyFactionSkin(Faction playerFaction)
@@ -223,6 +232,10 @@ public class Troop : MonoBehaviour
 
         int finalDamage = CalculateDamageAgainst(target);
         Debug.Log($"{name} ataca a {target.name} causando {finalDamage} de daño.");
+
+        //Declaramos que la tropa ya ha atacado:
+        haAtacado = true;
+        seHaMovido = true;
         
         target.TakeDamage(finalDamage);
     }
@@ -239,7 +252,7 @@ public class Troop : MonoBehaviour
 
     protected virtual void Die()
     {
-        
+        if (owner is HumanPlayer human) human.EliminarTropa(this);
         Destroy(gameObject);
     }
 
@@ -366,6 +379,9 @@ public class Troop : MonoBehaviour
         }
 
         Debug.Log("Tropa movida a " + currentCell.Coordinates);
+
+        //Declaramos que la tropa ya se ha movido:
+        seHaMovido = true;
     }
 
     private bool TerrenoValido(HexCell casilla)
@@ -381,6 +397,22 @@ public class Troop : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public bool EstadoMovimiento()
+    {
+        return seHaMovido;
+    }
+
+    public bool EstadoAtaque()
+    {
+        return haAtacado;
+    }
+
+    public void ReiniciarEstado()
+    {
+        seHaMovido = false;
+        haAtacado = false;
     }
 }
 
